@@ -38,24 +38,12 @@ curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 # yum clean all
 # yum makecache
 }
-pipsource(){
-if [ ! -f ~/.pip/pip.conf ]; then
-    echo "正在更换pip源"
-    if [ ! -d ~/.pip ]; then
-        mkdir ~/.pip
-    fi
-    aliyun='[global]
-    trusted-host=mirrors.aliyun.com
-    index-url=https://mirrors.aliyun.com/pypi/simple/'
-    echo $aliyun > ~/.pip/pip.conf
-fi
-}
+
 #extra
 exinstall(){
 $install install -y git wget make
 $install install -y python2 python3
 
-pipsource
 pip3 install ranger-fm
 }
 #fish
@@ -119,6 +107,7 @@ for i in "$@"; do
         openstack ) source openstack.sh && openstackinstall;;
 
         *config ) source config.sh && config.sh $i;;
+        *source ) source source.sh && source.sh $i;;
         list ) set | grep "()";;
         * ) read -p "$i暂时没收录，是否使用$install安装:[y/n] " y
             if [ $y == y ]; then

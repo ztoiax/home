@@ -38,4 +38,5 @@ set clipboard+=unnamedplus "直接复制剪切板'
 case i in $i
     fish* ) fishconfig;;
     nvim* ) nvimconfig;;
+    * ) echo "$i还有收录";;
 esac

@@ -38,18 +38,6 @@ git clone https://github.com/sindresorhus/pure.git "$ZSH_CUSTOM/themes/spaceship
 }
 base(){
 #源修改
-cp /etc/apt/sources.list sources.list.bak
-sudo echo "deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse" > /etc/apt/sources.list 
-
 sudo add-apt-repository ppa:mmstick76/alacritty 		#alacritty
 sudo add-apt-repository ppa:dobey/redshift-daily		#护眼redshift
 sudo add-apt-repository ppa:kelleyk/emacs
@@ -57,17 +45,6 @@ sudo add-apt-repository ppa:lazygit-team/release        #gitgui
 #google源
  sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/
  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
-
-#npm源修改
-npm config set registry https://mirrors.huaweicloud.com/repository/
-npm config set disturl https://repo.huaweicloud.com/nodejsnpm/
-npm config set sass_binary_site https://repo.huaweicloud.com/n
-npm config set phantomjs_cdnurl https://repo.huaweicloud.com/phantomjs
-npm config set chromedriver_cdnurl https://repo.huaweicloud.com/chromedriver
-npm config set operadriver_cdnurl https://repo.huaweicloud.com
-npm config set electron_mirror https://repo.huaweicloud.com/electron/
-npm config set python_mirror https://repo.huaweicloud.com/python /operadriverode-sass
-##################################################################
 
 #base install
 sudo apt-get -y install vim

@@ -6,8 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/.zplug/init.zsh				h
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# If you come from bash you might have to change your $PATH.  export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/tz/.oh-my-zsh"
@@ -270,6 +269,7 @@ termux="/data/data/com.termux/files/home"
 
 centos8="root@192.168.100.165"
 centos7="root@192.168.100.212"
+mi10="u0_a369@192.168.1.111 "
 
 share="/mnt/C/Users/ztoia/Desktop/share"
 m="/mnt/E/迅雷下载/.m"
