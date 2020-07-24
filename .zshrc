@@ -164,8 +164,8 @@ function sed-i {
 #export
 export EDITOR=vim
 #fzf
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} ||cat {}) 2> /dev/null | head -500'"
-export FZF_COMPLETION_TRIGGER='**'
+export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(highlight -O ansi {} ||cat {}) 2> /dev/null | head -500'"
+export FZF_COMPLETION_TRIGGER=',,'
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 

@@ -166,6 +166,7 @@ pip install https://github.com/joh/when-changed/archive/master.zip
 pip install scapy
 pip install -U pure-python-adb                  #adb
 pip install pyinstaller                         #打包成可执行程序
+pip install you-get                             #下载工具
 
 sudo npm install -g nrm                         #源列表
 sudo npm install -g fanyi                       #翻译
