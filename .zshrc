@@ -161,6 +161,19 @@ function sed-s {
 function sed-i {
     sed -i "/$1" $2
 }
+
+function ranger {
+    tempfile=$(mktemp)
+    trap 'rm -f "$tempfile"' EXIT
+    ranger_cmd=(
+        command
+        ranger --cmd="map q chain shell echo %d > "$tempfile"; quitall"
+    )
+    ${ranger_cmd[@]}
+    cd "$(cat "$tempfile")"
+    rm -f "$tempfile" 2>/dev/null
+}
+
 #export
 export EDITOR=vim
 #fzf

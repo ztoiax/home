@@ -81,6 +81,7 @@ export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docke
 monitorinstall() {
 #CPU
 $install atop htop
+$install netdata
 }
 
 if [ -f /usr/bin/lsb_release ]; then
