@@ -84,6 +84,33 @@ $install atop htop
 $install netdata
 }
 
+phoronixinstall(){
+#phoronix http://www.phoronix-test-suite.com/
+echo "正在下载phoronix"
+wget https://phoronix-test-suite.com/releases/phoronix-test-suite-9.8.0.tar.gz
+echo "正在解压phoronix"
+tar xzf phoronix-test-suite-9.8.0.tar.gz
+rm phoronix-test-suite-9.8.0.tar.gz
+cd phoronix-test-suite
+echo "正在安装phoronix"
+sudo ./install-sh
+echo "开始phoronix"
+
+$install php-cli php-xml
+}
+
+iozoneinstall(){
+#iozone http://www.iozone.org/
+if type dpkg;then
+wget http://launchpadlibrarian.net/154969760/iozone3_420-3_amd64.deb
+--2020-07-27 17:29:47--  http://launchpadlibrarian.net/154969760/iozone3_420-3_amd64.deb
+sudo dpkg -i iozone3_420-3_amd64.deb && rm iozone3_420-3_amd64.deb
+elif type rpm;then
+wget http://www.iozone.org/src/current/iozone-3-490.src.rpm
+rpm -ivh iozone-3-490.src.rpm && rm iozone-3-490.src.rpm
+fi
+}
+
 if [ -f /usr/bin/lsb_release ]; then
     install="apt-get"
     check="dpkg -l"
@@ -103,6 +130,7 @@ for i in "$@"; do
         fish ) fishinstall;;
         extra ) exinstall;;
         monitor ) monitorinstall;;
+        phoronix ) phoronixinstall;;
         sshserver ) sshserver;;
         sshclient ) sshclient;;
         openstack ) source openstack.sh && openstackinstall;;

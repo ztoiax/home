@@ -212,6 +212,8 @@ sudo ubuntu-drivers autoinstall
 https://the.exa.website/#installation
 #broot 目录树
 https://dystroy.org/broot/documentation/installation/
+#BleanchBit清理缓存
+https://www.bleachbit.org/download
 #android
 #sipleperf
 #https://android.googlesource.com/platform/prebuilts/simpleperf/+archive/master.tar.gz

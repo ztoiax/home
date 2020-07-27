@@ -31,7 +31,7 @@ bash[1]="https://developer.ibm.com/zh/tutorials/l-lpic1-map/"
 name[1]="ruanyif"
 name[2]="IBM"
 lengh=${#name[*]}
-lengh2="[1-${#name[*]}]"
+declare -i lengh2=[1-${#name[*]}]
 
 for ((i=1; i<=$lengh; i=i+1));do
     echo -e "[\033[33m$i\033[0m] ${name[$i]}"
@@ -41,7 +41,7 @@ if [ $n == "0" ]; then
     for ((i=0; i<$lengh; i=i+1));do
         xdg-open "${bash[$i]}" &> /dev/null
     done
-elif [[ $n =~ $lengh2 ]]; then
+elif (( n -le $lengh2 )) && (( n >= 0 )); then
     xdg-open "${bash[$n-1]}" &> /dev/null
 else
     echo -e "[\033[31m ERROR \033[0m请输入0到$lengh的编号"

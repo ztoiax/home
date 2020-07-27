@@ -11,6 +11,8 @@ search[6]="https://www.jianshu.com/search?q="
 search[7]="https://quark.sm.cn/s?q="
 search[8]="https://search.h3c.com/basesearch.aspx?q0="
 search[9]="https://search.cisco.com/search?query="
+search[10]="https://pkgs.org/search/?q="
+search[11]="https://www.baidu.com/s?wd=site:linux.cn "
 
 name[1]="Github"
 name[2]="IBM developer"
@@ -22,9 +24,11 @@ name[7]="简书"
 name[8]="夸克"
 name[9]="华三技术支持"
 name[10]="思科"
+name[11]="pkgs"
+name[12]="linux中国"
 
 lengh=${#name[*]}
-lengh2="[1-${#name[*]}]"
+declare -i lengh2=[1-${#name[*]}]
 
 search(){
 for ((i=1; i<=$lengh; i=i+1));do
@@ -35,10 +39,10 @@ if [ $n == "0" ]; then
     for ((i=0; i<$lengh; i=i+1));do
         xdg-open "${search[$i-1]}$1" &> /dev/null
     done
-elif [[ $n =~ $lengh2 ]]; then
+elif (( n -le $lengh2 )) && (( n >= 0 )); then
     xdg-open "${search[$n-1]}$1" &> /dev/null
 else
-    echo -e "\033[31m ERROR \033[0m请输入0到$lengh的编号"
+    echo -e "\033[31m ERROR \033[0m请输入1到$lengh的编号"
     return 1
 fi
 }

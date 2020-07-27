@@ -1,14 +1,18 @@
-!/bin/bash
- case $filename in
-    *.tar)      tar xf $filename;;
-    *.tar.bz2)  tar xjf $filename;;
-    *.tbz)      tar xjf $filename;;
-    *.tbz2)     tar xjf $filename;;
-    *.tgz)      tar xzf $filename;;
-    *.tar.gz)   tar xzf $filename;;
-    *.gz)       gunzip $filename;;
-    *.bz2)      bunzip2 $filename;;
-    *.zip)      unzip $filename;;
-    *.Z)        uncompress $filename;;
-    *)          echo "No extract option for $filename"
+#!/bin/bash
+for i in $@;do
+ case $i in
+    *.tar)      tar xvf $i;;
+    *.tar.xz)   tar xvf $i;;
+    *.tar.bz2)  tar xvjf $i;;
+    *.tar.gz)   tar xvzf $i;;
+    *.tbz)      tar xvjf $i;;
+    *.tbz2)     tar xvjf $i;;
+    *.tgz)      tar xvzf $i;;
+    *.gz)       gunzip $i;;
+    *.xz)       xz -d $i;;
+    *.bz2)      bunzip2 $i;;
+    *.zip)      unzip $i;;
+    *.Z)        uncompress $i;;
+    *)          echo "$i压缩格式还没收录"
 esac
+done
