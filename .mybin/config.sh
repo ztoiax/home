@@ -2,22 +2,22 @@
 fishconfig() {
 echo "正在配置fish"
 myalias=\
-'alias j "autojump"
-alias c "clear"
-alias s "screenfetch"
-alias r "ranger"
+'alias j "autojump"\n
+alias c "clear"\n
+alias s "screenfetch"\n
+alias r "ranger"\n
 alias vim "nvim"'
 myexport=\
 'export PATH="~/.mybin:$PATH" '
-echo $myalias >> ~/.config/fish/config.fish
-echo $export >> ~/.config/fish/config.fish
+echo -e $myalias >> ~/.config/fish/config.fish
+echo -e $export >> ~/.config/fish/config.fish
 
 #autojump
 echo "正在安装autojump.fish"
 git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
-echo "source /data/data/com.termux/files/home/.autojump/share/autojump/autojump.fish" >> ~/.config/fish/config.fish
+echo "source ~/.autojump/share/autojump/autojump.fish" >> ~/.config/fish/config.fish
 source ~/.config/fish/config.fish
 }
 
@@ -27,15 +27,15 @@ nvimconfig(){
     fi
 echo "正在配置neovim"
 config=\
-'set number                 "显示行号
-set ignorecase             "不区分大小写
-set list                   "开启空格字符
-set path+=**               "find 子目录
+'set number                 "显示行号\n
+set ignorecase             "不区分大小写\n
+set list                   "开启空格字符\n
+set path+=**               "find 子目录\n
 set clipboard+=unnamedplus "直接复制剪切板'
-    echo $config >> ~/.config/nvim/init.vim
+    echo -e $config >> ~/.config/nvim/init.vim
 }
 
-case i in $i
+case $1 in
     fish* ) fishconfig;;
     nvim* ) nvimconfig;;
     * ) echo "$i还有收录";;

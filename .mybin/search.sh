@@ -28,7 +28,7 @@ name[11]="pkgs"
 name[12]="linux中国"
 
 lengh=${#name[*]}
-declare -i lengh2=[1-${#name[*]}]
+declare -i lengh2=${#name[*]}
 
 search(){
 for ((i=1; i<=$lengh; i=i+1));do
@@ -39,7 +39,7 @@ if [ $n == "0" ]; then
     for ((i=0; i<$lengh; i=i+1));do
         xdg-open "${search[$i-1]}$1" &> /dev/null
     done
-elif (( n -le $lengh2 )) && (( n >= 0 )); then
+elif (( n <= $lengh2 )) && (( n >= 0 )); then
     xdg-open "${search[$n-1]}$1" &> /dev/null
 else
     echo -e "\033[31m ERROR \033[0m请输入1到$lengh的编号"

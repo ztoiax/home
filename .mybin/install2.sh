@@ -23,7 +23,8 @@ sshclient(){
     echo "ssh免密码登录正在安装"
     read -p "enter serverip: " serverip
     ssh-keygen -t rsa
-    scp ~/.ssh/id_rsa.pub root@$serverip:/root/.ssh/authorized_keys
+    # scp ~/.ssh/id_rsa.pub root@$serverip:/root/.ssh/
+    ssh-copy-id $serverip
 }
 epelinstall(){
 if rpm -q epel-release; then
@@ -46,16 +47,26 @@ $install install -y python2 python3
 
 pip3 install ranger-fm
 }
+nvim(){
+if [ $release == 7 ]; then
+    echo "正在安装neovim"
+    yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    yum install -y neovim python3-neovim
+fi
+}
 #fish
 fishinstall(){
-if rpm -q fish; then
-    echo "fish已安装"
-    return 1
+if [ $release == 7 ]; then
+    echo "正在安装fish"
+    cd /etc/yum.repos.d/
+    wget https://download.opensuse.org/repositories/shells:fish:release:2/RedHat_RHEL-6/shells:fish:release:2.repo
+    yum install -y fish
+elif [ $release == 8 ]; then
+    echo "正在安装fish"
+    cd /etc/yum.repos.d/
+    wget https://download.opensuse.org/repositories/shells:fish:release:3/CentOS_8/shells:fish:release:3.repo
+    yum install -y fish
 fi
-echo "正在安装fish"
-cd /etc/yum.repos.d/
-wget https://download.opensuse.org/repositories/shells:fish:release:3/CentOS_8/shells:fish:release:3.repo
-yum install -y fish
 }
 oh-my-fishinstall(){
     curl -L https://get.oh-my.fish | fish
@@ -121,6 +132,8 @@ elif uname -a | grep Android;then
     install="pkg"
     check="pkg show"
 fi
+#系统版本
+release=$(cat /etc/redhat-release | awk '{ print $4 }' | cut -c1)
 
 for i in "$@"; do
     case $i in

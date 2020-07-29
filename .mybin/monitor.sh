@@ -11,7 +11,7 @@ fio
 #综合
 netdata
 phoronix
-#cpu
+cpu
 atop
 htop
 #io

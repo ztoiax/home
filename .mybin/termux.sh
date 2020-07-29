@@ -45,34 +45,6 @@ other(){
 pkg install cmatrix
 pkg install screenfetch
 }
-fishconfig(){
-#autojump
-git clone https://github.com/wting/autojump.git
-cd autojump
-./install.py
-
-config='alias j "autojump"
-alias c "clear"
-alias s "screenfetch"
-alias r "ranger"
-alias vim "nvim"
-alias vi "vim"
-alias hack "cmatrix"
-export PATH="~/.mybin:$PATH"
-source /data/data/com.termux/files/home/.autojump/share/autojump/autojump.fish'
-echo $config >> ~/.config/fish/config.fish
-}
-
-nvimconfig(){
-config='set number
-set ignorecase
-set list
-"set listchars=trail:
-set clipboard^=unnamed,unnamedplus
-set path+=**
-'
-echo $config >> ~/.config/fish/config.fish
-}
 
 kali(){
 wget -O install-nethunter-termux https://offs.ec/2MceZWr
@@ -84,6 +56,7 @@ wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/I
 #install
 pkg install neovim wget git tree tsu openssl proot -y
 pkg install openssh -y && sshd
+pkg install lsof nmap htop -y
 pkg install python -y
 pkg install nodejs -y
 pkg install ranger -y

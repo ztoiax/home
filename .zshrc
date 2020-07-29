@@ -182,8 +182,8 @@ export FZF_COMPLETION_TRIGGER=',,'
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
-export PATH="/home/tz/.bin:$PATH"
-export PATH="/home/tz/.mybin:$PATH"
+export PATH="~/.bin:$PATH"
+export PATH="~/.mybin:$PATH"
 #Alias bin
 alias apt="sudo apt-get install"
 alias rm="rm -i"

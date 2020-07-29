@@ -214,6 +214,10 @@ https://the.exa.website/#installation
 https://dystroy.org/broot/documentation/installation/
 #BleanchBit清理缓存
 https://www.bleachbit.org/download
+#FDM
+https://www.freedownloadmanager.org/zh/
+#Anaconda
+https://repo.anaconda.com/archive/
 #android
 #sipleperf
 #https://android.googlesource.com/platform/prebuilts/simpleperf/+archive/master.tar.gz

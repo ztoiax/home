@@ -21,6 +21,7 @@ sed -i 's/=enforcing/=disabled/' /etc/selinux/config
 centos7(){
 echo "正在安装openstack"
 baseinstall
+curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 yum install https://rdoproject.org/repos/rdo-release.rpm -y
 yum install centos-release-openstack-rocky -y
 yum install openstack-packstack -y
