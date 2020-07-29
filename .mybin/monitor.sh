@@ -11,9 +11,13 @@ fio
 #综合
 netdata
 phoronix
-cpu
 atop
 htop
+gtop
+bashtop
+dstat
+#cpu
+s-tui
 #io
 iozone
 #net
