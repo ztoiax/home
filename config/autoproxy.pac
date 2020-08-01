@@ -13,6 +13,8 @@ var rules = [
     ],
     [
         [
+            "python.org",
+            "neovim.io",
             "xposed.info",
             "wikichip.org",
             "tubeoffline.com",

@@ -49,21 +49,37 @@ else
 fi
 }
 
-ohmyfish="https://linux.cn/article-9515-1.html?pr"
-ranger="http://ranger.github.io/"
-fzf="https://github.com/junegunn/fzf"
-zyplay="https://github.com/Hunlongyu/ZY-Player"
-miniet="https://developer.ibm.com/zh/articles/1404-luojun-sdnmininet/"
-termux="https://www.sqlsec.com/2018/05/termux.html"
-case $1 in
-    fzf ) xdg-open "$fzf" &> /dev/null;;
-    minnet ) xdg-open "$minnet" &> /dev/null;;
-    zyplay ) xdg-open "$zyplay" &> /dev/null;;
-    ranger ) xdg-open "$ranger" &> /dev/null;;
-    ohmyfish ) xdg-open "$ohmyfish" &> /dev/null;;
-    termux ) xdg-open "$termux" &> /dev/null;;
+url[1]="https://linux.cn/article-9515-1.html?pr"
+url[2]="http://ranger.github.io/"
+url[3]="https://github.com/junegunn/fzf"
+url[4]="https://github.com/Hunlongyu/ZY-Player"
+url[5]="https://developer.ibm.com/zh/articles/1404-luojun-sdnmininet/"
+url[6]="https://www.sqlsec.com/2018/05/termux.html"
+url[7]="https://marklodato.github.io/visual-git-guide/index-zh-cn.html"
+url[8]="https://blog.robertelder.org/regular-expression-visualizer/"
 
-    bash ) urlbash;;
-    openstack ) urlopenstack;;
-    * ) echo -e "\033[31m ERROR \033[0m$1还没有收录"
-esac
+name[1]="oh-my-fish"
+name[2]="ranger"
+name[3]="fzf"
+name[4]="zyplay"
+name[5]="miniet"
+name[6]="termux"
+name[7]="图解git"
+name[8]="正则表达式"
+
+declare -i lengh=${#name[*]}
+
+if [ $# == 0 ];then
+    for ((i=1; i<=$lengh; i++));do
+        echo "[$i] ${name[$i]}"
+    done
+    read -p "请输入编号: " n
+
+    xdg-open "${url[$n]}" &> /dev/null
+elif [ $# == 1 ];then
+    case $1 in
+        bash ) urlbash;;
+        openstack ) urlopenstack;;
+        * ) echo -e "\033[31m ERROR \033[0m$1还没有收录"
+    esac
+fi

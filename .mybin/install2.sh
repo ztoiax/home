@@ -73,6 +73,11 @@ pip3 install ranger-fm
 
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 }
+
+# extra
+extra(){
+rimeinstall
+}
 nvim(){
 if [ $release == 7 ]; then
     echo "正在安装neovim"
@@ -184,8 +189,8 @@ for i in "$@"; do
         sshclient ) sshclient;;
         openstack ) source openstack.sh && openstackinstall;;
 
-        *config ) source config.sh && config.sh $i;;
-        *source ) source source.sh && source.sh $i;;
+        *config ) source ${0%/*}/config.sh && config.sh $i;;
+        *source ) source ${0%/*}/source.sh && source.sh $i;;
         list ) set | grep "()";;
         * ) read -p "$i暂时没收录，是否使用$install安装:[y/n] " y
             if [ $y == y ]; then

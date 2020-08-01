@@ -13,6 +13,8 @@ for i in $@;do
     *.bz2)      bunzip2 $i;;
     *.zip)      unzip $i;;
     *.Z)        uncompress $i;;
+    *.7z)       7z e $i;;
+    *.tar.7z)   7z e $i -o ${i%%.*} && tar xvf ${i%%.*};;
     *)          echo "$i压缩格式还没收录"
 esac
 done

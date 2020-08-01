@@ -27,11 +27,13 @@ nvimconfig(){
     fi
 echo "正在配置neovim"
 config=\
-'set number                 "显示行号\n
+'syntax on
+set number                 "显示行号\n
 set ignorecase             "不区分大小写\n
 set list                   "开启空格字符\n
 set path+=**               "find 子目录\n
 set clipboard+=unnamedplus "直接复制剪切板'
+
     echo -e $config >> ~/.config/nvim/init.vim
 }
 

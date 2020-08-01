@@ -13,6 +13,7 @@ search[8]="https://search.h3c.com/basesearch.aspx?q0="
 search[9]="https://search.cisco.com/search?query="
 search[10]="https://pkgs.org/search/?q="
 search[11]="https://www.baidu.com/s?wd=site:linux.cn "
+search[12]="https://pypi.org/search/?q="
 
 name[1]="Github"
 name[2]="IBM developer"
@@ -26,6 +27,7 @@ name[9]="华三技术支持"
 name[10]="思科"
 name[11]="pkgs"
 name[12]="linux中国"
+name[13]="python pypi"
 
 lengh=${#name[*]}
 declare -i lengh2=${#name[*]}

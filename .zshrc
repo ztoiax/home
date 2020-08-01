@@ -294,3 +294,4 @@ Z="/mnt/Z"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #broot
 source /home/tz/.config/broot/launcher/bash/br
+xset b off
