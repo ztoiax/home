@@ -1,5 +1,9 @@
 #!/bin/bash
 # set -x
+fzfinstall(){
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+}
 grubinstall(){
 $install os-prober
 grub-mkconfig -o /boot/grub/grub.cfg

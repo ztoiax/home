@@ -225,6 +225,7 @@ alias clean='a-c && \
     tmp /home/tz/.cache/netease-cloud-music/CachedSongs/*'
 
 alias centos7='virsh start centos7.0; while true;do ssh $centos7 && break;done'
+alias mi10='ssh u0_a369@192.168.1.111 -p 8022'
 #exa
 alias ls='exa'                                                         # ls
 alias l='exa -lbF --git'                                               # list, size, type, git
@@ -295,3 +296,5 @@ Z="/mnt/Z"
 #broot
 source /home/tz/.config/broot/launcher/bash/br
 xset b off
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

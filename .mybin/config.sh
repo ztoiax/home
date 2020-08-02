@@ -27,14 +27,45 @@ nvimconfig(){
     fi
 echo "正在配置neovim"
 config=\
-'syntax on
+'
+syntax on
+filetype plugin on
+let g:mapleader = ","
 set number                 "显示行号\n
 set ignorecase             "不区分大小写\n
 set list                   "开启空格字符\n
 set path+=**               "find 子目录\n
-set clipboard+=unnamedplus "直接复制剪切板'
+set clipboard+=unnamedplus "直接复制剪切板
+"分屏
+noremap <Tab> :wincmd w <cr>
+noremap <Leader>sm :only <cr>
+noremap <Leader>sh :vsplit <cr>
+noremap <Leader>sk :split <cr>
+noremap <Leader>sl :belowright vsplit <cr>
+noremap <Leader>sj :belo split <cr>
+noremap <Leader>sq <C-w>c
 
-    echo -e $config >> ~/.config/nvim/init.vim
+" incert keymap like emacs
+inoremap <C-w> <C-[>diwa
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+inoremap <C-k> <ESC>d$a
+inoremap <C-u> <C-G>u<C-U>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+
+noremap q :q <CR>
+noremap Y y$
+noremap j gj
+noremap k gk
+noremap  \  :%s//g<Left><Left>
+vnoremap \  :s//g<Left><Left>
+norema  <space> `
+'
+    cp ~/.config/nvim/init.vim{,.bak} && echo -e $config > ~/.config/nvim/init.vim
 }
 
 case $1 in

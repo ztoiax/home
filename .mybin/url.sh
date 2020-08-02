@@ -48,6 +48,9 @@ else
     return 1
 fi
 }
+urlnvim(){
+url[1]="https://zhuanlan.zhihu.com/p/58816186"
+}
 
 url[1]="https://linux.cn/article-9515-1.html?pr"
 url[2]="http://ranger.github.io/"
