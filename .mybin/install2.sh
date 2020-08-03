@@ -1,5 +1,8 @@
 #!/bin/bash
 # set -x
+nvminstall(){
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+}
 fzfinstall(){
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -138,6 +141,13 @@ sudo make install
 bashtop
 # CPU
 sudo pip3 install s-tui
+}
+
+tui(){
+# lazydocker
+    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+# lazygit
+    $install lazygit
 }
 
 phoronixinstall(){

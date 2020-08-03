@@ -60,6 +60,7 @@ url[5]="https://developer.ibm.com/zh/articles/1404-luojun-sdnmininet/"
 url[6]="https://www.sqlsec.com/2018/05/termux.html"
 url[7]="https://marklodato.github.io/visual-git-guide/index-zh-cn.html"
 url[8]="https://blog.robertelder.org/regular-expression-visualizer/"
+url[9]="https://www.jianshu.com/p/2e098dfecf4a"
 
 name[1]="oh-my-fish"
 name[2]="ranger"
@@ -69,6 +70,7 @@ name[5]="miniet"
 name[6]="termux"
 name[7]="图解git"
 name[8]="正则表达式"
+name[9]="zinit"
 
 declare -i lengh=${#name[*]}
 

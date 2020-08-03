@@ -6,3 +6,5 @@ fuser -vm .
 #列出子目录的大小，并统计总大小
 du -cha --max-depth=1 . | grep -E "M|G" | sort -h
 
+#
+curl -sL
