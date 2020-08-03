@@ -29,16 +29,21 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Plugins
-zinit light rupa/z
-zinit light zdharma/fast-syntax-highlighting
-zinit light zpm-zsh/colors
-zinit light momo-lab/zsh-abbrev-alias
-zinit light Aloxaf/fzf-tab
-zinit light xav-b/zsh-extend-history
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/zui
-zinit light zdharma/zplugin-crasis
-zinit light zdharma/zsh-startify
+zinit light-mode for \
+     rupa/z \
+     zdharma/fast-syntax-highlighting \
+     zpm-zsh/colors \
+     momo-lab/zsh-abbrev-alias \
+     Aloxaf/fzf-tab \
+     xav-b/zsh-extend-history \
+     zsh-users/zsh-autosuggestions \
+     zdharma/zui \
+     zdharma/zplugin-crasis \
+     zdharma/zsh-startify \
+
+zinit ice blockf
+zinit light zsh-users/zsh-completions
+# Themes
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 # zinit ice pick"async.zsh" src"pure.zsh"
 # zinit light sindresorhus/pure
@@ -49,14 +54,14 @@ zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/git.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/nvm.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/grep.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/history.zsh
-zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/completion.zsh
+# zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/completion.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/blob/master/lib/clipboard.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/termsupport.zsh
 zinit snippet OMZL::git.zsh
 zinit snippet OMZL::nvm.zsh
 zinit snippet OMZL::grep.zsh
 zinit snippet OMZL::history.zsh
-zinit snippet OMZL::completion.zsh
+# zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZL::termsupport.zsh
 # Load OMZ plugin
@@ -88,3 +93,4 @@ source /home/tz/.zsh/variable.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+zsh-startify
