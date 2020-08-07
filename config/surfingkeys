@@ -32,10 +32,10 @@
     });
 // click `Save` button to make above settings to take effect.
 //addSearchAliasX('o', 'github', 'http://github.com/search?q=', '');
-map('h', 'E');  
-map('l', 'R');  
-map('j', 'd');  
-map('k', 'e');  
+map('h', 'E');
+map('l', 'R');
+map('j', 'd');
+map('k', 'e');
 
 map(',h','S');
 map(',l','D');

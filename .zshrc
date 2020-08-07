@@ -31,15 +31,16 @@ zinit light-mode for \
 # Plugins
 zinit light-mode for \
      rupa/z \
-     zdharma/fast-syntax-highlighting \
+     wfxr/forgit \
+     Aloxaf/fzf-tab \
      zpm-zsh/colors \
      momo-lab/zsh-abbrev-alias \
-     Aloxaf/fzf-tab \
      xav-b/zsh-extend-history \
+     hlissner/zsh-autopair \
      zsh-users/zsh-autosuggestions \
+     zdharma/fast-syntax-highlighting \
      zdharma/zui \
      zdharma/zplugin-crasis \
-     zdharma/zsh-startify \
 
 zinit ice blockf
 zinit light zsh-users/zsh-completions
@@ -54,20 +55,20 @@ zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/git.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/nvm.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/grep.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/history.zsh
-# zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/completion.zsh
+zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/completion.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/blob/master/lib/clipboard.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/termsupport.zsh
 zinit snippet OMZL::git.zsh
 zinit snippet OMZL::nvm.zsh
 zinit snippet OMZL::grep.zsh
 zinit snippet OMZL::history.zsh
-# zinit snippet OMZL::completion.zsh
+zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZL::termsupport.zsh
 # Load OMZ plugin
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/fzf/fzf.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/tmux/tmux.plugin.zsh'
+# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/tmux/tmux.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/docker/_docker'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/extract/extract.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
@@ -75,7 +76,7 @@ zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/auto
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/history-substring-search/history-substring-search.zsh'
 zinit snippet OMZP::plugins/git/git.plugin.zsh
 zinit snippet OMZP::plugins/fzf/fzf.plugin.zsh
-zinit snippet OMZP::plugins/tmux/tmux.plugin.zsh
+# zinit snippet OMZP::plugins/tmux/tmux.plugin.zsh
 zinit snippet OMZP::plugins/extract/extract.plugin.zsh
 zinit snippet OMZP::plugins/vi-mode/vi-mode.plugin.zsh
 zinit snippet OMZP::plugins/autojump/autojump.plugin.zsh
@@ -86,6 +87,7 @@ zinit snippet OMZP::plugins/history-substring-search/history-substring-search.zs
 source /home/tz/.zsh/alias.sh
 source /home/tz/.zsh/function.sh
 source /home/tz/.zsh/variable.sh
+source /home/tz/.zsh/fzf-tab.sh
 
 # nvm
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -93,4 +95,8 @@ source /home/tz/.zsh/variable.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-zsh-startify
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+### End of Zinit's installer chunk

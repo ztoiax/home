@@ -1,12 +1,53 @@
 #!/bin/bash
 # set -x
+char(){
+$install thefuck
+}
+
+font(){
+#biaoqing
+noto-fonts-emoji
+libxft-bgra
+}
+
+ranger(){
+$install ranger-git
+$install ffmpegthumbnailer ueberzug
+
+#fzf
+git clone https://github.com/laggardkernel/ranger-fzf-marks.git ~/.config/ranger/plugins/fzf-marks
+mv ~/.config/ranger/plugins/fzf-marks/*.py ..
+
+#icon
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+cd ~/.config/ranger/plugins/ranger_devicons && make install
+echo "default_linemode devicons" >> ~/.config/ranger/plugins/ranger_devicons
+
+#autojump
+#https://github.com/fdw/ranger-autojump
+}
+
+navi(){
+git clone https://github.com/denisidoro/navi ~/.navi
+cd ~/.navi
+make install
+}
+
+shortcutinstall(){
+git clone https://github.com/mt-empty/shortcut-c-client
+cd shortcut-c-client
+make install
+}
+
 nvminstall(){
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 }
+
 fzfinstall(){
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 }
+
 grubinstall(){
 $install os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -22,6 +63,29 @@ $install librime-data-pinyin-simp
 $install librime-data-jyutping
 ibus restart
 ibus engine rime
+}
+
+xorginstall(){
+#set termianl colorscheme from wallpaper
+$install wal
+#alpha
+$install compton
+#menu
+$install dmenu
+$install conky
+#themes
+$install lxappearance
+#wallpaper
+$install feh
+#wallpaper config
+$install variety
+
+#show key input
+$install screenkey
+#screen recorder
+$install simplescreenrecorder
+#download
+$install transmission
 }
 
 stinstall(){
@@ -73,9 +137,10 @@ curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 
 # base
 baseinstall(){
-$install install -y git wget make node
-$install install -y python2 python3
-
+$install git wget make nodejs subversion
+$install python2 python3 python-pip python3-pip
+$install bat silversearcher-ag
+$install tree
 pip3 install ranger-fm
 
 npm install -g cnpm --registry=https://registry.npm.taobao.org

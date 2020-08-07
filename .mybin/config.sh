@@ -31,6 +31,9 @@ config=\
 syntax on
 filetype plugin on
 let g:mapleader = ","
+set smartcase              "小写包含大写
+set lazyredraw             "不要在宏和脚本执行期间更新屏幕。
+set cursorlin              "突出显示当前在光标下的行。
 set number                 "显示行号\n
 set ignorecase             "不区分大小写\n
 set list                   "开启空格字符\n

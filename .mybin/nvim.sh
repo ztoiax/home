@@ -1,8 +1,8 @@
 #!/bin/bash
 mynvimconfig(){
     #provider
-    pip install pynvim
     pip3 install pynvim
+    pip3 install neovim-remote
     sudo cnpm install -g neovim
     #clip
     $install xclip

@@ -12,7 +12,7 @@ pacman -Sy dhcpcd
 pacman -Sy networkmanager
 systemctl enable dhcpcd
 systemctl enable NetworkManager
-pacman -Sy zsh fish git wget bash-completion go base-devel
+pacman -Sy zsh fish git wget bash-completion go base-devel python-pip the_silver_searcher
 passwd
 }
 

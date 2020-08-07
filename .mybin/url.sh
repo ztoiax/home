@@ -61,6 +61,8 @@ url[6]="https://www.sqlsec.com/2018/05/termux.html"
 url[7]="https://marklodato.github.io/visual-git-guide/index-zh-cn.html"
 url[8]="https://blog.robertelder.org/regular-expression-visualizer/"
 url[9]="https://www.jianshu.com/p/2e098dfecf4a"
+url[10]="https://www.shortcutfoo.com/blog/top-50-vim-configuration-options/"
+url[11]="http://www.glinkus.com/2020/07/12/Dwm%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/"
 
 name[1]="oh-my-fish"
 name[2]="ranger"
@@ -71,6 +73,8 @@ name[6]="termux"
 name[7]="图解git"
 name[8]="正则表达式"
 name[9]="zinit"
+name[10]="vim set config"
+name[11]="dwm"
 
 declare -i lengh=${#name[*]}
 

@@ -6,22 +6,18 @@ if [ ! -f ~/.pip/pip.conf ]; then
     if [ ! -d ~/.pip ]; then
         mkdir ~/.pip
     fi
-    aliyun='[global]
-    trusted-host=mirrors.aliyun.com
-    index-url=https://mirrors.aliyun.com/pypi/simple/'
-    echo $aliyun > ~/.pip/pip.conf
+    aliyun="[global]\n
+    trusted-host=mirrors.aliyun.com\n
+    index-url=https://mirrors.aliyun.com/pypi/simple/"
+    echo -e $aliyun > ~/.pip/pip.conf
 fi
 }
 npmsource() {
     echo "正在更换npm源"
-npm config set registry https://mirrors.huaweicloud.com/repository/
-npm config set disturl https://repo.huaweicloud.com/nodejsnpm/
-npm config set sass_binary_site https://repo.huaweicloud.com/n
-npm config set phantomjs_cdnurl https://repo.huaweicloud.com/phantomjs
-npm config set chromedriver_cdnurl https://repo.huaweicloud.com/chromedriver
-npm config set operadriver_cdnurl https://repo.huaweicloud.com
-npm config set electron_mirror https://repo.huaweicloud.com/electron/
-npm config set python_mirror https://repo.huaweicloud.com/python /operadriverode-sass
+npm config set registry https://mirrors.huaweicloud.com/repository/npm/
+npm config set sass_binary_site https://mirrors.huaweicloud.com/node-sass
+npm config set disturl https://mirrors.huaweicloud.com/nodejs
+npm cache clean -f
 }
 
 debsource() {

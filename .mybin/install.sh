@@ -1,19 +1,4 @@
 #!/bin/bash
-ranger(){
-sudo apt install ffmpegthumbnailer
-
-#fzf
-git clone https://github.com/laggardkernel/ranger-fzf-marks.git ~/.config/ranger/plugins/fzf-marks
-mv ~/.config/ranger/plugins/fzf-marks/*.py ..
-
-#icon
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-cd ~/.config/ranger/plugins/ranger_devicons && make install
-echo "default_linemode devicons" >> ~/.config/ranger/plugins/ranger_devicons
-
-#autojump
-#https://github.com/fdw/ranger-autojump
-}
 zsh(){
 #oh-my-zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh;
