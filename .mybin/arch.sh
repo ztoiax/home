@@ -12,7 +12,7 @@ pacman -Sy dhcpcd
 pacman -Sy networkmanager
 systemctl enable dhcpcd
 systemctl enable NetworkManager
-pacman -Sy zsh fish git wget bash-completion go base-devel python-pip the_silver_searcher
+pacman -Sy zsh fish git wget bash-completion go base-devel python-pip the_silver_searcher inetutils
 passwd
 }
 
@@ -42,14 +42,26 @@ passwd tz
 ip(){
 $ip='
 interface=eth0\n
-address=192.168.21.170\n
+address=192.168.1.221\n
 netmask=255.255.255.0\n
-broadcast=192.168.21.255\n
-gateway=192.168.21.2'
+broadcast=192.168.1.255\n
+gateway=192.168.1.1
+'
 echo -e $ip >> /etc/rc.conf
 
 $dns='
-nameserver 8.8.8.8\n
-nameserver 8.8.4.4'
+nameserver 223.5.5.5\n
+nameserver 114.114.114.114
+'
 echo -e $dns >> /etc/resolv.conf
+}
+
+hosts(){
+hosts=\
+'
+#<ip-address>	<hostname.domain.org>	<hostname> \n
+127.0.0.1	localhost.localdomain	localhost	 myhostname\n
+::1		localhost.localdomain	localhost	 myhostname
+'
+echo -e $hosts >> /etc/hosts
 }

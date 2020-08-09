@@ -8,6 +8,8 @@ font(){
 #biaoqing
 noto-fonts-emoji
 libxft-bgra
+#font
+yay -S nerd-fonts-source-code-pro
 }
 
 ranger(){
@@ -137,6 +139,7 @@ curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 
 # base
 baseinstall(){
+$install alsamixer
 $install git wget make nodejs subversion
 $install python2 python3 python-pip python3-pip
 $install bat silversearcher-ag

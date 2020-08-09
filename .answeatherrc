@@ -1,0 +1,4 @@
+location:guangzhou
+fetch_cmd:ftp -V -o -
+units:metric
+show_daylight:true

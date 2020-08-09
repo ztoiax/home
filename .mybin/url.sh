@@ -63,6 +63,7 @@ url[8]="https://blog.robertelder.org/regular-expression-visualizer/"
 url[9]="https://www.jianshu.com/p/2e098dfecf4a"
 url[10]="https://www.shortcutfoo.com/blog/top-50-vim-configuration-options/"
 url[11]="http://www.glinkus.com/2020/07/12/Dwm%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/"
+url[12]="https://www.progit.cn/"
 
 name[1]="oh-my-fish"
 name[2]="ranger"
@@ -75,6 +76,7 @@ name[8]="正则表达式"
 name[9]="zinit"
 name[10]="vim set config"
 name[11]="dwm"
+name[12]="git guide"
 
 declare -i lengh=${#name[*]}
 
