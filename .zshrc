@@ -30,7 +30,6 @@ zinit light-mode for \
 
 # Plugins
 zinit light-mode for \
-     rupa/z \
      wfxr/forgit \
      Aloxaf/fzf-tab \
      zpm-zsh/colors \
@@ -41,6 +40,7 @@ zinit light-mode for \
      zdharma/fast-syntax-highlighting \
      zdharma/zui \
      zdharma/zplugin-crasis \
+     # rupa/z \
 
 zinit ice blockf
 zinit light zsh-users/zsh-completions
@@ -68,7 +68,6 @@ zinit snippet OMZL::termsupport.zsh
 # Load OMZ plugin
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/fzf/fzf.plugin.zsh'
-# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/tmux/tmux.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/docker/_docker'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/extract/extract.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
@@ -76,7 +75,6 @@ zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/auto
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/history-substring-search/history-substring-search.zsh'
 zinit snippet OMZP::plugins/git/git.plugin.zsh
 zinit snippet OMZP::plugins/fzf/fzf.plugin.zsh
-# zinit snippet OMZP::plugins/tmux/tmux.plugin.zsh
 zinit snippet OMZP::plugins/extract/extract.plugin.zsh
 zinit snippet OMZP::plugins/vi-mode/vi-mode.plugin.zsh
 zinit snippet OMZP::plugins/autojump/autojump.plugin.zsh
@@ -96,4 +94,7 @@ source /home/tz/.zsh/fzf-tab.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+proxy-on
 ### End of Zinit's installer chunk
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

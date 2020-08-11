@@ -50,6 +50,21 @@ function fzf-history-widget-accept() {
   zle accept-line
 }
 
+# feh
+function nextwallpaper {
+    feh --bg-fill --randomize ~/Pictures/wallpaper/*
+}
+# xdg-open
+# function xdg-open() {
+#     echo $1
+#     char="http*"
+#     if [[ $1 =~ $char ]];then
+#         xdg-open $1
+#     else
+#         xdg-open "http://$1"
+#     fi
+# }
+
 # dmenu
 function cpline {
     command=$(history | tail -n 1)
@@ -67,6 +82,26 @@ function cpcommand {
     $(echo $content) | xclip -selection clipboard
 }
 
+function checkfile {
+    grep '^#' /usr/include/X11/keysymdef.h | dmenu -p "XK" -l 15 | awk '{ print $2 }' | xclip -selection clipboard
+}
+
+function cpurl {
+    command=$(history | tail -n 1)
+    $(echo $command | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "copy url" -l 10 | xclip -selection clipboard
+}
+
+function cpdir {
+    command=$(history | tail -n 1)
+    dir="bin|boot|dev|etc|home|lib|lib64|lost+found|mnt|opt|proc|root|run|sbin|srv|sys|tmp|usr|var"
+    $(echo $command | awk '{$1="";print $0}') | egrep -o "/($dir)/[a-zA-Z0-9/.]*" | dmenu -p "copy url" -l 10 | xclip -selection clipboard
+}
+
+function searchurl {
+    command=$(history | tail -n 1)
+    $(echo $command | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "search url" -l 10 | xargs xdg-open &> /dev/null
+}
+
 # bingkey
 bindkey "^j" forward-word
 bindkey "^k" backward-word
@@ -82,14 +117,26 @@ vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
 zle -N vi-yank-x-selection
 bindkey -a '^y' vi-yank-x-selection
 
+# software
+bindkey "^[^z" deepin-screen-recorder
+
 # fzf
 zle -N fzf-history-widget-accept
 bindkey '^r' fzf-history-widget-accept
+
+# feh
+zle -N nextwallpaper
+bindkey "^[^n" nextwallpaper
 
 # dmenu
 zle -N cpcommand
 zle -N cphistory
 zle -N cpline
+zle -N cpurl
+zle -N cpdir
+zle -N searchurl
 bindkey "^[o" cpcommand
 bindkey "^[h" cphistory
 bindkey "^[l" cpline
+bindkey "^[U" searchurl
+bindkey "^[L" cpdir
