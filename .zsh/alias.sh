@@ -79,6 +79,8 @@ alias studio='/home/tz/Android/android-studio/bin/studio.sh &'
 #X
 alias n='feh --bg-fill --randomize ~/Pictures/wallpaper/*'
 alias makedwm='cd ~/dwm; sudo make clean install && sudo pkill Xorg'
+alias makedmenu='cd ~/dmenu; sudo make clean install && sudo pkill Xorg'
+alias makest='cd ~/st; sudo make clean install && sudo pkill Xorg'
 # abbrev-alias
 abbrev-alias -g G="| grep"
 abbrev-alias -g A="| ag"

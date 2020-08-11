@@ -38,7 +38,12 @@ FORGIT_FZF_DEFAULT_OPTS="
 --reverse
 --height '80%'
 "
-# ibus
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS="@im=ibus"
+
+# fcitx
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+# export XMODIFIERS="@im=fcitx"
+
+# export QT4_IM_MODULE=fcitx
+# export QT5_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
