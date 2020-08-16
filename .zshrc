@@ -31,7 +31,6 @@ zinit light-mode for \
 # Plugins
 zinit light-mode for \
      wfxr/forgit \
-     Aloxaf/fzf-tab \
      zpm-zsh/colors \
      momo-lab/zsh-abbrev-alias \
      xav-b/zsh-extend-history \
@@ -40,10 +39,9 @@ zinit light-mode for \
      zdharma/fast-syntax-highlighting \
      zdharma/zui \
      zdharma/zplugin-crasis \
+     Aloxaf/fzf-tab \
      # rupa/z \
 
-zinit ice blockf
-zinit light zsh-users/zsh-completions
 # Themes
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 # zinit ice pick"async.zsh" src"pure.zsh"
@@ -68,7 +66,6 @@ zinit snippet OMZL::termsupport.zsh
 # Load OMZ plugin
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/fzf/fzf.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/docker/_docker'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/extract/extract.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/autojump/autojump.plugin.zsh'
@@ -78,8 +75,13 @@ zinit snippet OMZP::plugins/fzf/fzf.plugin.zsh
 zinit snippet OMZP::plugins/extract/extract.plugin.zsh
 zinit snippet OMZP::plugins/vi-mode/vi-mode.plugin.zsh
 zinit snippet OMZP::plugins/autojump/autojump.plugin.zsh
-zinit snippet OMZP::plugins/docker/_docker
 zinit snippet OMZP::plugins/history-substring-search/history-substring-search.zsh
+
+zinit ice as"completion"
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+
+zinit ice blockf
+zinit light zsh-users/zsh-completions
 
 # source
 source /home/tz/.zsh/alias.sh

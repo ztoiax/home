@@ -1,1 +1,1 @@
-~/.mybin.sh
+~/.mybin/waitdwm.sh &

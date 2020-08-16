@@ -65,3 +65,15 @@ hosts=\
 '
 echo -e $hosts >> /etc/hosts
 }
+
+nvidia(){
+#https://computingforgeeks.com/easiest-way-to-install-nvidia-3d-graphics-acceleration-driver-on-archlinux/
+pacman -S nvidia nvidia-settings
+#Once installed, confirm that the nouveau module is blacklisted.
+cat /usr/lib/modprobe.d/nvidia.conf
+}
+
+proxy(){
+ln -s /usr/share/goagent/local/CA.crt /etc/ca-certificates/trust-source/anchors/GoAgent.crt
+trust extract-compat
+}

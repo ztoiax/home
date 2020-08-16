@@ -12,6 +12,8 @@ ll /proc/$pid/task/*/fd/ | wc -l
 ethtool -l eth0 | grep Combined
 
 #CPU
+#获取保留两位小数的 CPU 占用率：
+top -b -n1 | grep ^%Cpu | awk '{printf("Current CPU Utilization is : %.2f%"), 100-$8}'
 #每秒刷新一次 cpu 序号为 5,7,1,3 核心的 cpu 使用率
 sar -P 5,7,1,3 1
 #每秒刷新所有核心
@@ -31,6 +33,9 @@ iostat -d 3 -k -x -t 30
 #每隔 3 秒采集一次进程io,一共采集 30 次
 sudo iotop -b -o -d 3 -t -qqq -n 30
 sudo iotop -b -o -d 1 -qqq |awk '{ print $0"\t" strftime("%Y-%m-%d-%H:%M:%S",systime()) } '
+#硬盘温度
+sudo hddtemp SATA:/dev/sda
+sudo nvme smart-log /dev/nvme0 | grep temperature
 #IO性能测试
 fio -direct=1 -iodepth=128 -rw=randwrite -ioengine=libaio -bs=1k -size=1G -numjobs=1 -runtime=1000 -group_reporting -filename=iotest -name=Rand_
 

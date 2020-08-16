@@ -67,39 +67,38 @@ function nextwallpaper {
 
 # dmenu
 function cpline {
-    command=$(history | tail -n 1)
-    $(echo $command | awk '{$1="";print $0}') | dmenu -p "copy line" -l 10 | xclip -selection clipboard
+    $(history | tail -n 1 | awk '{$1="";print $0}') | dmenu -p "copy line" -l 10 | xclip -selection clipboard
 }
 
 function cphistory {
-    hs=$(history)
-    echo $hs | awk '{$1="";print $0}' | dmenu -p "copy history" -l 10 | xclip -selection clipboard
+    history | sort -nr | awk '{$1="";print $0}' | dmenu -p "copy history" -l 10 | xclip -selection clipboard
 }
 
 function cpcommand {
-    hs=$(history)
-    content=$(echo $hs | awk '{$1="";print $0}' | dmenu -p "copy content" -l 10)
-    $(echo $content) | xclip -selection clipboard
+    $(history | sort -nr | awk '{$1="";print $0}' | dmenu -p "copy content" -l 10) | xclip -selection clipboard
 }
 
 function checkfile {
-    grep '^#' /usr/include/X11/keysymdef.h | dmenu -p "XK" -l 15 | awk '{ print $2 }' | xclip -selection clipboard
+    choices="XK\nport"
+    chosen=$(echo -e "$choices" | dmenu -p "输入你的查找什么")
+
+    case "$chosen" in
+        XK) grep '^#' /usr/include/X11/keysymdef.h | dmenu -p "XK" -l 15 | awk '{ print $2 }' | xclip -selection clipboard ;;
+        port) grep -v '^#' /etc/services | dmenu -p "port" -l 15 | awk '{ print $1 }' | xclip -selection clipboard;;
+    esac
 }
 
 function cpurl {
-    command=$(history | tail -n 1)
-    $(echo $command | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "copy url" -l 10 | xclip -selection clipboard
+    $(history | tail -n 1 | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "copy url" -l 10 | xclip -selection clipboard
 }
 
 function cpdir {
-    command=$(history | tail -n 1)
     dir="bin|boot|dev|etc|home|lib|lib64|lost+found|mnt|opt|proc|root|run|sbin|srv|sys|tmp|usr|var"
-    $(echo $command | awk '{$1="";print $0}') | egrep -o "/($dir)/[a-zA-Z0-9/.]*" | dmenu -p "copy url" -l 10 | xclip -selection clipboard
+    $(history | tail -n 1 | awk '{$1="";print $0}') | egrep -o "/($dir)/[a-zA-Z0-9/.]*" | dmenu -p "copy url" -l 10 | xclip -selection clipboard
 }
 
 function searchurl {
-    command=$(history | tail -n 1)
-    $(echo $command | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "search url" -l 10 | xargs xdg-open &> /dev/null
+    $(history | tail -n 1 | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "search url" -l 10 | xargs xdg-open &> /dev/null
 }
 
 # bingkey
@@ -117,16 +116,9 @@ vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
 zle -N vi-yank-x-selection
 bindkey -a '^y' vi-yank-x-selection
 
-# software
-bindkey "^[^z" deepin-screen-recorder
-
 # fzf
 zle -N fzf-history-widget-accept
 bindkey '^r' fzf-history-widget-accept
-
-# feh
-zle -N nextwallpaper
-bindkey "^[^n" nextwallpaper
 
 # dmenu
 zle -N cpcommand
@@ -135,8 +127,10 @@ zle -N cpline
 zle -N cpurl
 zle -N cpdir
 zle -N searchurl
-bindkey "^[o" cpcommand
-bindkey "^[h" cphistory
+zle -N checkfile
+bindkey "^[h" cpcommand
+bindkey "^[H" cphistory
 bindkey "^[l" cpline
-bindkey "^[U" searchurl
 bindkey "^[L" cpdir
+bindkey "^[U" searchurl
+bindkey "^[f" checkfile
