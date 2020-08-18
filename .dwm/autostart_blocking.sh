@@ -10,6 +10,7 @@ xdman &
 st &
 st -e nvim &
 google-chrome-stable &
+~/.mybin/adb.sh &
 # ibus-daemon -d -x -r &
 # variety &
 # (conky | while read LINE; do xsetroot -name “$LINE”; done) &

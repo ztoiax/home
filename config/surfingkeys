@@ -32,6 +32,8 @@
     });
 // click `Save` button to make above settings to take effect.
 //addSearchAliasX('o', 'github', 'http://github.com/search?q=', '');
+
+unmap ('<Ctrl-s>');
 map('h', 'E');
 map('l', 'R');
 map('j', 'd');
@@ -39,3 +41,10 @@ map('k', 'e');
 
 map(',h','S');
 map(',l','D');
+
+map('w','q');
+map('q','x');
+
+
+cmap('<Ctrl-j>','<Ctrl-n>');
+cmap('<Ctrl-k>','<Ctrl-p>');
