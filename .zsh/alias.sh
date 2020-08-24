@@ -12,6 +12,8 @@ alias vim="nvim"
 alias w="watch -d -n 2"
 alias v2="sudo cat /var/log/v2ray/access.log"
 alias ifconfig="ifconfig -a"
+alias sl="systemctl"
+alias jl="journalctl"
 
 alias macchanger="sudo macchanger -r enp27s0"
 alias clip="xclip -selection c"
@@ -38,6 +40,7 @@ alias p-r='sudo pacman -Rns'
 alias p-q='sudo pacman -Qs'
 alias p-u='sudo pacman -Syu'
 alias p-s='sudo pacman -Ss'
+alias p-k='sudo pacman-key --refresh-keys'
 # del zomble denpends
 alias p-c='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq)'
 
@@ -47,7 +50,7 @@ alias tmp='tmp.py'
 alias clean='a-c && \
     tmp /home/tz/.cache/netease-cloud-music/CachedSongs/*'
 
-alias centos7='virsh start centos7.0; while true;do ssh $centos7 && break;done'
+alias centos7='sudo virsh start centos7; while true;do ssh $centos7 && break;done'
 alias mi10='ssh u0_a369@192.168.1.111 -p 8022'
 # exa
 alias ls='exa'                                                         # ls
@@ -56,6 +59,14 @@ alias ll='exa -lbGF --git'                                             # long li
 alias llm='exa -lbGF --git --sort=modified'                            # long list, modified date sort
 alias la='exa -a --git'
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+
+# git
+alias lg='lazygit'
+alias gc='git clone'
+alias ga='git add --all'
+alias gm='git commit -m "'
+alias gp='git push'
+alias grhh="git reset --hard $(git log | awk 'NR==1{print $2}')"
 
 # speciality views
 alias lS='exa -1'			                                           # one column, just names
@@ -87,9 +98,5 @@ abbrev-alias -g A="| ag"
 abbrev-alias -g P="| awk '{ print $}'"
 abbrev-alias -g US="| uniq | sort"
 # abbrev-alias -g D="sudo docker container "
-
-abbrev-alias -g GC="git check "
-abbrev-alias -g GM='git commit -m ""'
-abbrev-alias -g GB="git branch "
-
+#
 abbrev-alias -g DI="source /dev/stdin"

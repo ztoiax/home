@@ -5,7 +5,7 @@ enp="enp27s0"
 termux="/data/data/com.termux/files/home"
 
 centos8="root@192.168.100.165"
-centos7="root@192.168.100.212"
+centos7="root@192.168.100.208"
 mi10="u0_a369@192.168.1.111 "
 
 share="/mnt/C/Users/ztoia/Desktop/share"
@@ -29,6 +29,10 @@ export FZF_COMPLETION_TRIGGER=',,'
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH="/home/tz/.mybin:$PATH"
+export PATH="/home/tz/.bin:$PATH"
+export PATH="/home/tz/.mybin/statusbar:$PATH"
+export PATH="/home/tz/.mybin/wjscripts:$PATH"
+
 # forgit
 FORGIT_STASH_FZF_OPTS='--bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
 FORGIT_FZF_DEFAULT_OPTS="
@@ -47,3 +51,6 @@ FORGIT_FZF_DEFAULT_OPTS="
 # export QT4_IM_MODULE=fcitx
 # export QT5_IM_MODULE=fcitx
 # export QT_IM_MODULE=fcitx
+
+export LANG=zh_CN.UTF-8
+export LANGUAGE=zh_CN:en_US

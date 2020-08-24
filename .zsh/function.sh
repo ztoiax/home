@@ -18,6 +18,14 @@ function proxy-on {
     export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com"
 }
 
+function proxy-on-http {
+    host="http://127.0.0.1:10809"
+    export ALL_PROXY="$host"
+    export http_proxy="$host"
+    export https_proxy="$host"
+    export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com"
+}
+
 function proxy-off {
     unset ALL_PROXY
     unset http_proxy
@@ -101,6 +109,10 @@ function searchurl {
     $(history | tail -n 1 | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "search url" -l 10 | xargs xdg-open &> /dev/null
 }
 
+function pet-exec {
+    pet exec
+}
+
 # bingkey
 bindkey "^j" forward-word
 bindkey "^k" backward-word
@@ -134,3 +146,7 @@ bindkey "^[l" cpline
 bindkey "^[L" cpdir
 bindkey "^[U" searchurl
 bindkey "^[f" checkfile
+
+# pet
+zle -N pet-exec
+bindkey '^\t' pet-exec

@@ -85,8 +85,8 @@ zinit light zsh-users/zsh-completions
 
 # source
 source /home/tz/.zsh/alias.sh
-source /home/tz/.zsh/function.sh
 source /home/tz/.zsh/variable.sh
+source /home/tz/.zsh/function.sh
 source /home/tz/.zsh/fzf-tab.sh
 
 # nvm
@@ -100,3 +100,4 @@ proxy-on
 ### End of Zinit's installer chunk
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
