@@ -13,6 +13,8 @@ alias w="watch -d -n 2"
 alias v2="sudo cat /var/log/v2ray/access.log"
 alias ifconfig="ifconfig -a"
 alias sl="systemctl"
+alias sls="systemctl status"
+alias slr="systemctl restart"
 alias jl="journalctl"
 
 alias macchanger="sudo macchanger -r enp27s0"
@@ -27,22 +29,24 @@ alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
 
 # Apt
-alias a-u='sudo apt-get update && sudo apt-get upgrade'
-alias a-i='sudo apt-get install'
-alias a-r='sudo apt-get remove'
-alias a-c='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
-alias p-i='sudo pip3 install'
-alias p-r='sudo pip3 uninstall'
+alias au='sudo apt-get update && sudo apt-get upgrade'
+alias ai='sudo apt-get install'
+alias ar='sudo apt-get remove'
+alias ac='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
+# Pip
+alias ppi='sudo pip3 install'
+alias ppr='sudo pip3 uninstall'
 # Pacman
-alias p-i='sudo pacman -Sy'
 # del denpends and config
-alias p-r='sudo pacman -Rns'
-alias p-q='sudo pacman -Qs'
-alias p-u='sudo pacman -Syu'
-alias p-s='sudo pacman -Ss'
-alias p-k='sudo pacman-key --refresh-keys'
+alias pr='sudo pacman -Rns'
+alias pq='sudo pacman -Qs'
+alias pu='sudo pacman -Syu'
+alias pl='sudo pacman -Ss'
+alias pk='sudo pacman-key --refresh-keys'
 # del zomble denpends
-alias p-c='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq)'
+alias pc='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq)'
+# yay
+alias yu='sudo yay -Syu'
 
 alias mykill='mykill.py'
 alias mydu='mydu.py'
@@ -64,9 +68,19 @@ alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + e
 alias lg='lazygit'
 alias gc='git clone'
 alias ga='git add --all'
-alias gm='git commit -m "'
+alias gm='git commit -m '
 alias gp='git push'
 alias grhh="git reset --hard $(git log | awk 'NR==1{print $2}')"
+
+# docker
+alias dil='sudo docker image ls'
+alias dip='sudo docker image pull'
+alias dir='sudo docker image rm'
+alias dcl='sudo docker container ls'
+alias dcrun='sudo docker container run'
+alias dccp='sudo docker container cp'
+alias dck='sudo docker container kill'
+alias dcs='sudo docker container stop'
 
 # speciality views
 alias lS='exa -1'			                                           # one column, just names
@@ -98,5 +112,4 @@ abbrev-alias -g A="| ag"
 abbrev-alias -g P="| awk '{ print $}'"
 abbrev-alias -g US="| uniq | sort"
 # abbrev-alias -g D="sudo docker container "
-#
 abbrev-alias -g DI="source /dev/stdin"

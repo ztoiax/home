@@ -1,4 +1,11 @@
 #!/bin/zsh
+# pacman
+function pi {
+    if ! sudo pacman -S $1;then
+        yay -S $1
+    fi
+}
+
 # python 补全
 function _pip_completion {
   local words cword
