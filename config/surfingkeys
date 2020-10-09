@@ -38,6 +38,7 @@ map('h', 'E');
 map('l', 'R');
 map('j', 'd');
 map('k', 'e');
+map(';', 'x');
 
 map(',h','S');
 map(',l','D');
