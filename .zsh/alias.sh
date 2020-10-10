@@ -1,6 +1,7 @@
 #!/bin/zsh
 # Alias bin
 alias rm="rm -i"
+alias cp="cp -i"
 alias "type"="type -a"
 alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias free="free -h"
@@ -10,7 +11,6 @@ alias hack="cmatrix"
 alias vi="/usr/bin/vim"
 alias vim="nvim"
 alias w="watch -d -n 2"
-alias v2="sudo cat /var/log/v2ray/access.log"
 alias ifconfig="ifconfig -a"
 alias sl="systemctl"
 alias sls="systemctl status"
