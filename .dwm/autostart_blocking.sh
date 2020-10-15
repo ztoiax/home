@@ -3,12 +3,15 @@
 ~/.mybin/onehour.sh &
 ~/.mybin/1s.sh &
 compton -b
-redshift -l 23.6980:133.8807 -t 5300:4000 &
+redshift -l 23.6980:133.8807 -t 5300:3300 &
 netease-cloud-music &
 xdman &
-st &
+# qbittorrent &
+# st &
 # st -e nvim &
+# st -e speedometer -rx enp27s0 &
+# st -e htop &
 google-chrome-stable &
-~/.mybin/adb.sh &
 fcitx5 &
+# ~/.mybin/adb.sh &
 # dwmblocks &

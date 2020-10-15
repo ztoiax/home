@@ -27,6 +27,7 @@ alias e="nautilus"
 alias netdata="http://localhost:19999"
 alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
+alias chrome="google-chrome-stable"
 
 # Apt
 alias au='sudo apt-get update && sudo apt-get upgrade'
@@ -70,6 +71,10 @@ alias gc='git clone'
 alias ga='git add --all'
 alias gm='git commit -m '
 alias gp='git push'
+alias gl='git log'
+alias gb='git branch'
+alias gs='git status'
+
 alias grhh="git reset --hard $(git log | awk 'NR==1{print $2}')"
 
 # docker
