@@ -138,6 +138,7 @@ bindkey -a '^y' vi-yank-x-selection
 # fzf
 zle -N fzf-history-widget-accept
 bindkey '^r' fzf-history-widget-accept
+bindkey '^f' fzf-file-widget
 
 # dmenu
 zle -N cpcommand

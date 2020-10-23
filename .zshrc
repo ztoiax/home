@@ -101,3 +101,7 @@ proxy-on
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+source /home/tz/.config/broot/launcher/bash/br
+
+source /home/tz/.config/broot/launcher/bash/br

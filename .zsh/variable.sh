@@ -24,7 +24,8 @@ export FZF_DEFAULT_COMMAND='find .'
 export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_COMPLETION_TRIGGER=',,'
+export FZF_COMPLETION_TRIGGER=','
+
 # PATH
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
@@ -32,6 +33,11 @@ export PATH="/home/tz/.mybin:$PATH"
 export PATH="/home/tz/.bin:$PATH"
 export PATH="/home/tz/.mybin/statusbar:$PATH"
 export PATH="/home/tz/.mybin/wjscripts:$PATH"
+
+# nnn
+export NNN_BMS='m:/mnt;h:~;M:/mnt/E/迅雷下载;c:~/.config;m:/mnt;p:~/Pictures'
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_PLUG='f:fzopen;t:preview-tabbed;p:preview-tui;i:imgview;v:vidthumb;'
 
 # forgit
 FORGIT_STASH_FZF_OPTS='--bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'

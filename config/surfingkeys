@@ -44,8 +44,8 @@ map('\'', 'X');
 map(',h','S');
 map(',l','D');
 
-map('w','q');
-map('q','x');
+map('w','R');
+map('q','E');
 
 cmap('<Ctrl-j>','<Ctrl-n>');
 cmap('<Ctrl-k>','<Ctrl-p>');

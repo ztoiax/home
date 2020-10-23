@@ -1,53 +1,86 @@
 #!/bin/zsh
 # Alias bin
+alias mv="advmv -g"
+alias cp="advcp -g"
 alias rm="rm -i"
-alias cp="cp -i"
-alias "type"="type -a"
-alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+alias type="type -a"
 alias free="free -h"
 alias df="df -h"
 alias c="clear"
-alias hack="cmatrix"
-alias vi="/usr/bin/vim"
-alias vim="nvim"
 alias w="watch -d -n 2"
 alias ifconfig="ifconfig -a"
-alias sl="systemctl"
-alias sls="systemctl status"
-alias slr="systemctl restart"
-alias jl="journalctl"
-
-alias macchanger="sudo macchanger -r enp27s0"
 alias clip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 alias cplast="history | tail -n 1 | cut -c8- | clip"
-alias s="neofetch"
-alias r="ranger"
-alias e="nautilus"
+alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+
+# external
 alias netdata="http://localhost:19999"
 alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
+alias macchanger="sudo macchanger -r enp27s0"
+alias v="nvim"
 alias chrome="google-chrome-stable"
+alias e="nautilus"
+alias r="ranger"
+alias br="broot -sdpw"
+alias n="nnn -d"
 
-# Apt
-alias au='sudo apt-get update && sudo apt-get upgrade'
-alias ai='sudo apt-get install'
-alias ar='sudo apt-get remove'
-alias ac='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
+# cumstomization
+alias ,ping='prettyping'
+alias ,du='ncdu'
+alias ,df='dfc'
+alias ,find='fd'                # instead find
+alias ,ls='lsd'                # instead find
+
+# cool
+alias hack="cmatrix"
+alias s="neofetch"
+
+# systemctl
+alias sl="systemctl"
+alias sls="systemctl status"
+alias slr="systemctl restart"
+alias sle="systemctl enbale"
+alias sld="systemctl stop"
+alias jl="journalctl"
+
+# 不同发行版的包管理
+if [ -f /usr/bin/lsb_release ]; then
+    #Apt-get
+    alias pi="sudo apt-get install"
+    alias pr="sudo apt-get remove"
+    alias pu='sudo apt-get update && sudo apt-get upgrade'
+    alias pc='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
+    alias pq="dpkg -l"
+elif [ -f /etc/redhat-release ];then
+    #Yum
+    alias pi="yum install"
+    alias pr="yum remove"
+    alias pu="yum update"
+    alias pq="rpm -q"
+    alias pf="yum list | grep -i"
+elif uname -a | grep -i arch;then
+    # Pacman
+    # del denpends and config
+    alias pr='sudo pacman -Rns'
+    alias pl='sudo pacman -Qs'
+    alias pq='sudo pacman -Qs | grep'
+    alias pu='sudo pacman -Syu && yay -Syu'
+    alias pl='sudo pacman -Ss'
+    alias pk='sudo pacman-key --refresh-keys'
+    # del zomble denpends
+    alias pc='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq)'
+elif uname -a | grep Android;then
+    install="pkg"
+    check="pkg show"
+fi
+
 # Pip
 alias ppi='sudo pip3 install'
 alias ppr='sudo pip3 uninstall'
-# Pacman
-# del denpends and config
-alias pr='sudo pacman -Rns'
-alias pq='sudo pacman -Qs'
-alias pu='sudo pacman -Syu'
-alias pl='sudo pacman -Ss'
-alias pk='sudo pacman-key --refresh-keys'
-# del zomble denpends
-alias pc='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq)'
-# yay
-alias yu='sudo yay -Syu'
+alias ppl='sudo pip3 list'
+alias ppq='sudo pip3 list | grep '
 
 alias mykill='mykill.py'
 alias mydu='mydu.py'
@@ -57,6 +90,9 @@ alias clean='a-c && \
 
 alias centos7='sudo virsh start centos7; while true;do ssh $centos7 && break;done'
 alias mi10='ssh u0_a369@192.168.1.111 -p 8022'
+alias mi10-on='sudo simple-mtpfs --device 1 -o allow_other /mnt/android/'
+alias mi10-off='sudo fusermount -u /mnt/android'
+
 # exa
 alias ls='exa'                                                         # ls
 alias l='exa -lbF --git'                                               # list, size, type, git
@@ -64,6 +100,9 @@ alias ll='exa -lbGF --git'                                             # long li
 alias llm='exa -lbGF --git --sort=modified'                            # long list, modified date sort
 alias la='exa -a --git'
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+alias lS='exa -1'			                                           # one column, just names
+alias lt='exa --tree --level=2'                                        # tree
+alias lat='exa -a --tree --level=2'                                    # tree hide
 
 # git
 alias lg='lazygit'
@@ -87,10 +126,6 @@ alias dccp='sudo docker container cp'
 alias dck='sudo docker container kill'
 alias dcs='sudo docker container stop'
 
-# speciality views
-alias lS='exa -1'			                                           # one column, just names
-alias lt='exa --tree --level=2'                                        # tree
-alias lat='exa -a --tree --level=2'                                    # tree hide
 
 # fzf
 alias tt='fzf --preview '"'"'[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {}  || highlight -O ansi -l {} || coderay {} || cat {}) 2> /dev/null | head -500'"'"
@@ -106,11 +141,12 @@ alias pydash='source /home/tz/pydash/pydashtest/bin/activate && \
 
 alias studio='/home/tz/Android/android-studio/bin/studio.sh &'
 
-#X
-alias n='feh --bg-fill --randomize ~/Pictures/wallpaper/*'
+#Xorg
+alias nw='feh --bg-fill --randomize ~/Pictures/wallpaper/*'
 alias makedwm='cd ~/dwm; sudo make clean install && sudo pkill Xorg'
 alias makedmenu='cd ~/dmenu; sudo make clean install && sudo pkill Xorg'
 alias makest='cd ~/st; sudo make clean install && sudo pkill Xorg'
+
 # abbrev-alias
 abbrev-alias -g G="| grep"
 abbrev-alias -g A="| ag"
