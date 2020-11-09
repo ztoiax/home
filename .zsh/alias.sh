@@ -1,5 +1,6 @@
 #!/bin/zsh
 # Alias bin
+alias sudo="sudo "
 alias mv="advmv -g"
 alias cp="advcp -g"
 alias rm="rm -i"
@@ -25,13 +26,27 @@ alias e="nautilus"
 alias r="ranger"
 alias br="broot -sdpw"
 alias n="nnn -d"
+alias md="glow"
+alias record="asciinema rec" # 终端屏幕录制
+alias play="asciinema play"  # 播放录制文件
+alias baidu="baidupcs"
+alias screen="scrcpy"
+alias mysql-tui='mitzasql'   # mysql tui
+alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
+
+# adb
+alias ai="adb shell input keyevent"
+alias aii="adb shell input keyevent 26"
+alias as="adb shell svc"
 
 # cumstomization
 alias ,ping='prettyping'
 alias ,du='ncdu'
 alias ,df='dfc'
-alias ,find='fd'                # instead find
-alias ,ls='lsd'                # instead find
+alias ,find='fd'             # instead find
+alias ,ls='lsd'              # instead find
+alias ,ll='lsd -l'           # instead find
+alias ,man='cheat'
 
 # cool
 alias hack="cmatrix"
@@ -46,7 +61,7 @@ alias sld="systemctl stop"
 alias jl="journalctl"
 
 # 不同发行版的包管理
-if [ -f /usr/bin/lsb_release ]; then
+if uname -a | grep -i debian; then
     #Apt-get
     alias pi="sudo apt-get install"
     alias pr="sudo apt-get remove"
@@ -65,12 +80,12 @@ elif uname -a | grep -i arch;then
     # del denpends and config
     alias pr='sudo pacman -Rns'
     alias pl='sudo pacman -Qs'
-    alias pq='sudo pacman -Qs | grep'
-    alias pu='sudo pacman -Syu && yay -Syu'
-    alias pl='sudo pacman -Ss'
+    alias pq='sudo pacman -Ss'
+    alias pu='sudo pacman -Syyu && yay -Syyu'
+    alias pl='sudo pacman -Qs'
     alias pk='sudo pacman-key --refresh-keys'
     # del zomble denpends
-    alias pc='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq)'
+    alias pc='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq) && yay -Sc'
 elif uname -a | grep Android;then
     install="pkg"
     check="pkg show"

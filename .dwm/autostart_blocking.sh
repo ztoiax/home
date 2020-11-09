@@ -15,3 +15,6 @@ google-chrome-stable &
 fcitx5 &
 # ~/.mybin/adb.sh &
 # dwmblocks &
+
+# 开启虚拟机
+virsh start centos7 &

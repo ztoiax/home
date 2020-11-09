@@ -1,9 +1,33 @@
 #!/bin/zsh
+# custom function and bindkey
+
+#redis
+function redis {
+    redis-server /var/lib/redis/redis.conf &;
+    iredis
+}
+
+# scp
+function scpcentos7 {
+    scp -r $1 "root@192.168.100.208:/root"
+}
+
+# adb
+function scpmi10 {
+    adb push $1 /sdcard/download
+}
+
+function adbscreen {
+    adb shell input keyevent 26
+}
+
 # pacman
 function pi {
-    if ! sudo pacman -S $1;then
-        yay -S $1
-    fi
+    for i in $@;do
+        if ! sudo pacman -S $i;then
+            yay -S $i
+        fi
+    done
 }
 
 # python 补全
@@ -22,7 +46,7 @@ function proxy-on {
     export ALL_PROXY="$host"
     export http_proxy="$host"
     export https_proxy="$host"
-    export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com"
+    export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn"
 }
 
 function proxy-on-http {
@@ -30,7 +54,7 @@ function proxy-on-http {
     export ALL_PROXY="$host"
     export http_proxy="$host"
     export https_proxy="$host"
-    export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com"
+    export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn"
 }
 
 function proxy-off {
@@ -148,13 +172,19 @@ zle -N cpurl
 zle -N cpdir
 zle -N searchurl
 zle -N checkfile
-bindkey "^[h" cpcommand
-bindkey "^[H" cphistory
-bindkey "^[l" cpline
-bindkey "^[L" cpdir
-bindkey "^[U" searchurl
-bindkey "^[f" checkfile
+bindkey '^[h' cpcommand
+bindkey '^[H' cphistory
+bindkey '^[l' cpline
+bindkey '^[L' cpdir
+bindkey '^[U' searchurl
+bindkey '^[f' checkfile
 
 # pet
 zle -N pet-exec
-bindkey '^\t' pet-exec
+# alt + <tab>
+bindkey '^[\t' pet-exec
+
+# adb
+zle -N adbscreen
+# alt + <enter>
+bindkey '^[^M' adbscreen
