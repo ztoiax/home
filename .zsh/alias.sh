@@ -5,7 +5,7 @@ alias mv="advmv -g"
 alias cp="advcp -g"
 alias rm="rm -i"
 alias type="type -a"
-alias free="free -h"
+alias free="free -hw"
 alias df="df -h"
 alias c="clear"
 alias w="watch -d -n 2"
@@ -36,11 +36,12 @@ alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
 
 # adb
 alias ai="adb shell input keyevent"
-alias aii="adb shell input keyevent 26"
 alias as="adb shell svc"
+alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png'
 
 # cumstomization
-alias ,ping='prettyping'
+alias ,ping='gping'
+alias ,,ping='prettyping'
 alias ,du='ncdu'
 alias ,df='dfc'
 alias ,find='fd'             # instead find
@@ -122,21 +123,29 @@ alias lat='exa -a --tree --level=2'                                    # tree hi
 # git
 alias lg='lazygit'
 alias gc='git clone'
-alias ga='git add --all'
+alias ga='git add'
+alias gr='git rm'
 alias gm='git commit -m '
 alias gp='git push'
 alias gl='git log'
 alias gb='git branch'
 alias gs='git status'
 
-alias grhh="git reset --hard $(git log | awk 'NR==1{print $2}')"
+# alias grh="git reset --hard $(git log | grep commit | awk 'NR==2{print $2}')"
+alias grs="git reset --soft $(git log | grep commit | awk 'NR==2{print $2}')"
 
 # docker
 alias dil='sudo docker image ls'
 alias dip='sudo docker image pull'
-alias dir='sudo docker image rm'
+alias dir='sudo docker image rm -f'
+alias dis='sudo docker search '
+
+alias dc='sudo docker container'
 alias dcl='sudo docker container ls'
+alias dcla='sudo docker container ls -a'
 alias dcrun='sudo docker container run'
+alias dcr='sudo docker container rm'
+alias dce='sudo docker exec -it'
 alias dccp='sudo docker container cp'
 alias dck='sudo docker container kill'
 alias dcs='sudo docker container stop'

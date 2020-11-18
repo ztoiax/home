@@ -2,9 +2,7 @@
 !config/
 !.zshrc
 !.p10k.zsh
-!.zinit/
 !.zsh/
 !.dwm/
 !.git/
 !.gitignore
-!.vim-bookmarks

@@ -3,8 +3,9 @@
 
 #redis
 function redis {
-    redis-server /var/lib/redis/redis.conf &;
-    iredis
+    if redis-server /var/lib/redis/redis.conf &;then
+        iredis
+    fi
 }
 
 # scp
@@ -17,8 +18,23 @@ function scpmi10 {
     adb push $1 /sdcard/download
 }
 
-function adbscreen {
-    adb shell input keyevent 26
+# 将notes等文件，同步到手机
+function sync-notes {
+    # 删除目标目录的多余文件 adb-sync --delete
+    # 手机同步到电脑         adb-sync --reverse /sdcard/Download/ ~/Downloads
+    adb-sync ~/notes /sdcard/github/ && n="notes OK"
+    adb-sync ~/jianli /sdcard/github/ && nn="jianli OK"
+
+    adb-sync ~/.mybin /sdcard/github/
+    adb-sync ~/.zsh /sdcard/github/
+    adb-sync ~/.zshrc /sdcard/github/ && nnn="zsh OK"
+
+    adb-sync /home/tz/Downloads/1136453598_破晓后的天照/books /sdcard/ && nnnn="books OK"
+
+    # 写入日志后通知
+    echo "$(date +"%Y-%m-%d_%H:%M:%S") adb-sync:$n,$nn,$nnn,$nnnn" >> /var/log/adb-sync \
+        && \
+        notify-send "adb-sync:" "$n\n$nn\n$nnn\n$nnnn"
 }
 
 # pacman
@@ -133,7 +149,7 @@ function cpurl {
 
 function cpdir {
     dir="bin|boot|dev|etc|home|lib|lib64|lost+found|mnt|opt|proc|root|run|sbin|srv|sys|tmp|usr|var"
-    $(history | tail -n 1 | awk '{$1="";print $0}') | egrep -o "/($dir)/[a-zA-Z0-9/.]*" | dmenu -p "copy url" -l 10 | xclip -selection clipboard
+    $(history | tail -n 1 | awk '{$1="";print $0}') | egrep -o "/($dir)/[a-zA-Z0-9/.]*" | dmenu -p "copy dir" -l 10 | xclip -selection clipboard
 }
 
 function searchurl {
@@ -151,6 +167,7 @@ bindkey "^u" backward-kill-line
 bindkey "^d" kill-line
 bindkey "^f" forward-char
 bindkey "^b" backward-char
+bindkey "^o" accept-and-hold
 
 vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
 zle -N vi-append-x-selection
@@ -171,20 +188,13 @@ zle -N cpline
 zle -N cpurl
 zle -N cpdir
 zle -N searchurl
-zle -N checkfile
 bindkey '^[h' cpcommand
 bindkey '^[H' cphistory
 bindkey '^[l' cpline
 bindkey '^[L' cpdir
 bindkey '^[U' searchurl
-bindkey '^[f' checkfile
 
 # pet
 zle -N pet-exec
 # alt + <tab>
 bindkey '^[\t' pet-exec
-
-# adb
-zle -N adbscreen
-# alt + <enter>
-bindkey '^[^M' adbscreen
