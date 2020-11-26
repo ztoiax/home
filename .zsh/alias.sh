@@ -1,5 +1,6 @@
 #!/bin/zsh
 # Alias bin
+alias p="ps aux"
 alias sudo="sudo "
 alias mv="advmv -g"
 alias cp="advcp -g"
@@ -7,7 +8,7 @@ alias rm="rm -i"
 alias type="type -a"
 alias free="free -hw"
 alias df="df -h"
-alias c="clear"
+alias c="curl -LO"
 alias w="watch -d -n 2"
 alias ifconfig="ifconfig -a"
 alias clip="xclip -selection c"
@@ -48,6 +49,7 @@ alias ,find='fd'             # instead find
 alias ,ls='lsd'              # instead find
 alias ,ll='lsd -l'           # instead find
 alias ,man='cheat'
+alias ,git='bit'
 
 # cool
 alias hack="cmatrix"
@@ -111,9 +113,9 @@ alias mi10-off='sudo fusermount -u /mnt/android'
 
 # exa
 alias ls='exa'                                                         # ls
-alias l='exa -lbF --git'                                               # list, size, type, git
-alias ll='exa -lbGF --git'                                             # long list
-alias llm='exa -lbGF --git --sort=modified'                            # long list, modified date sort
+alias l='exa -lbgF --git --icons'                                      # long list,icons
+alias ll='exa -lbgF --git'                                             # long list
+alias llm='exa -lbgF --git --sort=modified'                            # long list, modified date sort
 alias la='exa -a --git'
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
 alias lS='exa -1'			                                           # one column, just names
@@ -133,6 +135,11 @@ alias gs='git status'
 
 # alias grh="git reset --hard $(git log | grep commit | awk 'NR==2{print $2}')"
 alias grs="git reset --soft $(git log | grep commit | awk 'NR==2{print $2}')"
+
+# nginx
+alias ng='sudo nginx'
+alias ngr='sudo nginx -s reload'
+alias ngq='sudo nginx -s quit'
 
 # docker
 alias dil='sudo docker image ls'
