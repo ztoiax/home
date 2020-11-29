@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Alias bin
-alias p="ps aux"
+alias a="aric2"
 alias sudo="sudo "
 alias mv="advmv -g"
 alias cp="advcp -g"
@@ -15,6 +15,9 @@ alias clip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 alias cplast="history | tail -n 1 | cut -c8- | clip"
 alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+
+alias backup='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/arch/arch$(date +"%Y-%m-%d")'
+alias restore='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
 
 # external
 alias netdata="http://localhost:19999"
@@ -34,6 +37,10 @@ alias baidu="baidupcs"
 alias screen="scrcpy"
 alias mysql-tui='mitzasql'   # mysql tui
 alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
+alias ssl='siteciphers'
+
+# localjs
+alias httpmethod="cd $programs/hoppscotch && npm run dev && xdg-open http://192.168.1.221:3000"
 
 # adb
 alias ai="adb shell input keyevent"
@@ -64,32 +71,37 @@ alias sld="systemctl stop"
 alias jl="journalctl"
 
 # 不同发行版的包管理
-if uname -a | grep -i debian; then
+if which apt-get &> /dev/null ; then
     #Apt-get
     alias pi="sudo apt-get install"
     alias pr="sudo apt-get remove"
     alias pu='sudo apt-get update && sudo apt-get upgrade'
     alias pc='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
     alias pq="dpkg -l"
-elif [ -f /etc/redhat-release ];then
+
+elif which yum &> /dev/null;then
     #Yum
     alias pi="yum install"
     alias pr="yum remove"
     alias pu="yum update"
     alias pq="rpm -q"
     alias pf="yum list | grep -i"
-elif uname -a | grep -i arch;then
-    # Pacman
+
+elif which pacman &> /dev/null;then
+    # https://wiki.archlinux.org/index.php/Pacman_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Tips_and_tricks_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+
     # del denpends and config
     alias pr='sudo pacman -Rns'
-    alias pl='sudo pacman -Qs'
-    alias pq='sudo pacman -Ss'
+    alias plo="sudo pacman-disowned.sh > /tmp/other-soft-file && cat /tmp/other-soft-file"
+    alias pf='sudo pacman -F'
     alias pu='sudo pacman -Syyu && yay -Syyu'
-    alias pl='sudo pacman -Qs'
     alias pk='sudo pacman-key --refresh-keys'
     # del zomble denpends
-    alias pc='sudo pacman -Sc && sudo pacman -R $(pacman -Qdtq) && yay -Sc'
-elif uname -a | grep Android;then
+    alias pc='sudo pacman -Sc && sudo pacman -Rns $(pacman -Qdtq) && yay -Sc'
+    # gpg-insertkey
+    alias gpg-insertkey='gpg --keyserver pool.sks-keyservers.net --recv-keys '
+
+elif which pkg &> /dev/null;then
     install="pkg"
     check="pkg show"
 fi
@@ -102,7 +114,7 @@ alias ppq='sudo pip3 list | grep '
 
 alias mykill='mykill.py'
 alias mydu='mydu.py'
-alias tmp='tmp.py'
+alias tmp='tmp.sh'
 alias clean='a-c && \
     tmp /home/tz/.cache/netease-cloud-music/CachedSongs/*'
 

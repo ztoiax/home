@@ -3,6 +3,8 @@
 nvim="~/.config/nvim"
 enp="enp27s0"
 termux="/data/data/com.termux/files/home"
+backup="/mnt/Z/linux/"
+programs="~/Downloads/Programs"
 
 centos8="root@192.168.100.165"
 centos7="root@192.168.100.208"
@@ -31,6 +33,8 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_COMPLETION_TRIGGER=','
 
 # PATH
+export CDPATH='/home/tz:/home/tz/.config:/etc'
+
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH="/home/tz/.mybin:$PATH"

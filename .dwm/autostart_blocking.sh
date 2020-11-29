@@ -3,18 +3,13 @@
 ~/.mybin/onehour.sh &
 ~/.mybin/1s.sh &
 compton -b
-redshift -l 23.6980:133.8807 -t 5300:3300 &
+redshift -l 23.6980:133.8807 -t 5300:4000 &
 netease-cloud-music &
 xdman &
-# qbittorrent &
-# st &
+st &
 # st -e nvim &
-# st -e speedometer -rx enp27s0 &
-# st -e htop &
 google-chrome-stable &
 fcitx5 &
-# ~/.mybin/adb.sh &
-# dwmblocks &
 
-# 开启虚拟机
-virsh start centos7 &
+~/.mybin/v2.sh
+# dwmblocks &

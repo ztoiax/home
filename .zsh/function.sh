@@ -1,7 +1,83 @@
 #!/bin/zsh
 # custom function and bindkey
 
-#redis
+##### base ######
+
+# easy ps aux
+function p(){
+    if [ $# -eq 0 ];then
+        ps aux
+    else
+        for i in $@;do
+            ps aux | grep $i | grep -v grep
+        done
+    fi
+}
+
+# view thread
+function pt(){
+    number='^[0-9]+$'
+
+    if [[ $1 =~ $number ]];then
+        ps -T -p $1
+    else
+        ps -T -p $(pgrep $1)
+    fi
+}
+
+# enable webui-aria2
+function aria2-boot(){
+    if aria2c --enable-rpc --rpc-listen-all &;then
+        node /home/tz/Downloads/Programs/webui-aria2/node-server.js &
+    fi
+}
+
+##### pacman ######
+if which pacman &> /dev/null;then
+
+# install packages
+function pi {
+    for i in $@;do
+        if ! sudo pacman -S $i;then
+            yay -S $i
+        fi
+    done
+}
+
+# search local packages
+function pl(){
+    if [ $# -eq 0 ];then
+        sudo pacman -Qs
+    else
+        for i in $@;do
+            sudo pacman -Qs | grep $i | grep -v grep
+        done
+    fi
+}
+# search remote packages
+function pq(){
+    if ! sudo pacman -Ss $1;then
+        yay -Ss $1
+    fi
+}
+
+# list size of package denpends
+function psl(){
+    pacman -Qlq $1 | grep -v '/$' | xargs -r du -h | sort -h
+}
+
+# list size of packages or package
+function pss(){
+    if [ $1 ];then
+        LANG=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2 | grep $1
+    else;
+        LANG=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2
+    fi
+    # human size
+    # LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+}
+fi
+##### redis ######
 function redis {
     if redis-server /var/lib/redis/redis.conf &;then
         iredis
@@ -37,15 +113,6 @@ function sync-notes {
         notify-send "adb-sync:" "$n\n$nn\n$nnn\n$nnnn"
 }
 
-# pacman
-function pi {
-    for i in $@;do
-        if ! sudo pacman -S $i;then
-            yay -S $i
-        fi
-    done
-}
-
 # python 补全
 function _pip_completion {
   local words cword
@@ -62,7 +129,7 @@ function proxy-on {
     export ALL_PROXY="$host"
     export http_proxy="$host"
     export https_proxy="$host"
-    export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com"
+    export NO_PROXY="mirrors.aliyun.com,taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com"
 }
 
 function proxy-on-http {
@@ -120,7 +187,7 @@ function nextwallpaper {
 #     fi
 # }
 
-# dmenu
+##### dmenu ######
 function cpline {
     $(history | tail -n 1 | awk '{$1="";print $0}') | dmenu -p "copy line" -l 10 | xclip -selection clipboard
 }
@@ -160,7 +227,7 @@ function pet-exec {
     pet exec
 }
 
-# bingkey
+##### bindkey ######
 bindkey "^j" forward-word
 bindkey "^k" backward-word
 bindkey "^u" backward-kill-line
@@ -168,6 +235,12 @@ bindkey "^d" kill-line
 bindkey "^f" forward-char
 bindkey "^b" backward-char
 bindkey "^o" accept-and-hold
+pb-yank () {
+  CUTBUFFER=$(pbpaste)
+  zle yank
+}
+zle -N pb-yank
+bindkey '^v'   paste-insert
 
 vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
 zle -N vi-append-x-selection
@@ -198,3 +271,4 @@ bindkey '^[U' searchurl
 zle -N pet-exec
 # alt + <tab>
 bindkey '^[\t' pet-exec
+
