@@ -16,8 +16,10 @@ alias getclip="xclip -selection c -o"
 alias cplast="history | tail -n 1 | cut -c8- | clip"
 alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 
-alias backup='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/arch/arch$(date +"%Y-%m-%d")'
-alias restore='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
+alias backup-rsync='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/linux/arch$(date +"%Y-%m-%d")'
+
+# alias restore-rsync='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
+# alias restore-dd='gzip -dc $backup/arch.gz | dd of=/dev/nvme0n1p5'
 
 # external
 alias netdata="http://localhost:19999"
@@ -29,7 +31,6 @@ alias chrome="google-chrome-stable"
 alias e="nautilus"
 alias r="ranger"
 alias br="broot -sdpw"
-alias n="nnn -d"
 alias md="glow"
 alias record="asciinema rec" # 终端屏幕录制
 alias play="asciinema play"  # 播放录制文件
@@ -53,8 +54,6 @@ alias ,,ping='prettyping'
 alias ,du='ncdu'
 alias ,df='dfc'
 alias ,find='fd'             # instead find
-alias ,ls='lsd'              # instead find
-alias ,ll='lsd -l'           # instead find
 alias ,man='cheat'
 alias ,git='bit'
 
@@ -91,13 +90,14 @@ elif which pacman &> /dev/null;then
     # https://wiki.archlinux.org/index.php/Pacman_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Tips_and_tricks_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
     # del denpends and config
+    alias pd='pactree'
     alias pr='sudo pacman -Rns'
     alias plo="sudo pacman-disowned.sh > /tmp/other-soft-file && cat /tmp/other-soft-file"
     alias pf='sudo pacman -F'
     alias pu='sudo pacman -Syyu && yay -Syyu'
     alias pk='sudo pacman-key --refresh-keys'
     # del zomble denpends
-    alias pc='sudo pacman -Sc && sudo pacman -Rns $(pacman -Qdtq) && yay -Sc'
+    alias pc='sudo pacman -Sc && sudo pacman -Rns $(pacman -Qdtq) && yay -Sc && npm cache clean --force'
     # gpg-insertkey
     alias gpg-insertkey='gpg --keyserver pool.sks-keyservers.net --recv-keys '
 
@@ -113,7 +113,6 @@ alias ppl='sudo pip3 list'
 alias ppq='sudo pip3 list | grep '
 
 alias mykill='mykill.py'
-alias mydu='mydu.py'
 alias tmp='tmp.sh'
 alias clean='a-c && \
     tmp /home/tz/.cache/netease-cloud-music/CachedSongs/*'
@@ -125,9 +124,9 @@ alias mi10-off='sudo fusermount -u /mnt/android'
 
 # exa
 alias ls='exa'                                                         # ls
-alias l='exa -lbgF --git --icons'                                      # long list,icons
-alias ll='exa -lbgF --git'                                             # long list
-alias llm='exa -lbgF --git --sort=modified'                            # long list, modified date sort
+alias l='exa -lbgHF --git --icons'                                     # long list,icons
+alias ll='exa -lbgHF --git'                                            # long list
+alias llm='exa -lbgHF --git --sort=modified'                           # long list, modified date sort
 alias la='exa -a --git'
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
 alias lS='exa -1'			                                           # one column, just names
@@ -137,11 +136,9 @@ alias lat='exa -a --tree --level=2'                                    # tree hi
 # git
 alias lg='lazygit'
 alias gc='git clone'
-alias ga='git add'
 alias gr='git rm'
 alias gm='git commit -m '
 alias gp='git push'
-alias gl='git log'
 alias gb='git branch'
 alias gs='git status'
 
@@ -194,6 +191,4 @@ alias makest='cd ~/st; sudo make clean install && sudo pkill Xorg'
 abbrev-alias -g G="| grep"
 abbrev-alias -g A="| ag"
 abbrev-alias -g P="| awk '{ print $}'"
-abbrev-alias -g US="| uniq | sort"
-# abbrev-alias -g D="sudo docker container "
-abbrev-alias -g DI="source /dev/stdin"
+abbrev-alias -g US="| sort | uniq | sort -n"

@@ -20,14 +20,16 @@ mydir="/var/lib/mysql"
 mylog="/var/log/mysql"
 
 # export
-export TERM="xterm-256color"
+export TERM="st-256color"
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export REACT_EDITOR="nvim"
+
 # fzf
 # export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(highlight -O ansi {} ||cat {}) 2> /dev/null | head -500'"
 export FZF_DEFAULT_COMMAND='find .'
-export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+export FZF_DEFAULT_OPTS="--height 70% --layout=reverse"
+# export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_COMPLETION_TRIGGER=','

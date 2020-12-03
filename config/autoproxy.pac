@@ -13,6 +13,7 @@ var rules = [
     ],
     [
         [
+            "flockport.com",
             "stackexchange.com",
             "python.org",
             "neovim.io",

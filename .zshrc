@@ -1,3 +1,7 @@
+# Startup before zinit
+host="socks5://127.0.0.1:10808"
+export ALL_PROXY="$host"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -20,6 +24,8 @@ autoload -Uz _zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
+#
+
 zinit light-mode for \
     zinit-zsh/z-a-rust \
     zinit-zsh/z-a-as-monitor \
@@ -30,17 +36,18 @@ zinit light-mode for \
 
 # Plugins
 zinit light-mode for \
-     wfxr/forgit \
      zpm-zsh/colors \
      momo-lab/zsh-abbrev-alias \
-     xav-b/zsh-extend-history \
      hlissner/zsh-autopair \
      zsh-users/zsh-autosuggestions \
      zdharma/fast-syntax-highlighting \
      zdharma/zui \
-     zdharma/zplugin-crasis \
-     Aloxaf/fzf-tab \
-     # rupa/z \
+     zdharma/zinit-crasis \
+     peterhurford/git-it-on.zsh \
+     zsh-users/zsh-history-substring-search \
+     rupa/z
+
+     # b4b4r07/enhancd \ # enhance cd command
 
 # Themes
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -63,40 +70,53 @@ zinit snippet OMZL::history.zsh
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZL::termsupport.zsh
+
 # Load OMZ plugin
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/fzf/fzf.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/extract/extract.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/autojump/autojump.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/history-substring-search/history-substring-search.zsh'
-zinit snippet OMZP::plugins/git/git.plugin.zsh
-zinit snippet OMZP::plugins/fzf/fzf.plugin.zsh
-zinit snippet OMZP::plugins/extract/extract.plugin.zsh
-zinit snippet OMZP::plugins/vi-mode/vi-mode.plugin.zsh
-zinit snippet OMZP::plugins/autojump/autojump.plugin.zsh
-zinit snippet OMZP::plugins/history-substring-search/history-substring-search.zsh
+# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
 
-zinit ice as"completion"
-zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zinit snippet OMZP::git/git.plugin.zsh
+zinit snippet OMZP::fzf/fzf.plugin.zsh
+zinit snippet OMZP::extract/extract.plugin.zsh
+zinit snippet OMZP::autojump/autojump.plugin.zsh
+zinit snippet OMZP::history-substring-search/history-substring-search.zsh
+# zinit snippet OMZP::vi-mode/vi-mode.plugin.zsh
+
+# zinit ice as"completion"
+# zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 zinit ice blockf
 zinit light zsh-users/zsh-completions
-
-# source
-source /home/tz/.zsh/variable.sh
-source /home/tz/.zsh/alias.sh
-source /home/tz/.zsh/function.sh
-source /home/tz/.zsh/fzf-tab.sh
 
 # nvm
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# source
+source /home/tz/.zsh/alias.sh
+source /home/tz/.zsh/function.sh
+source /home/tz/.zsh/variable.sh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-proxy-on
+##### fzf relate ######
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fzf-tab
+zinit light Aloxaf/fzf-tab
+zinit creinstall Aloxaf/fzf-tab
+
+# fzf-git
+zinit light wfxr/forgit
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 ### End of Zinit's installer chunk
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Startup
+proxy-on

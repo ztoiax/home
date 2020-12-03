@@ -3,15 +3,38 @@
 
 ##### base ######
 
+function af-shutdown(){
+    # sudo su -c 'while [[ -d /proc/$(pgrep $1) ]]; do sleep 1; done; poweroff'
+    sudo su -c '$(pgrep $1)'
+}
+
+function n(){
+    if [ $# -eq 0 ];then
+        ss -tlap
+    else
+        # print first row
+        ss -tlap | head -n 1
+        for i in $@;do
+            ss -tlap | grep $i | grep -v grep
+        done
+    fi
+}
 # easy ps aux
 function p(){
     if [ $# -eq 0 ];then
         ps aux
     else
+        # print first row
+        ps aux | head -n 1
         for i in $@;do
             ps aux | grep $i | grep -v grep
         done
     fi
+}
+
+# go to /proc/process
+function pp(){
+    cd /proc/$(pgrep $1)
 }
 
 # view thread
@@ -77,6 +100,13 @@ function pss(){
     # LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 fi
+
+function backup-dd(){
+    # remount dev read only
+    sudo mount -o remount,ro /dev/nvme0n1p5
+    sudo dd if=/dev/nvme0n1p5 | pv | gzip > $backup/arch-$(date +"%Y-%m-%d").gz
+    # sudo fsarchiver savefs -Z22 -j12 -v $backup/arch-$(date +"%Y-%m-%d").fsa /dev/nvme0n1p5
+}
 ##### redis ######
 function redis {
     if redis-server /var/lib/redis/redis.conf &;then
@@ -86,7 +116,7 @@ function redis {
 
 # scp
 function scpcentos7 {
-    scp -r $1 "root@192.168.100.208:/root"
+    rsync -r $1 "root@192.168.100.208:/root"
 }
 
 # adb
@@ -228,13 +258,17 @@ function pet-exec {
 }
 
 ##### bindkey ######
-bindkey "^j" forward-word
-bindkey "^k" backward-word
+# bindkey "^j" forward-word
+# bindkey "^k" backward-word
 bindkey "^u" backward-kill-line
-bindkey "^d" kill-line
+bindkey "^k" kill-line
 bindkey "^f" forward-char
 bindkey "^b" backward-char
 bindkey "^o" accept-and-hold
+# zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 pb-yank () {
   CUTBUFFER=$(pbpaste)
   zle yank

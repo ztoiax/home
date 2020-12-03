@@ -3,7 +3,7 @@
 ~/.mybin/onehour.sh &
 ~/.mybin/1s.sh &
 compton -b
-redshift -l 23.6980:133.8807 -t 5300:4000 &
+redshift -l 23.6980:133.8807 -t 6300:4000 &
 netease-cloud-music &
 xdman &
 st &

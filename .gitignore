@@ -3,6 +3,8 @@
 !.zshrc
 !.p10k.zsh
 !.zsh/
+!.zinit/*
+!.zinit/plugins/
 !.dwm/
 !.git/
 !.gitignore
