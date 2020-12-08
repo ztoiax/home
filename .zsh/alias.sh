@@ -15,7 +15,7 @@ alias clip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 alias cplast="history | tail -n 1 | cut -c8- | clip"
 alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
-
+alias error="journalctl -fp err"
 alias backup-rsync='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/linux/arch$(date +"%Y-%m-%d")'
 
 # alias restore-rsync='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'

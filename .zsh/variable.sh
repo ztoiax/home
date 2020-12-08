@@ -26,13 +26,20 @@ export GIT_EDITOR="nvim"
 export REACT_EDITOR="nvim"
 
 # fzf
-# export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(highlight -O ansi {} ||cat {}) 2> /dev/null | head -500'"
-export FZF_DEFAULT_COMMAND='find .'
+export FZF_COMPLETION_TRIGGER=','
+
+# export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='find . -type f'
 export FZF_DEFAULT_OPTS="--height 70% --layout=reverse"
+# export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(highlight -O ansi {} ||cat {}) 2> /dev/null | head -500'"
 # export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+export FZF_CTRL_T_COMMAND='find . -type f'
+export FZF_CTRL_T_OPTS="--height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_COMPLETION_TRIGGER=','
 
 # PATH
 export CDPATH='/home/tz:/home/tz/.config:/etc'

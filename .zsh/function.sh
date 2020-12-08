@@ -108,20 +108,24 @@ function backup-dd(){
     # sudo fsarchiver savefs -Z22 -j12 -v $backup/arch-$(date +"%Y-%m-%d").fsa /dev/nvme0n1p5
 }
 ##### redis ######
-function redis {
+function redis(){
     if redis-server /var/lib/redis/redis.conf &;then
         iredis
     fi
 }
 
 # scp
-function scpcentos7 {
+function scpcentos7(){
     rsync -r $1 "root@192.168.100.208:/root"
 }
 
 # adb
-function scpmi10 {
+function scpmi10(){
     adb push $1 /sdcard/download
+}
+
+function brightscreen(){
+    adb shell input keyevent 26
 }
 
 # 将notes等文件，同步到手机
@@ -197,9 +201,18 @@ function sed-i {
 #     rm -f "$tempfile" 2>/dev/null
 # }
 
-function fzf-history-widget-accept() {
-  fzf-history-widget
-  zle accept-line
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
 }
 
 # feh
@@ -283,11 +296,6 @@ vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
 zle -N vi-yank-x-selection
 bindkey -a '^y' vi-yank-x-selection
 
-# fzf
-zle -N fzf-history-widget-accept
-bindkey '^r' fzf-history-widget-accept
-bindkey '^f' fzf-file-widget
-
 # dmenu
 zle -N cpcommand
 zle -N cphistory
@@ -306,3 +314,6 @@ zle -N pet-exec
 # alt + <tab>
 bindkey '^[\t' pet-exec
 
+# alt + <enter>
+zle -N brightscreen
+bindkey '^[^M' brightscreen

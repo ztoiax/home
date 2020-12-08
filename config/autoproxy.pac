@@ -105,7 +105,6 @@ var rules = [
             "vghtpe.gov.tw",
             "wallproxy.com.cn",
             "wanfang.gov.tw",
-            "weibo.com",
             "yahoo.cn",
             "yatsen.gov.tw",
             "yda.gov.tw",
