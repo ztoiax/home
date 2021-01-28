@@ -1,3 +1,4 @@
+
 # Startup before zinit
 # host="socks5://127.0.0.1:10808"
 # export ALL_PROXY="$host"
@@ -34,7 +35,7 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-# Plugins
+##### Plugins #####
 zinit light-mode for \
      zpm-zsh/colors \
      momo-lab/zsh-abbrev-alias \
@@ -44,17 +45,23 @@ zinit light-mode for \
      zdharma/zui \
      zdharma/zinit-crasis \
      peterhurford/git-it-on.zsh \
-     zsh-users/zsh-history-substring-search \
-     rupa/z
+     zsh-users/zsh-history-substring-search
 
+     # rupa/z
      # b4b4r07/enhancd \ # enhance cd command
 
-# Themes
+##### completion #####
+zinit ice as"completion"
+zinit snippet 'OMZ::plugins/docker/_docker'
+zinit ice as"completion"
+zinit snippet 'OMZ::plugins/docker-compose/_docker-compose'
+
+##### Themes #####
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 # zinit ice pick"async.zsh" src"pure.zsh"
 # zinit light sindresorhus/pure
 
-# Oh-my-zsh
+##### Oh-my-zsh #####
 # Load OMZ library
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/git.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/nvm.zsh
@@ -86,23 +93,9 @@ zinit snippet OMZP::autojump/autojump.plugin.zsh
 zinit snippet OMZP::history-substring-search/history-substring-search.zsh
 # zinit snippet OMZP::vi-mode/vi-mode.plugin.zsh
 
-# zinit ice as"completion"
-# zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-
-zinit ice blockf
-zinit light zsh-users/zsh-completions
-
 # nvm
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# source
-source /home/tz/.zsh/alias.sh
-source /home/tz/.zsh/function.sh
-source /home/tz/.zsh/variable.sh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 ##### fzf relate ######
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -113,10 +106,22 @@ zinit creinstall Aloxaf/fzf-tab
 
 # fzf-git
 zinit light wfxr/forgit
+### End of Zinit's installer chunk
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
-### End of Zinit's installer chunk
+
+##### source #####
+source /home/tz/.zsh/alias.sh
+source /home/tz/.zsh/function.sh
+source /home/tz/.zsh/variable.sh
 
 # Startup
+# setopt autocd autopushd
+clear
 proxy-on
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8

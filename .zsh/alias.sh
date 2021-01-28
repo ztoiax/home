@@ -3,31 +3,34 @@
 alias a="aric2"
 alias sudo="sudo "
 alias mv="advmv -g"
-alias cp="advcp -g"
+alias cp="advcp -gr"
 alias rm="rm -i"
 alias type="type -a"
 alias free="free -hw"
-alias df="df -h"
+alias df="df -Th"
 alias c="curl -LO"
-alias w="watch -d -n 2"
+alias w="watch -d -n 1"
 alias ifconfig="ifconfig -a"
 alias clip="xclip -selection c"
+alias cat="bat --style=plain --pager 'less -RF'"
 alias getclip="xclip -selection c -o"
 alias cplast="history | tail -n 1 | cut -c8- | clip"
 alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias error="journalctl -fp err"
 alias backup-rsync='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/linux/arch$(date +"%Y-%m-%d")'
+alias ff="sudo find / -type f -not -path "/mnt" -name"
 
 # alias restore-rsync='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
-# alias restore-dd='gzip -dc $backup/arch.gz | dd of=/dev/nvme0n1p5'
+# alias restore-dd='pigz -dc $(ls $backup | sort -r | head -n 1) | dd of=/dev/nvme0n1p5 bs=64K status=progress'
 
 # external
-alias netdata="http://localhost:19999"
 alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
+# alias share="sauth admin 12345" # password
 alias macchanger="sudo macchanger -r enp27s0"
 alias v="nvim"
 alias chrome="google-chrome-stable"
+alias earth="zh-on;google-earth-pro"
 alias e="nautilus"
 alias r="ranger"
 alias br="broot -sdpw"
@@ -49,13 +52,18 @@ alias as="adb shell svc"
 alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png'
 
 # cumstomization
-alias ,ping='gping'
-alias ,,ping='prettyping'
+alias ,curl='http'
+alias ,ping='nping'
+alias ,,ping='gping'
+alias ,,,ping='prettyping'
 alias ,du='ncdu'
 alias ,df='dfc'
 alias ,find='fd'             # instead find
 alias ,man='cheat'
 alias ,git='bit'
+alias ,diff='icdiff'
+alias ,traceroute='paris-traceroute'
+
 
 # cool
 alias hack="cmatrix"
@@ -65,7 +73,7 @@ alias s="neofetch"
 alias sl="systemctl"
 alias sls="systemctl status"
 alias slr="systemctl restart"
-alias sle="systemctl enbale"
+alias sle="systemctl enable"
 alias sld="systemctl stop"
 alias jl="journalctl"
 
@@ -96,8 +104,6 @@ elif which pacman &> /dev/null;then
     alias pf='sudo pacman -F'
     alias pu='sudo pacman -Syyu && yay -Syyu'
     alias pk='sudo pacman-key --refresh-keys'
-    # del zomble denpends
-    alias pc='sudo pacman -Sc && sudo pacman -Rns $(pacman -Qdtq) && yay -Sc && npm cache clean --force'
     # gpg-insertkey
     alias gpg-insertkey='gpg --keyserver pool.sks-keyservers.net --recv-keys '
 
@@ -107,19 +113,20 @@ elif which pkg &> /dev/null;then
 fi
 
 # Pip
-alias ppi='sudo pip3 install'
-alias ppr='sudo pip3 uninstall'
-alias ppl='sudo pip3 list'
-alias ppq='sudo pip3 list | grep '
+alias ppi='pip3 install'
+alias ppr='pip3 uninstall'
+alias ppq='pip3 list | grep '
+alias ppu="pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U "
 
 alias mykill='mykill.py'
 alias tmp='tmp.sh'
 alias clean='a-c && \
     tmp /home/tz/.cache/netease-cloud-music/CachedSongs/*'
 
-alias centos7='sudo virsh start centos7; while true;do ssh $centos7 && break;done'
 alias mi10='ssh u0_a369@192.168.1.111 -p 8022'
-alias mi10-on='sudo simple-mtpfs --device 1 -o allow_other /mnt/android/'
+# alias mi10-on='sudo simple-mtpfs --device 1 -o allow_other -o atomic_o_trunc -o big_writes /mnt/android/'
+alias mi10-on='sudo go-mtpfs -allow-other /mnt/android &'
+
 alias mi10-off='sudo fusermount -u /mnt/android'
 
 # exa
@@ -134,8 +141,9 @@ alias lt='exa --tree --level=2'                                        # tree
 alias lat='exa -a --tree --level=2'                                    # tree hide
 
 # git
-alias lg='lazygit'
+
 alias gc='git clone'
+alias gl='git log'
 alias gr='git rm'
 alias gm='git commit -m '
 alias gp='git push'
@@ -144,6 +152,20 @@ alias gs='git status'
 
 # alias grh="git reset --hard $(git log | grep commit | awk 'NR==2{print $2}')"
 alias grs="git reset --soft $(git log | grep commit | awk 'NR==2{print $2}')"
+
+
+# btrfs
+alias bfls='sudo btrfs subvolume get-default'
+alias bfll='sudo btrfs subvolume list'
+
+alias bfdu='sudo btrfs filesystem du'
+alias bfdf='sudo btrfs filesystem df'
+
+alias bfsync='sudo btrfs filesystem sync'
+alias bfrsync='sudo btrfs subvolume snapshot'
+
+# 对现有文件进行压缩
+alias bfzstd='btrfs filesystem defragment -r -v -czstd'
 
 # nginx
 alias ng='sudo nginx'
@@ -169,8 +191,6 @@ alias dcs='sudo docker container stop'
 
 # fzf
 alias tt='fzf --preview '"'"'[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {}  || highlight -O ansi -l {} || coderay {} || cat {}) 2> /dev/null | head -500'"'"
-alias sdir='cd $(find . -type d | fzf)'
-alias ff="find . -type f -ls"
 
 # zui
 alias zui='crasis'
@@ -188,7 +208,7 @@ alias makedmenu='cd ~/dmenu; sudo make clean install && sudo pkill Xorg'
 alias makest='cd ~/st; sudo make clean install && sudo pkill Xorg'
 
 # abbrev-alias
-abbrev-alias -g G="| grep"
+abbrev-alias -g G="| grep -i"
 abbrev-alias -g A="| ag"
 abbrev-alias -g P="| awk '{ print $}'"
-abbrev-alias -g US="| sort | uniq | sort -n"
+abbrev-alias -g S="| sort | uniq -c | sort -n"

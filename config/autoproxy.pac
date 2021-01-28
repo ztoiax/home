@@ -13,6 +13,8 @@ var rules = [
     ],
     [
         [
+            "ycombinator.com",
+            "askubuntu.com",
             "flockport.com",
             "stackexchange.com",
             "python.org",
@@ -37,7 +39,6 @@ var rules = [
             "aide.gov.tw",
             "aliyun.com",
             "arte.gov.tw",
-            "baidu.com",
             "chinaso.com",
             "chinaz.com",
             "chukuang.gov.tw",
@@ -83,14 +84,10 @@ var rules = [
             "nyc.gov.tw",
             "penghu-nsa.gov.tw",
             "post.gov.tw",
-            "qq.com",
             "simplecd.me",
-            "sina.cn",
-            "sina.com.cn",
             "siraya-nsa.gov.tw",
             "sl-reverse.com",
             "so.com",
-            "sogou.com",
             "soso.com",
             "stdtime.gov.tw",
             "sunmoonlake.gov.tw",
@@ -108,7 +105,6 @@ var rules = [
             "yahoo.cn",
             "yatsen.gov.tw",
             "yda.gov.tw",
-            "youdao.com",
             "zhongsou.com"
         ],
         [

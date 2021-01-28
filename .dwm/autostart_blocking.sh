@@ -6,10 +6,9 @@ compton -b
 redshift -l 23.6980:133.8807 -t 6300:4000 &
 netease-cloud-music &
 xdman &
-st &
+st -e nvim &
 # st -e nvim &
 google-chrome-stable &
 fcitx5 &
-
 ~/.mybin/v2.sh
 # dwmblocks &

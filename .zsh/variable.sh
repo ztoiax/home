@@ -6,12 +6,13 @@ termux="/data/data/com.termux/files/home"
 backup="/mnt/Z/linux/"
 programs="~/Downloads/Programs"
 
-centos8="root@192.168.100.165"
 centos7="root@192.168.100.208"
+opensuse="root@192.168.100.71"
 mi10="u0_a369@192.168.1.111 "
 
+desktop="/mnt/C/Users/ztoia/Desktop"
 share="/mnt/C/Users/ztoia/Desktop/share"
-m="/mnt/E/迅雷下载/.m"
+C="/mnt/C"
 E="/mnt/E"
 Z="/mnt/Z"
 
@@ -20,6 +21,7 @@ mydir="/var/lib/mysql"
 mylog="/var/log/mysql"
 
 # export
+export BROWSER="google-chrome-stable"
 export TERM="st-256color"
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
@@ -28,28 +30,28 @@ export REACT_EDITOR="nvim"
 # fzf
 export FZF_COMPLETION_TRIGGER=','
 
-# export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_COMMAND='find . -type f'
+export FZF_DEFAULT_COMMAND='find . -type f -not -path "*/.git*"'
 export FZF_DEFAULT_OPTS="--height 70% --layout=reverse"
 # export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(highlight -O ansi {} ||cat {}) 2> /dev/null | head -500'"
 # export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 
-export FZF_CTRL_T_COMMAND='find . -type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 # PATH
-export CDPATH='/home/tz:/home/tz/.config:/etc'
+# export CDPATH='/home/tz:/home/tz/.config:/etc'
 
+export JAVA_HOME="/usr/lib/jvm/default-runtime"
 export GOPATH=$HOME/go
+export PATH="$JAVA_HOME:$PATH"
+export PATH="/usr/share/bcc/tools:$PATH"
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH="/home/tz/.mybin:$PATH"
 export PATH="/home/tz/.bin:$PATH"
-export PATH="/home/tz/.mybin/statusbar:$PATH"
-export PATH="/home/tz/.mybin/wjscripts:$PATH"
+export PATH="/home/tz/FlameGraph:$PATH"
+export PATH="/home/tz/.local/bin:$PATH"
 
 # nnn
 export NNN_BMS='m:/mnt;h:~;M:/mnt/E/迅雷下载;c:~/.config;m:/mnt;p:~/Pictures'

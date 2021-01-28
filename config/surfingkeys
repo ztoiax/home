@@ -47,5 +47,7 @@ map(',l','D');
 map('w','R');
 map('q','E');
 
+// map('<enter>',',f');
+
 cmap('<Ctrl-j>','<Ctrl-n>');
 cmap('<Ctrl-k>','<Ctrl-p>');

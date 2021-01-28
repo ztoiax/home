@@ -4,18 +4,19 @@
 ##### base ######
 
 function af-shutdown(){
-    # sudo su -c 'while [[ -d /proc/$(pgrep $1) ]]; do sleep 1; done; poweroff'
-    sudo su -c '$(pgrep $1)'
+    # sudo su -c 'while [[ -d /proc/$(pgrep -of $1) ]]; do sleep 1; done; poweroff'
+    sudo su -c '$(pgrep -of $1)'
 }
 
 function n(){
+    command="sudo ss -tuanp"
+    # command="sudo netstat -tuanp"
     if [ $# -eq 0 ];then
-        ss -tlap
+        $(echo $command)
     else
-        # print first row
-        ss -tlap | head -n 1
         for i in $@;do
-            ss -tlap | grep $i | grep -v grep
+            $(echo $command) | head -n 1
+            $(echo $command) | grep :$i
         done
     fi
 }
@@ -34,7 +35,7 @@ function p(){
 
 # go to /proc/process
 function pp(){
-    cd /proc/$(pgrep $1)
+    cd /proc/$(pgrep -of $1)
 }
 
 # view thread
@@ -44,8 +45,29 @@ function pt(){
     if [[ $1 =~ $number ]];then
         ps -T -p $1
     else
-        ps -T -p $(pgrep $1)
+        ps -T -p $(pgrep -of $1)
     fi
+}
+
+# monitor cpu/mem useage of single process
+function pm(){
+    pidstat --human -udr -t -C $1 1
+}
+
+function pmio(){
+    pidstat --human -dt -C $1 1
+}
+
+function pmm(){
+    pidstat --human -rt -C $1 1
+}
+
+function pm1(){
+    while true;do
+         # ps -p $(pgrep -of $1) -o %cpu,%mem,cmd
+         pgrep -P $(pgrep -of $1) | xargs ps -o %mem,%cpu,cmd -p |\
+             awk '{memory+=$1;cpu+=$2} END {print memory,cpu}'
+    done
 }
 
 # enable webui-aria2
@@ -64,16 +86,17 @@ function pi {
         if ! sudo pacman -S $i;then
             yay -S $i
         fi
+        pss $i
     done
 }
 
 # search local packages
 function pl(){
     if [ $# -eq 0 ];then
-        sudo pacman -Qs
+        pacman -Qs
     else
         for i in $@;do
-            sudo pacman -Qs | grep $i | grep -v grep
+        pacman -Qs | grep $i
         done
     fi
 }
@@ -84,9 +107,49 @@ function pq(){
     fi
 }
 
+function pc(){
+    sudo pacman -Scc && sudo pacman -Rns $(pacman -Qdtq) && yay -Sc
+    # rm -rf /var/cache/debtap
+    notify-send "pacman and yay denpends"
+
+
+    notify-send "npm"
+    npm cache clean --force
+
+    notify-send "pip3"
+    pip3 cache purge
+
+    notify-send "yay cache"
+    rm -rf /home/tz/.cache/yay
+
+    notify-send "ranger cache"
+    rm -rf /home/tz/.cache/ranger
+
+    notify-send "netease-cloud-music cache"
+    rm -rf /home/tz/.cache/netease-cloud-music/CachedSongs
+
+    notify-send "chrome cache"
+    rm -rf /home/tz/.cache/google-chrome/Default
+
+    notify-send "earth cache"
+    rm -rf /home/tz/.googleearth/Cache
+
+    notify-send "perf debug cache"
+    rm -rf /home/tz/.debug
+
+    notify-send "trash cache"
+    trash-rm *
+
+    notify-send "journalctl cache"
+    journalctl --disk-usage
+
+    notify-send "docker cache"
+    sudo docker system prune -a -f
+}
+
 # list size of package denpends
 function psl(){
-    pacman -Qlq $1 | grep -v '/$' | xargs -r du -h | sort -h
+    pacman -Qlq | grep -v '/$' | xargs -r du -h | sort -h
 }
 
 # list size of packages or package
@@ -101,12 +164,28 @@ function pss(){
 }
 fi
 
+##### pip ######
+function ppl(){
+    if [ $# -eq 0 ];then
+        pip list
+    else
+        for i in $@;do
+        pip list | grep $i
+        done
+    fi
+}
+
+##### backup ######
 function backup-dd(){
     # remount dev read only
     sudo mount -o remount,ro /dev/nvme0n1p5
-    sudo dd if=/dev/nvme0n1p5 | pv | gzip > $backup/arch-$(date +"%Y-%m-%d").gz
+
+    # sudo dd if=/dev/nvme0n1p5 | pv | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
+    sudo dd if=/dev/nvme0n1p5  conv=sync,noerror status=progress bs=64K | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
+    notify-send "backup-dd finish"
     # sudo fsarchiver savefs -Z22 -j12 -v $backup/arch-$(date +"%Y-%m-%d").fsa /dev/nvme0n1p5
 }
+
 ##### redis ######
 function redis(){
     if redis-server /var/lib/redis/redis.conf &;then
@@ -118,6 +197,33 @@ function redis(){
 function scpcentos7(){
     rsync -r $1 "root@192.168.100.208:/root"
 }
+
+function scpopensuse(){
+    rsync -r $1 "root@192.168.100.71:/root"
+}
+
+function centos7(){
+    dir=/mnt/centos/
+    sudo virsh start centos7;
+
+    while true;do
+        ssh -q $centos7 exit && break
+    done
+        sudo sshfs -o allow_other,default_permissions -o IdentityFile=/home/tz/.ssh/id_rsa  $centos7:/ $dir
+        ssh $centos7
+}
+
+function opensuse(){
+    dir=/mnt/opensuse/
+    sudo virsh start opensuse15.2;
+
+    while true;do
+        ssh -q $opensuse exit && break
+    done
+        sudo sshfs -o allow_other,default_permissions -o IdentityFile=/home/tz/.ssh/id_rsa  $opensuse:/ $dir
+        ssh $opensuse
+}
+
 
 # adb
 function scpmi10(){
@@ -163,7 +269,7 @@ function proxy-on {
     export ALL_PROXY="$host"
     export http_proxy="$host"
     export https_proxy="$host"
-    export NO_PROXY="mirrors.aliyun.com,taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com"
+    export NO_PROXY="127.0.0.1,localhost,mirrors.aliyun.com,taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com,youdao.com,bing.com,translate.googleapis.com,translate.google.cn"
 }
 
 function proxy-on-http {
@@ -171,7 +277,7 @@ function proxy-on-http {
     export ALL_PROXY="$host"
     export http_proxy="$host"
     export https_proxy="$host"
-    export NO_PROXY="mirrors.aliyun.com,registry.npm.taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn"
+    export NO_PROXY="127.0.0.1,localhost,mirrors.aliyun.com,taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com,youdao.com,bing.com,translate.googleapis.com,translate.google.cn"
 }
 
 function proxy-off {
@@ -200,6 +306,10 @@ function sed-i {
 #     cd "$(cat "$tempfile")"
 #     rm -f "$tempfile" 2>/dev/null
 # }
+
+fzf-dir(){
+    find . -type d | fzf
+}
 
 rga-fzf() {
 	RG_PREFIX="rga --files-with-matches"
@@ -266,8 +376,15 @@ function searchurl {
     $(history | tail -n 1 | awk '{$1="";print $0}') | egrep -o '((http|https)://|www\.)[a-zA-Z1-9.+-/]*' | dmenu -p "search url" -l 10 | xargs xdg-open &> /dev/null
 }
 
+##### pet ######
+
 function pet-exec {
     pet exec
+}
+
+function prev() {
+  PREV=$(fc -lrn | head -n 1)
+  sh -c "pet new `printf %q "$PREV"`"
 }
 
 ##### bindkey ######
@@ -314,6 +431,10 @@ zle -N pet-exec
 # alt + <tab>
 bindkey '^[\t' pet-exec
 
-# alt + <enter>
+# ctrl + <enter>
 zle -N brightscreen
-bindkey '^[^M' brightscreen
+bindkey '^[[^M' brightscreen
+
+# fzf
+zle -N fzf-dir
+bindkey '^[x' fzf-dir
