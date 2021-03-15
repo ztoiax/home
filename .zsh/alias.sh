@@ -18,7 +18,6 @@ alias cplast="history | tail -n 1 | cut -c8- | clip"
 alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias error="journalctl -fp err"
 alias backup-rsync='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/linux/arch$(date +"%Y-%m-%d")'
-alias ff="sudo find / -type f -not -path "/mnt" -name"
 
 # alias restore-rsync='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
 # alias restore-dd='pigz -dc $(ls $backup | sort -r | head -n 1) | dd of=/dev/nvme0n1p5 bs=64K status=progress'
@@ -51,7 +50,7 @@ alias ai="adb shell input keyevent"
 alias as="adb shell svc"
 alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png'
 
-# cumstomization
+# instead
 alias ,curl='http'
 alias ,ping='nping'
 alias ,,ping='gping'
@@ -64,6 +63,7 @@ alias ,git='bit'
 alias ,diff='icdiff'
 alias ,traceroute='paris-traceroute'
 
+alias ,sed='perl -pie'
 
 # cool
 alias hack="cmatrix"
@@ -85,6 +85,9 @@ if which apt-get &> /dev/null ; then
     alias pu='sudo apt-get update && sudo apt-get upgrade'
     alias pc='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove'
     alias pq="dpkg -l"
+
+elif which zypper &> /dev/null;then
+    alias pi="zypper install"
 
 elif which yum &> /dev/null;then
     #Yum
@@ -123,7 +126,7 @@ alias tmp='tmp.sh'
 alias clean='a-c && \
     tmp /home/tz/.cache/netease-cloud-music/CachedSongs/*'
 
-alias mi10='ssh u0_a369@192.168.1.111 -p 8022'
+alias mi10='ssh tz@192.168.1.111 -p 9022'
 # alias mi10-on='sudo simple-mtpfs --device 1 -o allow_other -o atomic_o_trunc -o big_writes /mnt/android/'
 alias mi10-on='sudo go-mtpfs -allow-other /mnt/android &'
 
@@ -172,22 +175,31 @@ alias ng='sudo nginx'
 alias ngr='sudo nginx -s reload'
 alias ngq='sudo nginx -s quit'
 
+# kvm
+alias vm='virsh -c qemu:///system'
+alias vmls='vm list --all'
+alias vmgui='virt-manager -c qemu:///system'
+
 # docker
-alias dil='sudo docker image ls'
-alias dip='sudo docker image pull'
-alias dir='sudo docker image rm -f'
-alias dis='sudo docker search '
+alias dil='docker image ls'
+alias dila='docker image ls --all'
+alias dip='docker image pull'
+alias dir='docker image rm -f'
+alias dis='docker search '
 
-alias dc='sudo docker container'
-alias dcl='sudo docker container ls'
-alias dcla='sudo docker container ls -a'
-alias dcrun='sudo docker container run'
-alias dcr='sudo docker container rm'
-alias dce='sudo docker exec -it'
-alias dccp='sudo docker container cp'
-alias dck='sudo docker container kill'
-alias dcs='sudo docker container stop'
+alias dc='docker container'
+alias dcl='dc ls'
+alias dcla='dc ls -a'
+alias dcrun='dc run'
+alias dcr='dc rm -v'
+alias dccp='dc cp'
+alias dck='dc kill'
+alias dcs='dc stop'
 
+alias dexec='docker exec -it'
+
+# iptables
+alias ipt="sudo iptables -nvL"
 
 # fzf
 alias tt='fzf --preview '"'"'[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {}  || highlight -O ansi -l {} || coderay {} || cat {}) 2> /dev/null | head -500'"'"
@@ -211,4 +223,4 @@ alias makest='cd ~/st; sudo make clean install && sudo pkill Xorg'
 abbrev-alias -g G="| grep -i"
 abbrev-alias -g A="| ag"
 abbrev-alias -g P="| awk '{ print $}'"
-abbrev-alias -g S="| sort | uniq -c | sort -n"
+abbrev-alias -g SS="| sort | uniq -c | sort -n"

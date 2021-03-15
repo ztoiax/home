@@ -2,6 +2,31 @@
 # custom function and bindkey
 
 ##### base ######
+function vmip(){
+    if [ $# -eq 0 ];then
+        vm net-dhcp-leases --network default
+    else
+        for i in $@;do
+            vm domifaddr $i
+        done
+    fi
+}
+
+function drun (){
+    sudo docker run --rm -it $(sudo docker image ls | awk 'NR==2 {print $3}')
+}
+
+function mystrace (){
+     strace $1 2>&1 | awk -F "(" '{ print $1}' | awk '{ print $1}' | sort | uniq -c | sort -n
+}
+
+function f(){
+    find . -newerct "$1 minute ago" -print
+}
+
+function ff(){
+    sudo find . \( -path "./mnt/*" -o -path "./proc/*" -o -path "./sys/*" \) -prune -o -type f -iname '$1' -print
+}
 
 function af-shutdown(){
     # sudo su -c 'while [[ -d /proc/$(pgrep -of $1) ]]; do sleep 1; done; poweroff'
@@ -40,13 +65,17 @@ function pp(){
 
 # view thread
 function pt(){
+    pt="ps -eLo ruser,pid,ppid,lwp,psr,args"
     number='^[0-9]+$'
 
-    if [[ $1 =~ $number ]];then
-        ps -T -p $1
-    else
-        ps -T -p $(pgrep -of $1)
-    fi
+    eval "$pt" | awk 'NR==1'
+    for i in $@;do
+        if [[ $i =~ $number ]];then
+            eval "$pt" | awk -v i="$i" '{if($5==i) print $0}'
+        else
+            eval "$pt" | grep $i
+        fi
+    done
 }
 
 # monitor cpu/mem useage of single process
@@ -143,8 +172,8 @@ function pc(){
     notify-send "journalctl cache"
     journalctl --disk-usage
 
-    notify-send "docker cache"
-    sudo docker system prune -a -f
+    # notify-send "docker cache"
+    # sudo docker system prune -a -f
 }
 
 # list size of package denpends
@@ -186,6 +215,35 @@ function backup-dd(){
     # sudo fsarchiver savefs -Z22 -j12 -v $backup/arch-$(date +"%Y-%m-%d").fsa /dev/nvme0n1p5
 }
 
+##### web ######
+# 测试是否支持https
+function hs (){
+    for i in $@;do
+        if nc -w1 $i.com 443;then
+            echo -e "\033[32m $i support https \033[0m"
+        else
+            echo -e "\033[31m $i nosupport https \033[0m"
+        fi
+    done
+}
+
+# 测试是否支持http2
+function h2 (){
+    for i in $@;do
+        v=$(nghttp -n -t 1 https://www.$i.com 2>&1)
+        if [ $v ];then
+            echo -e "\033[31m $i nosupport http2 \033[0m"
+        else
+            echo -e "\033[32m $i support http2 \033[0m"
+        fi
+    done
+}
+
+function ,h2 (){
+    nghttp -nva https://www.$1.com
+}
+
+
 ##### redis ######
 function redis(){
     if redis-server /var/lib/redis/redis.conf &;then
@@ -194,12 +252,16 @@ function redis(){
 }
 
 # scp
-function scpcentos7(){
-    rsync -r $1 "root@192.168.100.208:/root"
+scppush() {
+    prsync -h /etc/pssh/hosts -l opsuser -a -r $1 $2
 }
 
-function scpopensuse(){
-    rsync -r $1 "root@192.168.100.71:/root"
+scppull() {
+    pslurp -h /etc/pssh/hosts -r -L ~ $1 $2
+}
+
+function scpcentos7(){
+    rsync -r $1 "root@192.168.100.208:/root"
 }
 
 function centos7(){
@@ -324,6 +386,11 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
+# screen
+
+function screen {
+    flameshot
+}
 
 # feh
 function nextwallpaper {
@@ -395,6 +462,7 @@ bindkey "^k" kill-line
 bindkey "^f" forward-char
 bindkey "^b" backward-char
 bindkey "^o" accept-and-hold
+bindkey "[[^a" screen
 # zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down

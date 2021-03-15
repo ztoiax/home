@@ -1,0 +1,203 @@
+##### import #####
+
+##### aliases #####
+
+# Alias bin
+aliases ['a']        = 'aric2'
+aliases ['sudo']     = 'sudo '
+aliases ['mv']       = 'advmv -g'
+aliases ['cp']       = 'advcp -gr'
+aliases ['rm']       = 'rm -i'
+aliases ['type']     = 'type -a'
+aliases ['free']     = 'free -hw'
+aliases ['df']       = 'df -Th'
+aliases ['c']        = 'curl -LO'
+aliases ['w']        = 'watch -d -n 1'
+aliases ['clip']     = 'xclip -selection c'
+aliases ['cat']      = 'bat --style=plain --pager "less -RF"'
+aliases ['ifconfig'] = 'ifconfig -a'
+aliases ['getclip']  = 'xclip -selection c -o'
+aliases ['cplast']   = 'history | tail -n 1 | cut -c8- | clip'
+aliases ['backup-rsync'] = 'sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/linux/arch$(date +"%Y-%m-%d")'
+# 报错aliases ['grep'] = 'egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+
+# external
+aliases ['weather'] = 'ansiweather -l guangzhou -u metric -s true -f 2'
+aliases ['share']   = 'python3 -m http.server 8080'
+# aliases ['share']   = 'sauth admin 12345' # password
+
+aliases ['v']          = 'nvim'
+aliases ['e']          = 'nautilus'
+aliases ['r']          = 'ranger'
+aliases ['br']         = 'broot -sdpw'
+aliases ['md']         = 'glow'
+aliases ['record']     = 'asciinema rec' # 终端屏幕录制
+aliases ['play']       = 'asciinema play'  # 播放录制文件
+aliases ['baidu']      = 'baidupcs'
+aliases ['screen']     = 'scrcpy'
+aliases ['chrome']     = 'google-chrome-stable'
+aliases ['earth']      = 'zh-on;google-earth-pro'
+aliases ['macchanger'] = 'sudo macchanger -r enp27s0'
+aliases ['mysql-tui']  = 'mitzasql'   # mysql tui
+aliases ['redis-tui']  = 'cd ~/redis-tui/ && go run main.go && cd -' #redis tui
+aliases ['ssl']        = 'siteciphers'
+
+# instead
+aliases [',curl']   = 'http'
+aliases [',ping']   = 'nping'
+aliases [',,ping']  = 'gping'
+aliases [',,,ping'] = 'prettyping'
+aliases [',du']     = 'ncdu'
+aliases [',df']     = 'dfc'
+aliases [',find']   = 'fd'             # instead find
+aliases [',man']    = 'cheat'
+aliases [',git']    = 'bit'
+aliases [',diff']   = 'icdiff'
+aliases [',traceroute'] = 'paris-traceroute'
+
+aliases [',sed']    = 'perl -pie'
+
+# cool
+aliases ['hack'] = 'cmatrix'
+aliases ['s']    = 'neofetch'
+
+# systemctl
+aliases ['sl']    = 'systemctl'
+aliases ['sls']   = 'systemctl status'
+aliases ['slr']   = 'systemctl restart'
+aliases ['sle']   = 'systemctl enable'
+aliases ['sld']   = 'systemctl stop'
+aliases ['jl']    = 'journalctl'
+aliases ['error'] = 'journalctl -fp err'
+
+# Pip
+aliases ['ppi'] = 'pip3 install'
+aliases ['ppr'] = 'pip3 uninstall'
+aliases ['ppq'] = 'pip3 list | grep '
+#报错 aliases ['ppu'] = 'pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U '
+
+aliases ['mykill']   = 'mykill.py'
+aliases ['tmp']      = 'tmp.sh'
+aliases ['clean']    = 'a-c && tmp /home/tz/.cache/netease-cloud-music/CachedSongs/*'
+
+aliases ['mi10']     = 'ssh tz@192.168.1.111 -p 9022'
+# aliases ['mi10-on']  = 'sudo simple-mtpfs --device 1 -o allow_other -o atomic_o_trunc -o big_writes /mnt/android/'
+aliases ['mi10-on']  = 'sudo go-mtpfs -allow-other /mnt/android &'
+
+aliases ['mi10-off'] = 'sudo fusermount -u /mnt/android'
+
+# exa
+aliases ['ls']  = 'exa'                                                         # ls
+aliases ['l']   = 'exa -lbgHF --git --icons'                                     # long list,icons
+aliases ['ll']  = 'exa -lbgHF --git'                                            # long list
+aliases ['llm'] = 'exa -lbgHF --git --sort=modified'                           # long list, modified date sort
+aliases ['la']  = 'exa -a --git'
+aliases ['lx']  = 'exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+aliases ['lS']  = 'exa -1'                                                      # one column, just names
+aliases ['lt']  = 'exa --tree --level=2'                                        # tree
+aliases ['lat'] = 'exa -a --tree --level=2'                                    # tree hide
+
+# git
+
+aliases ['gc'] = 'git clone'
+aliases ['gl'] = 'git log'
+aliases ['gr'] = 'git rm'
+aliases ['gm'] = 'git commit -m '
+aliases ['gp'] = 'git push'
+aliases ['gb'] = 'git branch'
+aliases ['gs'] = 'git status'
+
+# aliases ['grh'] = 'git reset --hard $(git log | grep commit | awk "NR==2{print $2}")'
+aliases ['grs'] = 'git reset --soft $(git log | grep commit | awk "NR==2{print $2}")'
+
+
+# btrfs
+aliases ['bfls'] = 'sudo btrfs subvolume get-default'
+aliases ['bfll'] = 'sudo btrfs subvolume list'
+
+aliases ['bfdu'] = 'sudo btrfs filesystem du'
+aliases ['bfdf'] = 'sudo btrfs filesystem df'
+
+aliases ['bfsync'] = 'sudo btrfs filesystem sync'
+aliases ['bfrsync'] = 'sudo btrfs subvolume snapshot'
+
+# 对现有文件进行压缩
+aliases ['bfzstd'] = 'btrfs filesystem defragment -r -v -czstd'
+
+# nginx
+aliases ['ng']  = 'sudo nginx'
+aliases ['ngr'] = 'sudo nginx -s reload'
+aliases ['ngq'] = 'sudo nginx -s quit'
+
+# kvm
+aliases ['vm']    = 'virsh -c qemu:///system'
+aliases ['vmls']  = 'vm list --all'
+aliases ['vmgui'] = 'virt-manager -c qemu:///system'
+
+# docker
+aliases ['dil']   = 'docker image ls'
+aliases ['dila']  = 'docker image ls --all'
+aliases ['dip']   = 'docker image pull'
+aliases ['dir']   = 'docker image rm -f'
+aliases ['dis']   = 'docker search '
+
+aliases ['dc']    = 'docker container'
+aliases ['dcl']   = 'dc ls'
+aliases ['dcla']  = 'dc ls -a'
+aliases ['dcrun'] = 'dc run'
+aliases ['dcr']   = 'dc rm -v'
+aliases ['dccp']  = 'dc cp'
+aliases ['dck']   = 'dc kill'
+aliases ['dcs']   = 'dc stop'
+
+aliases ['dexec'] = 'docker exec -it'
+
+# iptables
+aliases ['ipt']   = 'sudo iptables -nvL'
+
+##### variables #####
+
+$XONSH_SHOW_TRACEBACK = True
+$XONSH_HISTORY_BACKEND = 'sqlite'
+
+##### plugin #####
+
+# bash command alias export ...
+xontrib load bashisms
+
+# Matplotlib hooks for xonsh
+xontrib load mpl
+
+# debug
+xontrib load pdb
+
+# 提示码
+xontrib load prompt_ret_code
+
+# fzf
+# $fzf_history_binding = Keys.ControlR
+# $fzf_ssh_binding = Keys.ControlS
+xontrib load fzf-widgets
+
+# 根据当前目录加载变量
+# xontrib load fzf-widgets
+
+# docker complete
+# xontrib load docker_tabcomplete
+
+# get word url for last command
+$XONTRIB_OUTPUT_SEARCH_KEY='i'
+xontrib load output_search
+
+# py pipeline
+xontrib load pipeliner
+
+# vim mode
+# xontrib load prompt_vi_mode
+
+# ! 执行 sh 语法
+$XONTRIB_SH_SHELLS = ['bash', 'sh']
+xontrib load sh
+
+# z
+# xontrib load z

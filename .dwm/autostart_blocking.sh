@@ -5,6 +5,7 @@
 compton -b
 redshift -l 23.6980:133.8807 -t 6300:4000 &
 netease-cloud-music &
+# yesplaymusic &
 xdman &
 st -e nvim &
 # st -e nvim &

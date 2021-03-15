@@ -80,7 +80,7 @@ export QT_IM_MODULE=fcitx
 }
 
 # fcitx5
-function fcitx-on {
+function fcitx5-on {
 export GTK_IM_MODULE=fcitx5
 export XMODIFIERS="@im=fcitx"
 
