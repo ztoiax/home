@@ -45,16 +45,18 @@ zinit light-mode for \
      zdharma/zui \
      zdharma/zinit-crasis \
      peterhurford/git-it-on.zsh \
-     zsh-users/zsh-history-substring-search
+     zsh-users/zsh-history-substring-search \
+     RobSis/zsh-completion-generator \
+     zsh-users/zsh-completions
 
      # rupa/z
      # b4b4r07/enhancd \ # enhance cd command
 
 ##### completion #####
-zinit ice as"completion"
-zinit snippet 'OMZ::plugins/docker/_docker'
-zinit ice as"completion"
-zinit snippet 'OMZ::plugins/docker-compose/_docker-compose'
+# zinit ice as"completion"
+# zinit snippet 'OMZ::plugins/docker/_docker'
+# zinit ice as"completion"
+# zinit snippet 'OMZ::plugins/docker-compose/_docker-compose'
 
 ##### Themes #####
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -119,8 +121,12 @@ source /home/tz/.zsh/alias.sh
 source /home/tz/.zsh/function.sh
 source /home/tz/.zsh/variable.sh
 
-# Startup
+##### Startup #####
+# share history between all sessions
+setopt SHARE_HISTORY
+# autocd
 # setopt autocd autopushd
+
 clear
 proxy-on
 export LANG=en_US.UTF-8

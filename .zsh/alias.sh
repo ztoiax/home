@@ -128,7 +128,7 @@ alias clean='a-c && \
 
 alias mi10='ssh tz@192.168.1.111 -p 9022'
 # alias mi10-on='sudo simple-mtpfs --device 1 -o allow_other -o atomic_o_trunc -o big_writes /mnt/android/'
-alias mi10-on='sudo go-mtpfs -allow-other /mnt/android &'
+alias mi10-on='sudo go-mtpfs -allow-other /mnt/android'
 
 alias mi10-off='sudo fusermount -u /mnt/android'
 

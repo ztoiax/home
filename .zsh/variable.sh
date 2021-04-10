@@ -26,6 +26,8 @@ export TERM="st-256color"
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export REACT_EDITOR="nvim"
+export NVIM_LISTEN_ADDRESS="/tmp/nvimsocket"
+export GENCOMPL_FPATH=$HOME/.zsh/complete
 
 # fzf
 export FZF_COMPLETION_TRIGGER=','

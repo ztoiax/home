@@ -297,7 +297,7 @@ function brightscreen(){
 }
 
 # 将notes等文件，同步到手机
-function sync-notes {
+function sync-phone {
     # 删除目标目录的多余文件 adb-sync --delete
     # 手机同步到电脑         adb-sync --reverse /sdcard/Download/ ~/Downloads
     adb-sync ~/notes /sdcard/github/ && n="notes OK"
