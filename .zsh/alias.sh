@@ -41,6 +41,12 @@ alias screen="scrcpy"
 alias mysql-tui='mitzasql'   # mysql tui
 alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
 alias ssl='siteciphers'
+alias svg='termtosvg'
+
+# Social media
+alias reddit='rtv'
+alias twitter='rainbowstream'
+alias hacknew='haxor-news'
 
 # localjs
 alias httpmethod="cd $programs/hoppscotch && npm run dev && xdg-open http://192.168.1.221:3000"
@@ -118,8 +124,13 @@ fi
 # Pip
 alias ppi='pip3 install'
 alias ppr='pip3 uninstall'
-alias ppq='pip3 list | grep '
 alias ppu="pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U "
+
+# npm
+alias npi='sudo npm -g install'
+alias npr='sudo npm -g uninstall'
+alias npl='sudo npm -g list'
+alias npq='sudo npm -g list | grep '
 
 alias mykill='mykill.py'
 alias tmp='tmp.sh'
@@ -224,3 +235,4 @@ abbrev-alias -g G="| grep -i"
 abbrev-alias -g A="| ag"
 abbrev-alias -g P="| awk '{ print $}'"
 abbrev-alias -g SS="| sort | uniq -c | sort -n"
+abbrev-alias -g L="| wc -l"

@@ -47,9 +47,9 @@ zinit light-mode for \
      peterhurford/git-it-on.zsh \
      zsh-users/zsh-history-substring-search \
      RobSis/zsh-completion-generator \
-     zsh-users/zsh-completions
+     zsh-users/zsh-completions \
+     rupa/z
 
-     # rupa/z
      # b4b4r07/enhancd \ # enhance cd command
 
 ##### completion #####
@@ -108,6 +108,10 @@ zinit creinstall Aloxaf/fzf-tab
 
 # fzf-git
 zinit light wfxr/forgit
+
+# fzf-z
+zinit light andrewferrier/fzf-z
+
 ### End of Zinit's installer chunk
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -131,3 +135,7 @@ clear
 proxy-on
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc

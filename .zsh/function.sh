@@ -136,6 +136,16 @@ function pq(){
     fi
 }
 
+function ppl(){
+    if [ $# -eq 0 ];then
+        pip3 list
+    else
+        for i in $@;do
+            pip3 show $i
+        done
+    fi
+}
+
 function pc(){
     sudo pacman -Scc && sudo pacman -Rns $(pacman -Qdtq) && yay -Sc
     # rm -rf /var/cache/debtap
@@ -170,7 +180,11 @@ function pc(){
     trash-rm *
 
     notify-send "journalctl cache"
+    sudo journalctl --vacuum-size=200M
     journalctl --disk-usage
+
+    notify-send "wechat cache"
+    rm -rf /home/tz/.config/微信.bak/GPUCache
 
     # notify-send "docker cache"
     # sudo docker system prune -a -f
@@ -206,13 +220,22 @@ function ppl(){
 
 ##### backup ######
 function backup-dd(){
-    # remount dev read only
-    sudo mount -o remount,ro /dev/nvme0n1p5
+    if [ $# -eq 0 ];then
+        # remount dev read only
+        # sudo mount -o remount,ro /dev/nvme0n1p5
 
-    # sudo dd if=/dev/nvme0n1p5 | pv | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
-    sudo dd if=/dev/nvme0n1p5  conv=sync,noerror status=progress bs=64K | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
-    notify-send "backup-dd finish"
-    # sudo fsarchiver savefs -Z22 -j12 -v $backup/arch-$(date +"%Y-%m-%d").fsa /dev/nvme0n1p5
+        # sudo dd if=/dev/nvme0n1p5 | pv | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
+
+        echo "backup '/'"
+        sudo dd if=/dev/nvme0n1p5  conv=sync,noerror status=progress bs=64K | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
+        notify-send "backup-dd '/' finish"
+
+        # sudo fsarchiver savefs -Z22 -j12 -v $backup/arch-$(date +"%Y-%m-%d").fsa /dev/nvme0n1p5
+    else;
+        echo 'backup home'
+        sudo dd if=/dev/nvme0n1p6  conv=sync,noerror status=progress bs=64K | pigz > $backup/home-$(date +"%Y-%m-%d:%H:%M:%S").gz
+        notify-send "backup-dd 'home' finish"
+    fi
 }
 
 ##### web ######

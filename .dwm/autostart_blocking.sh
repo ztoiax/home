@@ -13,5 +13,5 @@ google-chrome-stable &
 fcitx5 &
 ~/.mybin/v2.sh
 sleep 1
-st -e nvim &
+# st -e nvim &
 # dwmblocks &
