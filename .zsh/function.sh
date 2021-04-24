@@ -409,12 +409,6 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
-# screen
-
-function screen {
-    flameshot
-}
-
 # feh
 function nextwallpaper {
     feh --bg-fill --randomize ~/Pictures/wallpaper/*
@@ -475,6 +469,15 @@ function pet-exec {
 function prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
+}
+
+##### github ######
+
+function github-init(){
+    gh repo create $1
+    cd $1
+    git branch -M main
+    git remote add origin "https://github.com/ztoiax/$1.git"
 }
 
 ##### bindkey ######

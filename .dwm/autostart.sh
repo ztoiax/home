@@ -1,1 +1,0 @@
-~/.mybin/waitdwm.sh &

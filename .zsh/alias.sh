@@ -37,11 +37,15 @@ alias md="glow"
 alias record="asciinema rec" # 终端屏幕录制
 alias play="asciinema play"  # 播放录制文件
 alias baidu="baidupcs"
-alias screen="scrcpy"
 alias mysql-tui='mitzasql'   # mysql tui
 alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
 alias ssl='siteciphers'
 alias svg='termtosvg'
+
+# android
+alias android="scrcpy --max-fps 120 --bit-rate 10M"
+alias android-video="scrcpy --max-fps 120 --bit-rate 10M --record-format mp4 -r "
+alias android-sournd="sndcpy"
 
 # Social media
 alias reddit='rtv'

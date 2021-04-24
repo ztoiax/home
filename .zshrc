@@ -3,13 +3,6 @@
 # host="socks5://127.0.0.1:10808"
 # export ALL_PROXY="$host"
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -48,7 +41,7 @@ zinit light-mode for \
      zsh-users/zsh-history-substring-search \
      RobSis/zsh-completion-generator \
      zsh-users/zsh-completions \
-     rupa/z
+     rupa/z \
 
      # b4b4r07/enhancd \ # enhance cd command
 
@@ -57,11 +50,6 @@ zinit light-mode for \
 # zinit snippet 'OMZ::plugins/docker/_docker'
 # zinit ice as"completion"
 # zinit snippet 'OMZ::plugins/docker-compose/_docker-compose'
-
-##### Themes #####
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-# zinit ice pick"async.zsh" src"pure.zsh"
-# zinit light sindresorhus/pure
 
 ##### Oh-my-zsh #####
 # Load OMZ library
@@ -114,11 +102,30 @@ zinit light andrewferrier/fzf-z
 
 ### End of Zinit's installer chunk
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+##### Themes #####
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1; zinit light denysdovhan/spaceship-prompt
+# zinit ice pick"async.zsh" src"pure.zsh"
+# zinit light sindresorhus/pure
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+##### spaceship ######
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+
+##### powerlevel10k ######
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+# typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 ##### source #####
 source /home/tz/.zsh/alias.sh
