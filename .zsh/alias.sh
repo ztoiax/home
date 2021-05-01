@@ -73,8 +73,6 @@ alias ,git='bit'
 alias ,diff='icdiff'
 alias ,traceroute='paris-traceroute'
 
-alias ,sed='perl -pie'
-
 # cool
 alias hack="cmatrix"
 alias s="neofetch"
@@ -114,7 +112,7 @@ elif which pacman &> /dev/null;then
     alias pd='pactree'
     alias pr='sudo pacman -Rns'
     alias plo="sudo pacman-disowned.sh > /tmp/other-soft-file && cat /tmp/other-soft-file"
-    alias pf='sudo pacman -F'
+    alias pf='pacman -F'
     alias pu='sudo pacman -Syyu && yay -Syyu'
     alias pk='sudo pacman-key --refresh-keys'
     # gpg-insertkey
@@ -126,9 +124,9 @@ elif which pkg &> /dev/null;then
 fi
 
 # Pip
-alias ppi='pip3 install'
-alias ppr='pip3 uninstall'
-alias ppu="pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U "
+alias ppi='sudo pip3 install'
+alias ppr='sudo pip3 uninstall'
+alias ppu="sudo pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U "
 
 # npm
 alias npi='sudo npm -g install'

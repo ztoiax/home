@@ -121,19 +121,14 @@ function pi {
 
 # search local packages
 function pl(){
-    if [ $# -eq 0 ];then
-        pacman -Qs
-    else
-        for i in $@;do
-        pacman -Qs | grep $i
-        done
-    fi
+    for i in $@;do
+        # pacman -Qs $i
+        pacman -Qii $i
+    done
 }
-# search remote packages
+
 function pq(){
-    if ! sudo pacman -Ss $1;then
-        yay -Ss $1
-    fi
+    pacman -Ss $1; yay -Ss $1
 }
 
 function ppl(){
@@ -206,17 +201,6 @@ function pss(){
     # LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 fi
-
-##### pip ######
-function ppl(){
-    if [ $# -eq 0 ];then
-        pip list
-    else
-        for i in $@;do
-        pip list | grep $i
-        done
-    fi
-}
 
 ##### backup ######
 function backup-dd(){
@@ -372,12 +356,17 @@ function proxy-off {
     unset NO_PROXY
 }
 
-function sed-s {
-    sed -i "s/$1/" $2
+function sed-i {
+    sed -i "s/$1/$2/g" $3
 }
 
-function sed-i {
-    sed -i "/$1" $2
+function sed-c {
+    sed -i "/$1/c$2" $3
+}
+
+
+function col {
+    perl -lane "print @F[$1]" $2
 }
 
 # function ranger {

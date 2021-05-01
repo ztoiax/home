@@ -42,6 +42,7 @@ zinit light-mode for \
      RobSis/zsh-completion-generator \
      zsh-users/zsh-completions \
      rupa/z \
+     supercrabtree/k \
 
      # b4b4r07/enhancd \ # enhance cd command
 
@@ -104,12 +105,13 @@ zinit light andrewferrier/fzf-z
 
 ##### Themes #####
 # zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit ice depth=1; zinit light denysdovhan/spaceship-prompt
+# zinit ice depth=1; zinit light denysdovhan/spaceship-prompt
+eval "$(starship init zsh)"
 # zinit ice pick"async.zsh" src"pure.zsh"
 # zinit light sindresorhus/pure
 
 ##### spaceship ######
-SPACESHIP_PROMPT_ADD_NEWLINE=false
+# SPACESHIP_PROMPT_ADD_NEWLINE=false
 
 ##### powerlevel10k ######
 

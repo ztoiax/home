@@ -201,3 +201,6 @@ xontrib load sh
 
 # z
 # xontrib load z
+
+# starship
+xontrib load prompt_starship
