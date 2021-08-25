@@ -1,37 +1,31 @@
-    Front.registerInlineQuery({
-        url: "https://api.shanbay.com/bdc/search/?word=",
-        parseResult: function(res) {
-            try {
-                res = JSON.parse(res.text);
-                var exp = res.msg;
-                if (res.data.definition) {
-                    var pronunciations = [];
-                    for (var reg in res.data.pronunciations) {
-                        pronunciations.push(`<div>[${reg}] ${res.data.pronunciations[reg]}</div>`);
-                        // pronunciations.push(`<div><audio src="${res.data[reg+'_audio']}" controls></audio></div>`);
-                    }
-                    var definition = res.data.definition.split("\n").map(function(d) {
-                        return `<li>${d}</li>`;
-                    }).join("");
-                    exp = `${pronunciations.join("")}<ul>${definition}</ul>`;
-                }
-                if (res.data.en_definitions) {
-                    exp += "<hr/>";
-                    for (var lex in res.data.en_definitions) {
-                        var sense = res.data.en_definitions[lex].map(function(s) {
-                            return `<li>${s}</li>`;
-                        }).join("");
-                        exp += `<div>${lex}</div><ul>${sense}</ul>`;
-                    }
-                }
-                return exp;
-            } catch (e) {
-                return "";
-            }
+// Example Youdao
+Front.registerInlineQuery({
+    url: function(q) {
+        return `http://dict.youdao.com/w/eng/${q}/#keyfrom=dict2.index`;
+    },
+    parseResult: function(res) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(res.text, "text/html");
+        var collinsResult = doc.querySelector("#collinsResult");
+        var authTransToggle = doc.querySelector("#authTransToggle");
+        var examplesToggle = doc.querySelector("#examplesToggle");
+        if (collinsResult) {
+            collinsResult.querySelectorAll("div>span.collinsOrder").forEach(function(span) {
+                span.nextElementSibling.prepend(span);
+            });
+            collinsResult.querySelectorAll("div.examples").forEach(function(div) {
+                div.innerHTML = div.innerHTML.replace(/<p/gi, "<span").replace(/<\/p>/gi, "</span>");
+            });
+            var exp = collinsResult.innerHTML;
+            return exp;
+        } else if (authTransToggle) {
+            authTransToggle.querySelector("div.via.ar").remove();
+            return authTransToggle.innerHTML;
+        } else if (examplesToggle) {
+            return examplesToggle.innerHTML;
         }
-    });
-// click `Save` button to make above settings to take effect.
-//addSearchAliasX('o', 'github', 'http://github.com/search?q=', '');
+    }
+});
 
 unmap ('<Alt-s>');
 map('h', 'E');
@@ -46,8 +40,6 @@ map(',l','D');
 
 map('w','R');
 map('q','E');
-
-// map('<enter>',',f');
 
 cmap('<Ctrl-j>','<Ctrl-n>');
 cmap('<Ctrl-k>','<Ctrl-p>');
