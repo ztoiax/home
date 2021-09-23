@@ -72,34 +72,34 @@ FORGIT_FZF_DEFAULT_OPTS="
 
 # fcitx
 function fcitx-on {
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS="@im=fcitx"
 
-export QT4_IM_MODULE=fcitx
-export QT5_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
+    export QT4_IM_MODULE=fcitx
+    export QT5_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
 }
 
 # fcitx5
 function fcitx5-on {
-export GTK_IM_MODULE=fcitx5
-export XMODIFIERS="@im=fcitx"
+    export GTK_IM_MODULE=fcitx5
+    export XMODIFIERS="@im=fcitx"
 
-export QT4_IM_MODULE=fcitx5
-export QT5_IM_MODULE=fcitx5
-export QT_IM_MODULE=fcitx5
+    export QT4_IM_MODULE=fcitx5
+    export QT5_IM_MODULE=fcitx5
+    export QT_IM_MODULE=fcitx5
 }
 # ibus
 function ibus-on {
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
+    export GTK_IM_MODULE=ibus
+    export XMODIFIERS=@im=ibus
+    export QT_IM_MODULE=ibus
 }
 # zh
 function zh-on {
-export LANG=zh_CN.UTF-8
-export LANGUAGE=zh_CN:en_US
+    export LANG=zh_CN.UTF-8
+    export LANGUAGE=zh_CN:en_US
 }
 # en
 function en-on {

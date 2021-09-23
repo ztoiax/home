@@ -2,6 +2,11 @@
 # custom function and bindkey
 
 ##### base ######
+function ,ls(){
+    # fselect $@ depth 1
+    fselect $@ from . depth 1
+}
+
 function vmip(){
     if [ $# -eq 0 ];then
         vm net-dhcp-leases --network default
@@ -28,9 +33,12 @@ function ff(){
     sudo find . \( -path "./mnt/*" -o -path "./proc/*" -o -path "./sys/*" \) -prune -o -type f -iname '$1' -print
 }
 
-function af-shutdown(){
-    # sudo su -c 'while [[ -d /proc/$(pgrep -of $1) ]]; do sleep 1; done; poweroff'
-    sudo su -c '$(pgrep -of $1)'
+function after(){
+    dir=/proc/$(pgrep -of $1)
+    shift
+    if ! [[ "$dir" == "/proc/" ]]; then
+        while [[ -d $dir ]]; do echo $dir; sleep 1; done; $@
+    fi
 }
 
 function n(){
@@ -122,8 +130,13 @@ function pi {
 # search local packages
 function pl(){
     for i in $@;do
-        # pacman -Qs $i
         pacman -Qii $i
+    done
+}
+
+function pll(){
+    for i in $@;do
+        pacman -Qs $i
     done
 }
 
@@ -182,7 +195,11 @@ function pc(){
     rm -rf /home/tz/.config/微信.bak/GPUCache
 
     # notify-send "docker cache"
+    # # overlay2
     # sudo docker system prune -a -f
+
+    # # volume
+    # sudo docker volume prune -f
 }
 
 # list size of package denpends
@@ -385,8 +402,17 @@ fzf-dir(){
     find . -type d | fzf
 }
 
-rga-fzf() {
-	RG_PREFIX="rga --files-with-matches"
+fzf-rga(){
+    RG_PREFIX="rga --column --line-number --no-heading --color=always --smart-case"
+    INITIAL_QUERY=""
+    FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+        # || true 不报错退出
+      fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+          --ansi --phony --query "$INITIAL_QUERY"
+}
+
+fzf-rga-file(){
+	RG_PREFIX="rga --files-with-matches . *"
 	local file
 	file="$(
 		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
@@ -398,6 +424,7 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
+
 # feh
 function nextwallpaper {
     feh --bg-fill --randomize ~/Pictures/wallpaper/*

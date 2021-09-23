@@ -148,3 +148,5 @@ export LANGUAGE=en_US.UTF-8
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+export PATH=/home/tz/.tiup/bin:$PATH

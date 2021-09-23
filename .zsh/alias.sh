@@ -1,6 +1,5 @@
 #!/bin/zsh
 # Alias bin
-alias a="aric2"
 alias sudo="sudo "
 alias mv="advmv -g"
 alias cp="advcp -gr"
@@ -61,11 +60,15 @@ alias as="adb shell svc"
 alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png'
 
 # instead
+alias ,ps='procs'
+alias ,dig='dog'
 alias ,curl='http'
+alias ,,curl='curlie'
 alias ,ping='nping'
 alias ,,ping='gping'
 alias ,,,ping='prettyping'
-alias ,du='ncdu'
+alias ,du='dust'
+alias ,,du='ncdu'
 alias ,df='dfc'
 alias ,find='fd'             # instead find
 alias ,man='cheat'
@@ -216,6 +219,9 @@ alias ipt="sudo iptables -nvL"
 
 # fzf
 alias tt='fzf --preview '"'"'[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {}  || highlight -O ansi -l {} || coderay {} || cat {}) 2> /dev/null | head -500'"'"
+
+alias fzf-ps="ps -ef | fzf --bind 'ctrl-r:reload(ps -ef)' --header 'Press CTRL-R to reload' \
+             --header-lines=1 --layout=reverse"
 
 # zui
 alias zui='crasis'
