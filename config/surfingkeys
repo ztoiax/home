@@ -37,6 +37,8 @@ map('\'', 'X');
 
 map(',h','S');
 map(',l','D');
+map('<Ctrl-o>','S');
+map('<Ctrl-p>','D');
 
 map('w','R');
 map('q','E');
