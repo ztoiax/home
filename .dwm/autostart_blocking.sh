@@ -5,10 +5,10 @@ google-chrome-stable &
 compton -b
 redshift -l 23.6980:133.8807 -t 6300:4000 &
 peek &
-qbittorrent &
+# qbittorrent &
 # yesplaymusic &
 xdman &
-xunlei &
+# xunlei &
 netease-cloud-music &
 # st -e nvim &
 # scrcpy --max-fps 120 --bit-rate 10M &

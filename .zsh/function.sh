@@ -239,6 +239,9 @@ function backup-dd(){
     fi
 }
 
+# recovery-dd
+# sudo pigz -dc /mnt/Z/linux/arch.gz | pv | dd of=/dev/nvme0n1p5 status=progress bs=64K
+
 ##### web ######
 # 测试是否支持https
 function hs (){
