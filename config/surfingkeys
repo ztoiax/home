@@ -1,3 +1,43 @@
+const {
+    aceVimMap,
+    mapkey,
+    imap,
+    imapkey,
+    getClickableElements,
+    vmapkey,
+    map,
+    unmap,
+    cmap,
+    addSearchAlias,
+    removeSearchAlias,
+    tabOpenLink,
+    readText,
+    Clipboard,
+    Front,
+    Hints,
+    Visual,
+    RUNTIME
+} = api;
+
+unmap ('<Alt-s>');
+map('h', 'E');
+map('l', 'R');
+map('j', 'd');
+map('k', 'e');
+map(';', 'x');
+map('\'', 'X');
+
+map(',h','S');
+map(',l','D');
+map('<Ctrl-o>','S');
+map('<Ctrl-p>','D');
+
+map('w','R');
+map('q','E');
+
+cmap('<Ctrl-j>','<Ctrl-n>');
+cmap('<Ctrl-k>','<Ctrl-p>');
+
 // Example Youdao
 Front.registerInlineQuery({
     url: function(q) {
@@ -27,6 +67,7 @@ Front.registerInlineQuery({
     }
 });
 
+
 unmap ('<Alt-s>');
 map('h', 'E');
 map('l', 'R');
@@ -34,6 +75,8 @@ map('j', 'd');
 map('k', 'e');
 map(';', 'x');
 map('\'', 'X');
+map('<Ctrl-d>', 'd');
+map('<Ctrl-e>', 'e');
 
 map(',h','S');
 map(',l','D');
