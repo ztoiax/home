@@ -7,6 +7,10 @@ function ,ls(){
     fselect $@ from . depth 1
 }
 
+function ,,man(){
+    curl https://cheat.sh/$1
+}
+
 function vmip(){
     if [ $# -eq 0 ];then
         vm net-dhcp-leases --network default
@@ -129,9 +133,13 @@ function pi {
 
 # search local packages
 function pl(){
-    for i in $@;do
-        pacman -Qii $i
-    done
+    if [ $# -eq 0 ];then
+        pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
+    else
+        for i in $@;do
+            pacman -Qil $i | more
+        done
+    fi
 }
 
 function pll(){
@@ -141,17 +149,26 @@ function pll(){
 }
 
 function pq(){
-    pacman -Ss $1; yay -Ss $1
+    if [ $# -eq 0 ];then
+        pacman -Slq | fzf --preview 'pacman -Si {}' --layout=reverse
+        # yay -Slq | fzf --preview 'yay -Si {}' --layout=reverse
+    else
+        pacman -Ss $1; yay -Ss $1
+    fi
 }
 
 function ppl(){
     if [ $# -eq 0 ];then
-        pip3 list
+        pip3 list |  awk 'NR > 2 {print $1}' | fzf --preview 'pip3 show {}' --layout=reverse
     else
-        for i in $@;do
-            pip3 show $i
-        done
+        pip3 show $@
     fi
+}
+
+function pb(){
+    notify-send "backup $i"
+    dir=$(ls /var/lib/pacman/local | fzf)
+    tar -I zstd -cf ~/.config/pacman_backup/$dir.tar.zst /var/lib/pacman/local/$dir
 }
 
 function pc(){
@@ -169,14 +186,14 @@ function pc(){
     notify-send "yay cache"
     rm -rf /home/tz/.cache/yay
 
-    notify-send "ranger cache"
-    rm -rf /home/tz/.cache/ranger
+    # notify-send "ranger cache"
+    # rm -rf /home/tz/.cache/ranger
 
     notify-send "netease-cloud-music cache"
     rm -rf /home/tz/.cache/netease-cloud-music/CachedSongs
 
-    notify-send "chrome cache"
-    rm -rf /home/tz/.cache/google-chrome/Default
+    # notify-send "chrome cache"
+    # rm -rf /home/tz/.cache/google-chrome/Default
 
     notify-send "earth cache"
     rm -rf /home/tz/.googleearth/Cache
@@ -204,7 +221,7 @@ function pc(){
 
 # list size of package denpends
 function psl(){
-    pacman -Qlq | grep -v '/$' | xargs -r du -h | sort -h
+    sudo pacman -Qlq | grep -v '/$' | xargs -r du -h | sort -h
 }
 
 # list size of packages or package
@@ -327,17 +344,20 @@ function brightscreen(){
 function sync-phone {
     # 删除目标目录的多余文件 adb-sync --delete
     # 手机同步到电脑         adb-sync --reverse /sdcard/Download/ ~/Downloads
-    adb-sync ~/notes /sdcard/github/ && n="notes OK"
-    adb-sync ~/jianli /sdcard/github/ && nn="jianli OK"
+    adb-sync -d ~/notes /sdcard/github/ && n="notes OK"
+    adb-sync -d ~/python /sdcard/github/ && n="notes OK"
+    adb-sync -d ~/database /sdcard/github/ && n="notes OK"
 
-    adb-sync ~/.mybin /sdcard/github/
-    adb-sync ~/.zsh /sdcard/github/
-    adb-sync ~/.zshrc /sdcard/github/ && nnn="zsh OK"
+    adb-sync -d ~/jianli /sdcard/ && nn="jianli OK"
 
-    adb-sync /home/tz/Downloads/1136453598_破晓后的天照/books /sdcard/ && nnnn="books OK"
+    adb-sync -d ~/.mybin /sdcard/github/
+    adb-sync -d ~/.zsh /sdcard/github/
+    adb-sync -d ~/.zshrc /sdcard/github/ && nnn="zsh OK"
+
+    adb-sync -d /home/tz/Downloads/1136453598_破晓后的天照/books /sdcard/ && nnnn="books OK"
 
     # 写入日志后通知
-    echo "$(date +"%Y-%m-%d_%H:%M:%S") adb-sync:$n,$nn,$nnn,$nnnn" >> /var/log/adb-sync \
+    echo "$(date +"%Y-%m-%d_%H:%M:%S") adb-sync:$n,$nn,$nnn,$nnnn" >> /var/log/adb-sync.log \
         && \
         notify-send "adb-sync:" "$n\n$nn\n$nnn\n$nnnn"
 }
@@ -533,11 +553,11 @@ zle -N cpline
 zle -N cpurl
 zle -N cpdir
 zle -N searchurl
-bindkey '^[h' cpcommand
-bindkey '^[H' cphistory
+bindkey '^[H' cpcommand
+bindkey '^[h' cphistory
 bindkey '^[l' cpline
 bindkey '^[L' cpdir
-bindkey '^[U' searchurl
+bindkey '^[U' cpurl
 
 # pet
 zle -N pet-exec

@@ -133,6 +133,7 @@ eval "$(starship init zsh)"
 source /home/tz/.zsh/alias.sh
 source /home/tz/.zsh/function.sh
 source /home/tz/.zsh/variable.sh
+source /home/tz/.zsh/fzf-tab.sh
 
 ##### Startup #####
 # share history between all sessions

@@ -3,7 +3,8 @@
 alias sudo="sudo "
 alias mv="advmv -g"
 alias cp="advcp -gr"
-alias rm="rm -i"
+# alias rm="rm -i"
+alias rm="trash"
 alias type="type -a"
 alias free="free -hw"
 alias df="df -Th"
@@ -75,6 +76,7 @@ alias ,man='cheat'
 alias ,git='bit'
 alias ,diff='icdiff'
 alias ,traceroute='paris-traceroute'
+alias ,time='hyperfine'
 
 # cool
 alias hack="cmatrix"
@@ -87,6 +89,11 @@ alias slr="systemctl restart"
 alias sle="systemctl enable"
 alias sld="systemctl stop"
 alias jl="journalctl"
+
+# database
+alias ,sqlite="litecli"
+alias sqlite-tui="termdbms"
+alias sqlite-ranger="visidata"
 
 # 不同发行版的包管理
 if which apt-get &> /dev/null ; then
@@ -144,6 +151,7 @@ alias clean='a-c && \
 
 alias mi10='ssh tz@192.168.1.111 -p 9022'
 # alias mi10-on='sudo simple-mtpfs --device 1 -o allow_other -o atomic_o_trunc -o big_writes /mnt/android/'
+# alias mi10-on='sudo aft-mtp-mount /mnt/android'
 alias mi10-on='sudo go-mtpfs -allow-other /mnt/android'
 
 alias mi10-off='sudo fusermount -u /mnt/android'
@@ -162,12 +170,13 @@ alias lat='exa -a --tree --level=2'                                    # tree hi
 # git
 
 alias gc='git clone'
-alias gl='git log'
 alias gr='git rm'
 alias gm='git commit -m '
 alias gp='git push'
 alias gb='git branch'
 alias gs='git status'
+alias ga='forgit::add'
+alias gl='forgit::log'
 
 # alias grh="git reset --hard $(git log | grep commit | awk 'NR==2{print $2}')"
 alias grs="git reset --soft $(git log | grep commit | awk 'NR==2{print $2}')"
@@ -211,6 +220,7 @@ alias dcr='dc rm -v'
 alias dccp='dc cp'
 alias dck='dc kill'
 alias dcs='dc stop'
+alias dcip="docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "
 
 alias dexec='docker exec -it'
 

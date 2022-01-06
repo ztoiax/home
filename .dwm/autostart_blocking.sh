@@ -4,7 +4,8 @@ google-chrome-stable &
 # firefox &
 compton -b
 redshift -l 23.6980:133.8807 -t 6300:4000 &
-peek &
+code &
+# peek &
 # qbittorrent &
 # yesplaymusic &
 xdman &
