@@ -22,7 +22,7 @@ function vmip(){
 }
 
 function drun (){
-    sudo docker run --rm -it $(sudo docker image ls | awk 'NR==2 {print $3}')
+ go clean --modcache   sudo docker run --rm -it $(sudo docker image ls | awk 'NR==2 {print $3}')
 }
 
 function mystrace (){
@@ -201,8 +201,12 @@ function pc(){
     notify-send "perf debug cache"
     rm -rf /home/tz/.debug
 
-    notify-send "trash cache"
-    trash-rm *
+    notify-send "go mod cache"
+    go clean --modcache
+
+    # 需要安装cargo install cargo-cache
+    notify-send "rust cargo cache"
+    cargo cache -a
 
     notify-send "journalctl cache"
     sudo journalctl --vacuum-size=200M
@@ -210,6 +214,9 @@ function pc(){
 
     notify-send "wechat cache"
     rm -rf /home/tz/.config/微信.bak/GPUCache
+
+    notify-send "trash cache"
+    trash-rm \*
 
     # notify-send "docker cache"
     # # overlay2

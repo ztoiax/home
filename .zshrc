@@ -151,3 +151,5 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 export PATH=/home/tz/.tiup/bin:$PATH
+
+alias luamake=/tmp/lua-language-server/3rd/luamake/luamake
