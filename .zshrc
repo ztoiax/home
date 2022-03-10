@@ -70,11 +70,11 @@ zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZL::termsupport.zsh
 
 # Load OMZ plugin
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/fzf/fzf.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/extract/extract.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/autojump/autojump.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/history-substring-search/history-substring-search.zsh'
+# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
+# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/fzf/fzf.plugin.zsh'
+# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/extract/extract.plugin.zsh'
+# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/autojump/autojump.plugin.zsh'
+# zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/history-substring-search/history-substring-search.zsh'
 # zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
 
 zinit snippet OMZP::git/git.plugin.zsh
@@ -89,7 +89,6 @@ zinit snippet OMZP::history-substring-search/history-substring-search.zsh
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 ##### fzf relate ######
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
@@ -101,6 +100,8 @@ zinit light wfxr/forgit
 # fzf-z
 zinit light andrewferrier/fzf-z
 
+# 取消fzf-cd-widget函数的alt-c按键绑定
+bindkey -r '\ec'
 ### End of Zinit's installer chunk
 
 ##### Themes #####

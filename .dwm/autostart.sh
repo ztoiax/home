@@ -1,6 +1,6 @@
 google-chrome-stable &
 # firefox &
-code &
+# code &
 # peek &
 # qbittorrent &
 # yesplaymusic &

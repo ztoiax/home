@@ -294,6 +294,15 @@ function ,h2 (){
     nghttp -nva https://www.$1.com
 }
 
+##### benchmark ######
+
+function flamegraph(){
+    # 生成堆栈火焰图
+    perf record -F 99 -g $@
+    perf script | stackcollapse-perf.pl | flamegraph.pl > /tmp/$1.svg
+    xdg-open /tmp/$1.svg
+    rm perf.data
+}
 
 ##### redis ######
 function redis(){

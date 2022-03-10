@@ -3,8 +3,8 @@
 alias sudo="sudo "
 alias mv="advmv -g"
 alias cp="advcp -gr"
-# alias rm="rm -i"
-alias rm="trash"
+alias rm="rm -i"
+# alias rm="trash"
 alias type="type -a"
 alias free="free -hw"
 alias df="df -Th"
@@ -61,6 +61,7 @@ alias as="adb shell svc"
 alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png'
 
 # instead
+alias ,cut='choose'
 alias ,ps='procs'
 alias ,dig='dog'
 alias ,curl='http'
@@ -77,6 +78,9 @@ alias ,git='bit'
 alias ,diff='icdiff'
 alias ,traceroute='paris-traceroute'
 alias ,time='hyperfine'
+alias ,cd='cd $(find . -type d | fzf)'
+alias ,od='hexyl'
+alias ,json='fx'
 
 # cool
 alias hack="cmatrix"

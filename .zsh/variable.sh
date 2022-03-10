@@ -30,7 +30,7 @@ export NVIM_LISTEN_ADDRESS="/tmp/nvimsocket"
 export GENCOMPL_FPATH=$HOME/.zsh/complete
 
 # fzf
-export FZF_COMPLETION_TRIGGER=','
+export FZF_COMPLETION_TRIGGER=',,'
 
 export FZF_DEFAULT_COMMAND='find . -type f -not -path "*/.git*"'
 export FZF_DEFAULT_OPTS="--height 70% --layout=reverse"
