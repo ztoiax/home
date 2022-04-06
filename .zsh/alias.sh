@@ -80,6 +80,7 @@ alias ,traceroute='paris-traceroute'
 alias ,time='hyperfine'
 alias ,cd='cd $(find . -type d | fzf)'
 alias ,od='hexyl'
+alias ,,od='fq .'
 alias ,json='fx'
 
 # cool

@@ -21,6 +21,7 @@ mydir="/var/lib/mysql"
 mylog="/var/log/mysql"
 
 # export
+export ZSH_COMPDUMP=$HOME/cache/.zcompdump-$HOST
 export BROWSER="google-chrome-stable"
 export TERM="st-256color"
 export EDITOR="nvim"

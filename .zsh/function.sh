@@ -125,7 +125,7 @@ if which pacman &> /dev/null;then
 function pi {
     for i in $@;do
         if ! sudo pacman -S $i;then
-            yay -S $i
+            paru -S $i
         fi
         pss $i
     done
@@ -151,9 +151,9 @@ function pll(){
 function pq(){
     if [ $# -eq 0 ];then
         pacman -Slq | fzf --preview 'pacman -Si {}' --layout=reverse
-        # yay -Slq | fzf --preview 'yay -Si {}' --layout=reverse
+        # paru -Slq | fzf --preview 'paru -Si {}' --layout=reverse
     else
-        pacman -Ss $1; yay -Ss $1
+        pacman -Ss $1; paru -Ss $1
     fi
 }
 
@@ -172,9 +172,9 @@ function pb(){
 }
 
 function pc(){
-    sudo pacman -Scc && sudo pacman -Rns $(pacman -Qdtq) && yay -Sc
+    sudo pacman -Scc && sudo pacman -Rns $(pacman -Qdtq) && paru -Sc
     # rm -rf /var/cache/debtap
-    notify-send "pacman and yay denpends"
+    notify-send "pacman and paru denpends"
 
 
     notify-send "npm"
@@ -183,8 +183,8 @@ function pc(){
     notify-send "pip3"
     pip3 cache purge
 
-    notify-send "yay cache"
-    rm -rf /home/tz/.cache/yay
+    notify-send "paru cache"
+    rm -rf /home/tz/.cache/paru
 
     # notify-send "ranger cache"
     # rm -rf /home/tz/.cache/ranger
@@ -250,21 +250,20 @@ function backup-dd(){
         # sudo mount -o remount,ro /dev/nvme0n1p5
 
         # sudo dd if=/dev/nvme0n1p5 | pv | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
-
         echo "backup '/'"
-        sudo dd if=/dev/nvme0n1p5  conv=sync,noerror status=progress bs=64K | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
+        sudo dd if=$(df / | awk 'NR == 2{ print $1}')  conv=sync,noerror status=progress bs=64K | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
         notify-send "backup-dd '/' finish"
 
         # sudo fsarchiver savefs -Z22 -j12 -v $backup/arch-$(date +"%Y-%m-%d").fsa /dev/nvme0n1p5
     else;
         echo 'backup home'
-        sudo dd if=/dev/nvme0n1p6  conv=sync,noerror status=progress bs=64K | pigz > $backup/home-$(date +"%Y-%m-%d:%H:%M:%S").gz
+        sudo dd if=$(df /home | awk 'NR == 2{ print $1}')  conv=sync,noerror status=progress bs=64K | pigz > $backup/home-$(date +"%Y-%m-%d:%H:%M:%S").gz
         notify-send "backup-dd 'home' finish"
     fi
 }
 
 # recovery-dd
-# sudo pigz -dc /mnt/Z/linux/arch.gz | pv | dd of=/dev/nvme0n1p5 status=progress bs=64K
+# sudo pigz -dc /mnt/Z/linux/arch.gz | pv | dd of=/dev/nvme0n1p3 status=progress bs=64K
 
 ##### web ######
 # 测试是否支持https

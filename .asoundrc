@@ -1,5 +1,4 @@
 defaults.pcm.card 2
-defaults.pcm.device 0
 defaults.ctl.card 2
 
 ### kernel 5.10.6 ###
