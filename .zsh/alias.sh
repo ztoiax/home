@@ -27,11 +27,10 @@ alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
 # alias share="sauth admin 12345" # password
 alias macchanger="sudo macchanger -r enp27s0"
-alias v="nvim"
+alias v="nvim --listen /tmp/nvim.pipe"
 alias chrome="google-chrome-stable"
 alias earth="zh-on;google-earth-pro"
 alias e="nautilus"
-alias r="ranger"
 alias br="broot -sdpw"
 alias md="glow"
 alias record="asciinema rec" # 终端屏幕录制
@@ -82,6 +81,15 @@ alias ,cd='cd $(find . -type d | fzf)'
 alias ,od='hexyl'
 alias ,,od='fq .'
 alias ,json='fx'
+alias ,,json='jless'
+alias ,yaml='yq'
+alias ,html='htmlq'
+alias ,locate='plocate'
+alias ,sed='sd'
+alias ,watch='viddy'
+alias csv='xsv'
+alias jo='/bin/jo'
+
 
 # cool
 alias hack="cmatrix"
@@ -91,6 +99,7 @@ alias s="neofetch"
 alias sl="systemctl"
 alias sls="systemctl status"
 alias slr="systemctl restart"
+alias slrr="systemctl reload"
 alias sle="systemctl enable"
 alias sld="systemctl stop"
 alias jl="journalctl"

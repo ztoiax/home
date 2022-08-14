@@ -43,7 +43,7 @@ zinit light-mode for \
      zsh-users/zsh-completions \
      rupa/z \
      supercrabtree/k \
-
+     dim-an/cod \  # 通过--help 生成补全
      # b4b4r07/enhancd \ # enhance cd command
 
 ##### completion #####

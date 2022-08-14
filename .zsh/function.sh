@@ -183,6 +183,9 @@ function pc(){
     notify-send "pip3"
     pip3 cache purge
 
+    notify-send "cargo"
+    cargo cache -a
+
     notify-send "paru cache"
     rm -rf /home/tz/.cache/paru
 
@@ -359,8 +362,9 @@ function brightscreen(){
 function sync-phone {
     # 删除目标目录的多余文件 adb-sync --delete
     # 手机同步到电脑         adb-sync --reverse /sdcard/Download/ ~/Downloads
+    adb-sync -d ~/mind /sdcard/github/ && n="mind OK"
     adb-sync -d ~/notes /sdcard/github/ && n="notes OK"
-    adb-sync -d ~/python /sdcard/github/ && n="notes OK"
+    adb-sync -d ~/python /sdcard/github/ && n="python OK"
     adb-sync -d ~/database /sdcard/github/ && n="notes OK"
 
     adb-sync -d ~/jianli /sdcard/ && nn="jianli OK"
@@ -477,6 +481,22 @@ function nextwallpaper {
 #         xdg-open "http://$1"
 #     fi
 # }
+
+function r {
+    local IFS=$'\t\n'
+    local ranger_tempfile="$(mktemp -t tmp.XXXXXX)"
+    local ranger_cmd=(
+        command
+        ranger
+        --cmd="map S chain shell echo %d > "$ranger_tempfile"; quitall"
+    )
+
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$ranger_tempfile" ]] && [[ "$(cat -- "$ranger_tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$ranger_tempfile")" || return
+    fi
+    command rm -f -- "$ranger_tempfile" 2>/dev/null
+}
 
 ##### dmenu ######
 function cpline {
