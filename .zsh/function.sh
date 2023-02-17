@@ -57,15 +57,15 @@ function n(){
         done
     fi
 }
-# easy ps aux
+# easy ps auxf
 function p(){
     if [ $# -eq 0 ];then
-        ps aux
+        ps auxf
     else
         # print first row
-        ps aux | head -n 1
+        ps auxf | head -n 1
         for i in $@;do
-            ps aux | grep $i | grep -v grep
+            ps auxf | grep $i | grep -v grep
         done
     fi
 }

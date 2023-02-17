@@ -15,7 +15,7 @@ alias clip="xclip -selection c"
 alias cat="bat --style=plain --pager 'less -RF'"
 alias getclip="xclip -selection c -o"
 alias cplast="history | tail -n 1 | cut -c8- | clip"
-alias grep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+alias grep="grep -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias error="journalctl -fp err"
 alias backup-rsync='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/linux/arch$(date +"%Y-%m-%d")'
 
@@ -74,19 +74,21 @@ alias ,df='dfc'
 alias ,find='fd'             # instead find
 alias ,man='cheat'
 alias ,git='bit'
-alias ,diff='icdiff'
+alias ,,diff='icdiff'
+alias ,diff='difft'
 alias ,traceroute='paris-traceroute'
 alias ,time='hyperfine'
 alias ,cd='cd $(find . -type d | fzf)'
 alias ,od='hexyl'
 alias ,,od='fq .'
-alias ,json='fx'
-alias ,,json='jless'
+alias ,json='jless'
+alias ,,json='jc -p'
 alias ,yaml='yq'
 alias ,html='htmlq'
 alias ,locate='plocate'
 alias ,sed='sd'
 alias ,watch='viddy'
+alias ,make='just'
 alias csv='xsv'
 alias jo='/bin/jo'
 
@@ -268,3 +270,7 @@ abbrev-alias -g A="| ag"
 abbrev-alias -g P="| awk '{ print $}'"
 abbrev-alias -g SS="| sort | uniq -c | sort -n"
 abbrev-alias -g L="| wc -l"
+
+# net
+alias nd='ss -itmpn dst' # 查看目标ip的cwnd、rtt、rto等网络参数
+alias np='lsof -i:' # 通过端口查看进程名
