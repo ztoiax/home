@@ -1,0 +1,733 @@
+{
+  "settings": [
+    {
+      "key": "version",
+      "value": "v3.16.3",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 1,
+      "flag": 2
+    },
+    {
+      "key": "site_title",
+      "value": "AList",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 1,
+      "flag": 0
+    },
+    {
+      "key": "announcement",
+      "value": "### repo\nhttps://github.com/alist-org/alist",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 1,
+      "flag": 0
+    },
+    {
+      "key": "pagination_type",
+      "value": "all",
+      "help": "",
+      "type": "select",
+      "options": "all,pagination,load_more,auto_load_more",
+      "group": 1,
+      "flag": 0
+    },
+    {
+      "key": "default_page_size",
+      "value": "30",
+      "help": "",
+      "type": "number",
+      "options": "",
+      "group": 1,
+      "flag": 0
+    },
+    {
+      "key": "allow_indexed",
+      "value": "false",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 1,
+      "flag": 0
+    },
+    {
+      "key": "logo",
+      "value": "https://cdn.jsdelivr.net/gh/alist-org/logo@main/logo.svg",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 2,
+      "flag": 0
+    },
+    {
+      "key": "favicon",
+      "value": "https://cdn.jsdelivr.net/gh/alist-org/logo@main/logo.svg",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 2,
+      "flag": 0
+    },
+    {
+      "key": "main_color",
+      "value": "#1890ff",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 2,
+      "flag": 0
+    },
+    {
+      "key": "home_icon",
+      "value": "🏠",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 2,
+      "flag": 0
+    },
+    {
+      "key": "home_container",
+      "value": "max_980px",
+      "help": "",
+      "type": "select",
+      "options": "max_980px,hope_container",
+      "group": 2,
+      "flag": 0
+    },
+    {
+      "key": "settings_layout",
+      "value": "list",
+      "help": "",
+      "type": "select",
+      "options": "list,responsive",
+      "group": 2,
+      "flag": 0
+    },
+    {
+      "key": "text_types",
+      "value": "txt,htm,html,xml,java,properties,sql,js,md,json,conf,ini,vue,php,py,bat,gitignore,yml,go,sh,c,cpp,h,hpp,tsx,vtt,srt,ass,rs,lrc",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 1
+    },
+    {
+      "key": "audio_types",
+      "value": "mp3,flac,ogg,m4a,wav,opus",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 1
+    },
+    {
+      "key": "video_types",
+      "value": "mp4,mkv,avi,mov,rmvb,webm,flv",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 1
+    },
+    {
+      "key": "image_types",
+      "value": "jpg,tiff,jpeg,png,gif,bmp,svg,ico,swf,webp",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 1
+    },
+    {
+      "key": "proxy_types",
+      "value": "m3u8",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 1
+    },
+    {
+      "key": "proxy_ignore_headers",
+      "value": "authorization,referer",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 1
+    },
+    {
+      "key": "external_previews",
+      "value": "{}",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 0
+    },
+    {
+      "key": "iframe_previews",
+      "value": "{\n\t\"doc,docx,xls,xlsx,ppt,pptx\": {\n\t\t\"Microsoft\":\"https://view.officeapps.live.com/op/view.aspx?src=$e_url\",\n\t\t\"Google\":\"https://docs.google.com/gview?url=$e_url&embedded=true\"\n\t},\n\t\"pdf\": {\n\t\t\"PDF.js\":\"https://alist-org.github.io/pdf.js/web/viewer.html?file=$e_url\"\n\t},\n\t\"epub\": {\n\t\t\"EPUB.js\":\"/static/epub.js/viewer.html?url=$e_url\"\n\t}\n}",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 3,
+      "flag": 0
+    },
+    {
+      "key": "audio_cover",
+      "value": "https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 3,
+      "flag": 0
+    },
+    {
+      "key": "audio_autoplay",
+      "value": "true",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 3,
+      "flag": 0
+    },
+    {
+      "key": "video_autoplay",
+      "value": "true",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 3,
+      "flag": 0
+    },
+    {
+      "key": "hide_files",
+      "value": "/\\/README.md/i",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 4,
+      "flag": 0
+    },
+    {
+      "key": "package_download",
+      "value": "true",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 4,
+      "flag": 0
+    },
+    {
+      "key": "customize_head",
+      "value": "<script src=\"https://polyfill.io/v3/polyfill.min.js?features=String.prototype.replaceAll\"></script>",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 4,
+      "flag": 1
+    },
+    {
+      "key": "customize_body",
+      "value": "",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 4,
+      "flag": 1
+    },
+    {
+      "key": "link_expiration",
+      "value": "0",
+      "help": "",
+      "type": "number",
+      "options": "",
+      "group": 4,
+      "flag": 1
+    },
+    {
+      "key": "sign_all",
+      "value": "true",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 4,
+      "flag": 1
+    },
+    {
+      "key": "privacy_regs",
+      "value": "(?:(?:\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.){3}(?:\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\n([[:xdigit:]]{1,4}(?::[[:xdigit:]]{1,4}){7}|::|:(?::[[:xdigit:]]{1,4}){1,6}|[[:xdigit:]]{1,4}:(?::[[:xdigit:]]{1,4}){1,5}|(?:[[:xdigit:]]{1,4}:){2}(?::[[:xdigit:]]{1,4}){1,4}|(?:[[:xdigit:]]{1,4}:){3}(?::[[:xdigit:]]{1,4}){1,3}|(?:[[:xdigit:]]{1,4}:){4}(?::[[:xdigit:]]{1,4}){1,2}|(?:[[:xdigit:]]{1,4}:){5}:[[:xdigit:]]{1,4}|(?:[[:xdigit:]]{1,4}:){1,6}:)\n(?U)access_token=(.*)&",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 4,
+      "flag": 1
+    },
+    {
+      "key": "ocr_api",
+      "value": "https://api.nn.ci/ocr/file/json",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 4,
+      "flag": 0
+    },
+    {
+      "key": "filename_char_mapping",
+      "value": "{\"/\": \"|\"}",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 4,
+      "flag": 0
+    },
+    {
+      "key": "aria2_uri",
+      "value": "http://localhost:6800/jsonrpc",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 5,
+      "flag": 1
+    },
+    {
+      "key": "aria2_secret",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 5,
+      "flag": 1
+    },
+    {
+      "key": "token",
+      "value": "alist-9c7c9d80-c94d-48f6-8f33-ef19181b2e9bYHrVbjHXS1VUg8rYSYsWjAfKShNKpdpL3wNMHzl59A3WPpEy147IMCTFA7cFIXV1",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 0,
+      "flag": 1
+    },
+    {
+      "key": "search_index",
+      "value": "none",
+      "help": "",
+      "type": "select",
+      "options": "database,database_non_full_text,bleve,none",
+      "group": 6,
+      "flag": 0
+    },
+    {
+      "key": "ignore_paths",
+      "value": "",
+      "help": "one path per line",
+      "type": "text",
+      "options": "",
+      "group": 6,
+      "flag": 1
+    },
+    {
+      "key": "index_progress",
+      "value": "{\"obj_count\":0,\"is_done\":true,\"last_done_time\":null,\"error\":\"\"}",
+      "help": "",
+      "type": "text",
+      "options": "",
+      "group": 0,
+      "flag": 1
+    },
+    {
+      "key": "github_client_id",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 3
+    },
+    {
+      "key": "github_client_secrets",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 3
+    },
+    {
+      "key": "github_login_enabled",
+      "value": "false",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 7,
+      "flag": 3
+    },
+    {
+      "key": "forward_direct_link_params",
+      "value": "false",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 4,
+      "flag": 0
+    },
+    {
+      "key": "auto_update_index",
+      "value": "false",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 6,
+      "flag": 0
+    },
+    {
+      "key": "max_index_depth",
+      "value": "20",
+      "help": "max depth of index",
+      "type": "number",
+      "options": "",
+      "group": 6,
+      "flag": 1
+    },
+    {
+      "key": "sso_login_enabled",
+      "value": "false",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 7,
+      "flag": 0
+    },
+    {
+      "key": "sso_login_platform",
+      "value": "",
+      "help": "",
+      "type": "select",
+      "options": "Casdoor,Github,Microsoft,Google,Dingtalk",
+      "group": 7,
+      "flag": 0
+    },
+    {
+      "key": "sso_client_id",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 1
+    },
+    {
+      "key": "sso_client_secret",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 1
+    },
+    {
+      "key": "qbittorrent_url",
+      "value": "http://admin:adminadmin@localhost:8080/",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 0,
+      "flag": 1
+    },
+    {
+      "key": "qbittorrent_seedtime",
+      "value": "0",
+      "help": "",
+      "type": "number",
+      "options": "",
+      "group": 0,
+      "flag": 1
+    },
+    {
+      "key": "allow_mounted",
+      "value": "true",
+      "help": "",
+      "type": "bool",
+      "options": "",
+      "group": 1,
+      "flag": 0
+    },
+    {
+      "key": "sso_organization_name",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 1
+    },
+    {
+      "key": "sso_application_name",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 1
+    },
+    {
+      "key": "sso_endpoint_name",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 1
+    },
+    {
+      "key": "sso_jwt_public_key",
+      "value": "",
+      "help": "",
+      "type": "string",
+      "options": "",
+      "group": 7,
+      "flag": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "tz",
+      "password": "201997102",
+      "base_path": "/",
+      "role": 2,
+      "disabled": false,
+      "permission": 0,
+      "sso_id": ""
+    },
+    {
+      "id": 2,
+      "username": "guest",
+      "password": "guest",
+      "base_path": "/",
+      "role": 1,
+      "disabled": false,
+      "permission": 0,
+      "sso_id": ""
+    }
+  ],
+  "storages": [
+    {
+      "id": 2,
+      "mount_path": "/mi10",
+      "order": 0,
+      "driver": "FTP",
+      "cache_expiration": 30,
+      "status": "dial tcp 192.168.1.111:2121: connect: connection refused",
+      "addition": "{\"address\":\"192.168.1.111:2121\",\"username\":\"tz\",\"password\":\"201997102\",\"root_folder_path\":\"/\"}",
+      "remark": "",
+      "modified": "2023-05-03T23:19:33.042637235+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "native_proxy",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 3,
+      "mount_path": "/aliyun",
+      "order": 0,
+      "driver": "AliyundriveOpen",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"root_folder_id\":\"root\",\"refresh_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0NTRjNGYxOWM2ODc0YTNkOWMxN2U5Y2E2MTQ0NzYzNCIsImF1ZCI6Ijc2OTE3Y2NjY2Q0NDQxYzM5NDU3YTA0ZjYwODRmYjJmIiwiZXhwIjoxNjkwOTg3MTU1LCJpYXQiOjE2ODMyMTExNTV9.f-TXJB_d_Zuh8XMUEOBL-btBdoCnSe9Idlq0qBpNQKYDH_vIAOZQm9K4sVTA7yL9LA_atOGMYTRte2Td_BrGCg\",\"order_by\":\"\",\"order_direction\":\"\",\"oauth_token_url\":\"https://api.nn.ci/alist/ali_open/token\",\"client_id\":\"\",\"client_secret\":\"\",\"remove_way\":\"delete\",\"internal_upload\":false,\"AccessToken\":\"eyJraWQiOiJLcU8iLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTRjNGYxOWM2ODc0YTNkOWMxN2U5Y2E2MTQ0NzYzNCIsImF1ZCI6Ijc2OTE3Y2NjY2Q0NDQxYzM5NDU3YTA0ZjYwODRmYjJmIiwiaXNzIjoiaHR0cHM6Ly9vcGVuLmFsaXl1bmRyaXZlLmNvbSIsImV4cCI6MTY4MzIxODk1NSwiaWF0IjoxNjgzMjExMTU1fQ.KL08htoGTkJQEfajWK344-jYWlCJR3l8UI-ksAtYpXo\"}",
+      "remark": "",
+      "modified": "2023-05-03T12:46:18.886709045+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "302_redirect",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 4,
+      "mount_path": "/onedrive",
+      "order": 0,
+      "driver": "Onedrive",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"root_folder_path\":\"/\",\"region\":\"global\",\"is_sharepoint\":false,\"client_id\":\"0a2991a3-1674-4334-8561-671cc7349960\",\"client_secret\":\"uw67Q~TCMqdJyH35hlcHHclv~mhNOGx.jfPFm\",\"redirect_uri\":\"https://alist.nn.ci/tool/onedrive/callback\",\"refresh_token\":\"M.C102_BAY.-CfclFqLy1x2a!Bw2ThJxGfqi6OwcbRID6LHiZsv5mygu7Lx779nczwXJ*rVXxTitVsulvXUbzqd2CMyrNA3nb2ojxrxcr034ur!YENLCfZrAe1ME1icK6yojG4UpJRnOubBIk!hJRmmyjhMMVPZGGm6XlMKLCPFZvCkDrJqA0KH7EkVAjbNDWEdBWiYflcxORyLyaGknFgrbDDnzBdQb0gu89WGkqMZfs4ZmVcOv6vVB8WZdgmaMla4SBf8wxQ4aBpYxb1*oscljUbqF*WtJb9mVRUyQyPNxhfYQB77rUAlbCrqUw0y1V0oGjzsMiIOvCDZgGjEhdJRgxQ8FsBkpCYg$\",\"site_id\":\"\",\"chunk_size\":5}",
+      "remark": "",
+      "modified": "2023-05-03T12:49:39.225123494+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "302_redirect",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 5,
+      "mount_path": "/baidu",
+      "order": 0,
+      "driver": "BaiduNetdisk",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"refresh_token\":\"122.7243d999e3fd23437aea5588b0b2994f.YgaPqNjFl-01RXctk5WyTzatUecd5_YoHi2BCWT.vfcqDQ\",\"root_folder_path\":\"/\",\"order_by\":\"name\",\"order_direction\":\"asc\",\"download_api\":\"official\",\"client_id\":\"iYCeC9g08h5vuP9UqvPHKKSVrKFXGa1v\",\"client_secret\":\"jXiFMOPVPCWlO2M5CwWQzffpNPaGTRBG\"}",
+      "remark": "",
+      "modified": "2023-05-03T12:51:12.014550054+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "302_redirect",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 6,
+      "mount_path": "/中国移动云盘",
+      "order": 0,
+      "driver": "139Yun",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"account\":\"13672437665\",\"cookie\":\"sajssdk_2015_cross_new_user=1; WT_FPC=id=29dc22fc5ca6268add71683089543186:lv=1683089996969:ss=1683089543186; ORCHES-H-ACCOUNT-PROV=20; userInfo={\\\"result\\\":{\\\"resultCode\\\":\\\"200059524\\\",\\\"resultDesc\\\":null},\\\"userId\\\":\\\"0011WqHSC1oT\\\",\\\"extInfo\\\":{\\\"taskID\\\":\\\"MS202305031259579582fb\\\"},\\\"simplifyAccount\\\":\\\"136****7665\\\",\\\"encryptAccount\\\":\\\"MTM2NzI0Mzc2NjU=\\\",\\\"extEncryptAccount\\\":\\\"+/+4RJ3Y1b5RLRmQ4zuzXw==\\\",\\\"extMsg\\\":{\\\"sbc\\\":\\\"\\\",\\\"imspwd\\\":\\\"24DF91E2FC8C5E06EDF590CB3941194C\\\",\\\"loginid\\\":\\\"168308999727278\\\",\\\"heartime\\\":\\\"4\\\",\\\"domain\\\":\\\"\\\",\\\"svnuser\\\":\\\"\\\",\\\"svnpwd\\\":\\\"\\\",\\\"svnlist\\\":\\\"\\\",\\\"htslist\\\":\\\"\\\",\\\"deviceid\\\":\\\"BA00F9151C47487F82016F2F64F16CC2\\\",\\\"areaCode\\\":\\\"20\\\",\\\"provCode\\\":\\\"20\\\",\\\"funcId\\\":\\\"0000000000000000\\\",\\\"srvInfoVer\\\":\\\"C933F2BC723296FCE64FF346CB397D3D\\\",\\\"userType\\\":1}}; ORCHES-C-TOKEN=351g21spdLv3bc1CGK1jfBzHM/FgEvuhS89lvnZWiWmRi8iV0qkS3Zd8Q5C2h6TjB+LudKP6MYrqPGS5akk76I+DF9TgpCfdD973Vc96qggxpbrUqbg8Ewv23CabD6xpyTFKsqE+BYQgNWuv1Uakn+GRD+iHqmx0rA9o8Y+5QBPtfwtsokBKDyX3Ic8GU6IerzzRSIvjOOnr/Zi6mmNOqRp3jbqowY3AjLaGADv/F1t/WWF8AiOnmQc3r/45UfC+UaGifGy1K26XeJtW4+sFNw==; ORCHES-C-ACCOUNT=+/+4RJ3Y1b5RLRmQ4zuzXw==; ORCHES-I-ACCOUNT-ENCRYPT=MTM2NzI0Mzc2NjU=; ORCHES-I-ACCOUNT-SIMPLIFY=136****7665; hecaiyundata2021jssdkcross={\\\"distinct_id\\\":\\\"187dff4497ffb-0cb401f76e7a108-15462c6c-2073600-187dff44980c91\\\",\\\"first_id\\\":\\\"\\\",\\\"props\\\":{\\\"$latest_traffic_source_type\\\":\\\"直接流量\\\",\\\"$latest_search_keyword\\\":\\\"未取到值_直接打开\\\",\\\"$latest_referrer\\\":\\\"\\\",\\\"phn\\\":\\\"MTM2NzI0Mzc2NjU=\\\"},\\\"$device_id\\\":\\\"187dff4497ffb-0cb401f76e7a108-15462c6c-2073600-187dff44980c91\\\"}; hecaiyun_stay_url=https://yun.139.com/w/#/index; hecaiyun_stay_time=1683090020916; sds={\\\"switch\\\":0}\",\"root_folder_id\":\"\",\"type\":\"personal\",\"cloud_id\":\"\"}",
+      "remark": "",
+      "modified": "2023-05-03T13:03:35.738552037+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "302_redirect",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 7,
+      "mount_path": "/一刻相册",
+      "order": 0,
+      "driver": "BaiduPhoto",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"refresh_token\":\"122.d7162cc01f779914ee4ad3ffdeb14040.YsnaHLjS3JljjOxVSILUbUs0rJ7ZzebpQepaV7Q.ukmZrw\",\"show_type\":\"root\",\"album_id\":\"\",\"client_id\":\"iYCeC9g08h5vuP9UqvPHKKSVrKFXGa1v\",\"client_secret\":\"jXiFMOPVPCWlO2M5CwWQzffpNPaGTRBG\"}",
+      "remark": "",
+      "modified": "2023-05-03T13:04:30.779190254+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "302_redirect",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 8,
+      "mount_path": "/谷歌云盘",
+      "order": 0,
+      "driver": "GoogleDrive",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"root_folder_id\":\"root\",\"refresh_token\":\"1//0f3oy826wHnOMCgYIARAAGA8SNwF-L9IrtEujyVI2L4oZUovdULOYQRKJ-fSywEuDUtFmpwTJ7p4vN8QTg71mdHgEjUvWQbLg_CM\",\"order_by\":\"\",\"order_direction\":\"\",\"client_id\":\"691620491677-2masc4i4pv8rp9cmfe4kksn5lvm4r327.apps.googleusercontent.com\",\"client_secret\":\"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\",\"chunk_size\":5}",
+      "remark": "",
+      "modified": "2023-05-03T23:13:16.743896409+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "native_proxy",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 9,
+      "mount_path": "/谷歌相册",
+      "order": 0,
+      "driver": "GooglePhoto",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"root_folder_id\":\"root\",\"refresh_token\":\"1//0f3oy826wHnOMCgYIARAAGA8SNwF-L9IrtEujyVI2L4oZUovdULOYQRKJ-fSywEuDUtFmpwTJ7p4vN8QTg71mdHgEjUvWQbLg_CM\",\"client_id\":\"691620491677-2masc4i4pv8rp9cmfe4kksn5lvm4r327.apps.googleusercontent.com\",\"client_secret\":\"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\",\"show_archive\":false}",
+      "remark": "",
+      "modified": "2023-05-03T23:15:40.485710213+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "native_proxy",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 10,
+      "mount_path": "/蓝奏云",
+      "order": 0,
+      "driver": "Lanzou",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"type\":\"cookie\",\"cookie\":\"PHPSESSID=h8nrlt4a2pe5sktnih9gg8v8vv7908oo; _uab_collina=168312675918293767525441; phpdisk_info=U2YFNgFkAzkOOgNkD2EAUwdjAwhdNVw4AjcDZFNnVmBVYlFkVzMBOwcwBl8KYVU6UWcEZFk5BjAFZ1UzVDcKPFNlBTEBMQM6Dm0DYg9iAGwHMwMzXWZcagJgA2ZTbFYxVWdRZVdgATgHMgY3CllVPlEyBDBZNwZjBTJVNlRlCj5TYQUy; uag=22a180a6aa8cd2e6a683b6cfb8ddc2bd; ylogin=1176674; folder_id_c=-1\",\"root_folder_id\":\"-1\",\"share_password\":\"\",\"baseUrl\":\"https://pc.woozooo.com\",\"shareUrl\":\"https://pan.lanzouo.com\",\"repair_file_info\":false}",
+      "remark": "",
+      "modified": "2023-05-03T23:17:22.613845067+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "302_redirect",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 11,
+      "mount_path": "/夸克",
+      "order": 0,
+      "driver": "Quark",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"cookie\":\"_UP_A4A_11_=wb901132670544a0a7c607b7887be69c;_UP_D_=pc;__ptu=f52e18ac937b855543aecb377337fb01AAT7fDP605MiY1diAfuZOVNOBRb4GPqWPBXNZP2Muhwhqi4RqM/jU4X2aW0mTAuhMeE=;__ptu_fix=fixed;__pus=92c97cb01630e84fa1edaa1765b845d9AATXKJhJ21T5xXmKbZwBLVAmEnTRud+IJik15SKxKjwKyMHhvrAM0gzrthWtdL+uBjWEFiJ+HCfpTiOLQ/2jMrk3;__kp=cde76840-e900-11ed-b5d0-258d3c23458b;__kps=AASeRltbVPkG/qI2EmNW7dHk;__ktd=isSFCnYs7onHEFaJWqud0A==;__uid=AASeRltbVPkG/qI2EmNW7dHk;__puus=12854871af287e0590bbd25dc3c00893AAQ5FsRl+5R1X2dtpjN1j3wDmQEGj6OSgufbTEwBcrsR9fuMhWqpW8ZdfVFrNOW2Sm9B/FOpDEp+Jxmu3zapB1gzq6VBbNuftc+ZlyW3fW6ouXFfOcWSwt3jPjZ9iRZXQdsPr1K1+8Ml7sk80z1Lu2GBdc9GpdkLlxhpCKWz35WRN1ifyl86WLJIEy1KfuSJnWbcil3tklV+3gB1aHLSVPBM\",\"root_folder_id\":\"0\",\"order_by\":\"none\",\"order_direction\":\"asc\"}",
+      "remark": "",
+      "modified": "2023-05-03T23:18:47.382347114+08:00",
+      "disabled": false,
+      "enable_sign": false,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "native_proxy",
+      "down_proxy_url": ""
+    },
+    {
+      "id": 12,
+      "mount_path": "/test",
+      "order": 0,
+      "driver": "UrlTree",
+      "cache_expiration": 30,
+      "status": "work",
+      "addition": "{\"url_structure\":\"https://jsd.nn.ci/gh/alist-org/alist/README.md\\n文档:\\n  Readme.md:https://pic.rmb.bdstatic.com/bjh/说明.md\\n  Doc:\\n    文档.doc:https://pic.rmb.bdstatic.com/bjh/测试文档.doc\\n  pdf:\\n    pdf2.pdf:https://pic.rmb.bdstatic.com/bjh/测试.pdf\\n  Excel:\\n    表格3.xlsx:https://pic.rmb.bdstatic.com/bjh/测试表格.xlsx \\n视频:\\n  https://pic.rmb.bdstatic.com/bjh/222.jpeg\\n  电视剧:\\n    https://pic.rmb.bdstatic.com/bjh/222.pm4\\n  电影:\\n    https://pic.rmb.bdstatic.com/bjh/222.flv\\n音乐:\\n  https://pic.rmb.bdstatic.com/bjh/222.jpeg\\n  古典:\\n    https://pic.rmb.bdstatic.com/bjh/222.mp3\\n  轻音乐:\\n    https://pic.rmb.bdstatic.com/bjh/222.flac\\n    https://pic.rmb.bdstatic.com/bjh/222.wav\\n软件:\\n  https://pic.rmb.bdstatic.com/bjh/222.jpeg\\n  PJ:\\n    xx软件.exe:252525:https://pic.rmb.bdstatic.com/bjh/222.exe\\n    xx安装包.zip:259555:https://pic.rmb.bdstatic.com/bjh/222.zip\\n  IPA:\\n    GPT.ipa:https://pic.rmb.bdstatic.com/bjh/222.ipa\\n  APK:\\n    P图.apk:https://pic.rmb.bdstatic.com/bjh/222.apk\\n\",\"head_size\":false}",
+      "remark": "",
+      "modified": "2023-05-03T23:27:54.738269648+08:00",
+      "disabled": false,
+      "enable_sign": true,
+      "order_by": "",
+      "order_direction": "",
+      "extract_folder": "",
+      "web_proxy": false,
+      "webdav_policy": "302_redirect",
+      "down_proxy_url": ""
+    }
+  ],
+  "metas": []
+}
