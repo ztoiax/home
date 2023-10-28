@@ -51,10 +51,13 @@ export GOPATH=$HOME/go
 export PATH="$JAVA_HOME:$PATH"
 export PATH="/usr/share/bcc/tools:$PATH"
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-export PATH="/home/tz/.mybin:$PATH"
-export PATH="/home/tz/.bin:$PATH"
-export PATH="/home/tz/FlameGraph:$PATH"
-export PATH="/home/tz/.local/bin:$PATH"
+export PATH="$HOME/.mybin:$PATH"
+export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/FlameGraph:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 # nnn
 export NNN_BMS='m:/mnt;h:~;M:/mnt/E/迅雷下载;c:~/.config;m:/mnt;p:~/Pictures'

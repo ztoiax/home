@@ -53,7 +53,7 @@ function n(){
     else
         for i in $@;do
             $(echo $command) | head -n 1
-            $(echo $command) | grep :$i
+            $(echo $command) | grep -i $i
         done
     fi
 }
@@ -119,6 +119,10 @@ function aria2-boot(){
 }
 
 ##### pacman ######
+
+# paru -G 下载PKGBUILD
+# paru -Ui 安装PKGBUILD
+
 if which pacman &> /dev/null;then
 
 # install packages
@@ -373,7 +377,7 @@ function sync-phone {
     adb-sync -d ~/.zsh /sdcard/github/
     adb-sync -d ~/.zshrc /sdcard/github/ && nnn="zsh OK"
 
-    adb-sync -d /home/tz/Downloads/1136453598_破晓后的天照/books /sdcard/ && nnnn="books OK"
+    adb-sync -d /home/tz/Downloads/1136453598_破晓后的天照/books /sdcard/syncthing && nnnn="books OK"
 
     # 写入日志后通知
     echo "$(date +"%Y-%m-%d_%H:%M:%S") adb-sync:$n,$nn,$nnn,$nnnn" >> /var/log/adb-sync.log \
@@ -552,6 +556,29 @@ function github-init(){
     cd $1
     git branch -M main
     git remote add origin "https://github.com/ztoiax/$1.git"
+}
+
+##### nvim ######
+
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias nvim-ayamir="NVIM_APPNAME=ayamir nvim"
+
+function nvims() {
+    items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim" "ayamir" "Bekaboo")
+
+    # 不同nvim配置文件的目录
+    config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+    if [[ -z $config ]]; then
+        echo "Nothing selected"
+        return 0
+    elif [[ $config == "default" ]]; then
+        config=""
+    fi
+
+    NVIM_APPNAME=$config nvim $@
 }
 
 ##### bindkey ######

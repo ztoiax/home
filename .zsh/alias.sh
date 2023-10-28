@@ -1,6 +1,5 @@
 #!/bin/zsh
 # Alias bin
-alias sudo="sudo "
 alias mv="advmv -g"
 alias cp="advcp -gr"
 alias rm="rm -i"
@@ -27,7 +26,7 @@ alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
 # alias share="sauth admin 12345" # password
 alias macchanger="sudo macchanger -r enp27s0"
-alias v="nvim --listen /tmp/nvim.pipe"
+alias v="nvim -V1 --listen /tmp/nvim.pipe -c 'SessionManager load_last_session'"
 alias chrome="google-chrome-stable"
 alias earth="zh-on;google-earth-pro"
 alias e="nautilus"
@@ -76,7 +75,7 @@ alias ,man='cheat'
 alias ,git='bit'
 alias ,,diff='icdiff'
 alias ,diff='difft'
-alias ,traceroute='paris-traceroute'
+alias ,traceroute='nexttrace'
 alias ,time='hyperfine'
 alias ,cd='cd $(find . -type d | fzf)'
 alias ,od='hexyl'
@@ -91,7 +90,8 @@ alias ,watch='viddy'
 alias ,make='just'
 alias csv='xsv'
 alias jo='/bin/jo'
-
+alias ,sudo='sudo-rs'
+alias ,git='gix'
 
 # cool
 alias hack="cmatrix"

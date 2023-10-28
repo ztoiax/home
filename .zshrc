@@ -43,7 +43,7 @@ zinit light-mode for \
      zsh-users/zsh-completions \
      rupa/z \
      supercrabtree/k \
-     dim-an/cod \  # 通过--help 生成补全
+     dim-an/cod  # 通过--help 生成补全
      # b4b4r07/enhancd \ # enhance cd command
 
 ##### completion #####
@@ -80,13 +80,16 @@ zinit snippet OMZL::termsupport.zsh
 zinit snippet OMZP::git/git.plugin.zsh
 zinit snippet OMZP::fzf/fzf.plugin.zsh
 zinit snippet OMZP::extract/extract.plugin.zsh
-zinit snippet OMZP::autojump/autojump.plugin.zsh
+# zinit snippet OMZP::autojump/autojump.plugin.zsh
 zinit snippet OMZP::history-substring-search/history-substring-search.zsh
 # zinit snippet OMZP::vi-mode/vi-mode.plugin.zsh
 
 # nvm
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# history
+# zinit load ellie/atuin
 
 ##### fzf relate ######
 
