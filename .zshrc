@@ -3,28 +3,20 @@
 # host="socks5://127.0.0.1:10808"
 # export ALL_PROXY="$host"
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-
-source "$HOME/.zinit/bin/zinit.zsh"
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
-#
-
 zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
 
@@ -34,17 +26,27 @@ zinit light-mode for \
      momo-lab/zsh-abbrev-alias \
      hlissner/zsh-autopair \
      zsh-users/zsh-autosuggestions \
-     zdharma/fast-syntax-highlighting \
-     zdharma/zui \
-     zdharma/zinit-crasis \
+     zdharma-continuum/fast-syntax-highlighting \
+     zdharma-continuum/zui \
+     zdharma-continuum/zinit-crasis \
      peterhurford/git-it-on.zsh \
      zsh-users/zsh-history-substring-search \
      RobSis/zsh-completion-generator \
      zsh-users/zsh-completions \
      rupa/z \
      supercrabtree/k \
+     zdharma-continuum/zsh-diff-so-fancy \
+     MichaelAquilina/zsh-auto-notify \
      dim-an/cod  # 通过--help 生成补全
      # b4b4r07/enhancd \ # enhance cd command
+
+# zsh脚本测试框架。类似于bash之于bats
+zinit for \
+as'command' \
+	atclone'./build.zsh' \
+	nocompile \
+	pick'zunit' \
+	@zdharma-continuum/zunit
 
 ##### completion #####
 # zinit ice as"completion"
@@ -60,14 +62,14 @@ zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/grep.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/history.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/completion.zsh
 zinit snippet http://github.com/ohmyzsh/ohmyzsh/blob/master/lib/clipboard.zsh
-zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/termsupport.zsh
+# zinit snippet http://github.com/ohmyzsh/ohmyzsh/raw/master/lib/termsupport.zsh
 zinit snippet OMZL::git.zsh
 zinit snippet OMZL::nvm.zsh
 zinit snippet OMZL::grep.zsh
 zinit snippet OMZL::history.zsh
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::clipboard.zsh
-zinit snippet OMZL::termsupport.zsh
+# zinit snippet OMZL::termsupport.zsh
 
 # Load OMZ plugin
 # zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
