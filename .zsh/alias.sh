@@ -92,6 +92,8 @@ alias csv='xsv'
 alias jo='/bin/jo'
 alias ,sudo='sudo-rs'
 alias ,git='gix'
+alias ,tail='tspin -f'
+alias ,tree='exa --tree --icons'
 
 # cool
 alias hack="cmatrix"
@@ -137,6 +139,7 @@ elif which pacman &> /dev/null;then
     # del denpends and config
     alias pd='pactree'
     alias pr='sudo pacman -Rns'
+    # alias pr='sudo pacman -Rdd' # 在依赖冲突的时候，可以使用这条命令强制忽视依赖删除，但要自己承担后果
     alias plo="sudo pacman-disowned.sh > /tmp/other-soft-file && cat /tmp/other-soft-file"
     alias pf='pacman -F'
     alias pu='sudo pacman -Syyu && yay -Syyu'

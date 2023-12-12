@@ -157,3 +157,5 @@ fpath+=~/.zfunc
 export PATH=/home/tz/.tiup/bin:$PATH
 
 alias luamake=/tmp/lua-language-server/3rd/luamake/luamake
+
+if [ -e /home/tz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

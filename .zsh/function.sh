@@ -2,6 +2,15 @@
 # custom function and bindkey
 
 ##### base ######
+function ,for(){
+  # 第一个参数为执行的次数，之后的参数就是命令。如执行两次ls-l：,for 2 ls -l
+  max=$1
+  shift
+  for ((i=0; i<$max; i=i+1));do
+    $@
+  done
+}
+
 function ,ls(){
     # fselect $@ depth 1
     fselect $@ from . depth 1
@@ -65,7 +74,7 @@ function p(){
         # print first row
         ps auxf | head -n 1
         for i in $@;do
-            ps auxf | grep $i | grep -v grep
+            ps auxf | grep -i $i | grep -v grep
         done
     fi
 }
@@ -85,7 +94,7 @@ function pt(){
         if [[ $i =~ $number ]];then
             eval "$pt" | awk -v i="$i" '{if($5==i) print $0}'
         else
-            eval "$pt" | grep $i
+            eval "$pt" | grep -i $i
         fi
     done
 }
@@ -213,7 +222,10 @@ function pc(){
 
     # 需要安装cargo install cargo-cache
     notify-send "rust cargo cache"
-    cargo cache -a
+    cargo-cache -a
+
+    notify-send "yarn cache"
+    yarn cache clean
 
     notify-send "journalctl cache"
     sudo journalctl --vacuum-size=200M
