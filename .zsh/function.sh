@@ -266,9 +266,9 @@ fi
 function backup-dd(){
     if [ $# -eq 0 ];then
         # remount dev read only
-        # sudo mount -o remount,ro /dev/nvme0n1p5
+        # sudo mount -o remount,ro /dev/nvme0n1p3
 
-        # sudo dd if=/dev/nvme0n1p5 | pv | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
+        # sudo dd if=/dev/nvme0n1p3 | pv | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
         echo "backup '/'"
         sudo dd if=$(df / | awk 'NR == 2{ print $1}')  conv=sync,noerror status=progress bs=64K | pigz > $backup/arch-$(date +"%Y-%m-%d:%H:%M:%S").gz
         notify-send "backup-dd '/' finish"
@@ -282,7 +282,7 @@ function backup-dd(){
 }
 
 # recovery-dd
-# sudo pigz -dc /mnt/Z/linux/arch.gz | pv | dd of=/dev/nvme0n1p3 status=progress bs=64K
+# sudo pigz -dc /mnt/Z/linux/arch.gz | pv | sudo dd of=/dev/nvme0n1p3 status=progress bs=64K
 
 ##### web ######
 # 测试是否支持https

@@ -58,11 +58,16 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # nnn
 export NNN_BMS='m:/mnt;h:~;M:/mnt/E/迅雷下载;c:~/.config;m:/mnt;p:~/Pictures'
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG='f:fzopen;t:preview-tabbed;p:preview-tui;i:imgview;v:vidthumb;'
+
+# GOPROXY。可以通过go env命令查看
+export GO111MODULE=on
+export GOPROXY=https://goproxy.cn
 
 # forgit
 FORGIT_STASH_FZF_OPTS='--bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'

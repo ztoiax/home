@@ -94,6 +94,7 @@ alias ,sudo='sudo-rs'
 alias ,git='gix'
 alias ,tail='tspin -f'
 alias ,tree='exa --tree --icons'
+alias ,kubectl='kubecolor'
 
 # cool
 alias hack="cmatrix"
@@ -175,16 +176,16 @@ alias mi10-on='sudo go-mtpfs -allow-other /mnt/android'
 
 alias mi10-off='sudo fusermount -u /mnt/android'
 
-# exa
-alias ls='exa'                                                         # ls
-alias l='exa -lbgHF --git --icons'                                     # long list,icons
-alias ll='exa -lbgHF --git'                                            # long list
-alias llm='exa -lbgHF --git --sort=modified'                           # long list, modified date sort
-alias la='exa -a --git'
-alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
-alias lS='exa -1'			                                           # one column, just names
-alias lt='exa --tree --level=2'                                        # tree
-alias lat='exa -a --tree --level=2'                                    # tree hide
+# eza
+alias ls='eza'                                                         # ls
+alias l='eza -lbgHF --git --icons'                                     # long list,icons
+alias ll='eza -lbgHF --git'                                            # long list
+alias llm='eza -lbgHF --git --sort=modified'                           # long list, modified date sort
+alias la='eza -a --git'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+alias lS='eza -1'			                                           # one column, just names
+alias lt='eza --tree --level=2'                                        # tree
+alias lat='eza -a --tree --level=2'                                    # tree hide
 
 # git
 
@@ -242,6 +243,14 @@ alias dcs='dc stop'
 alias dcip="docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "
 
 alias dexec='docker exec -it'
+
+# kubernetes
+alias kpl='kubectl get pods'
+alias kpd='kubectl delete pods'
+alias kil='kubectl get ingress'
+alias kid='kubectl delete ingress'
+alias ksl='kubectl get service'
+alias ksd='kubectl delete service'
 
 # iptables
 alias ipt="sudo iptables -nvL"

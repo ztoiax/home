@@ -1,27 +1,18 @@
-defaults.pcm.card 2
-defaults.ctl.card 2
+pcm.!default {
+    type hw
+    # type asym # 异步
+    card 2
+    device 0
+}
+
+ctl.!default {
+    type hw
+    # type asym # 异步
+    card 2
+    device 0
+}
 
 ### kernel 5.10.6 ###
-#defaults.pcm.card 1
-#defaults.pcm.device 0
-#defaults.ctl.card 1
-
-# pcm.!default {
-#     type hw
-#     card 2
-# }
-
-# ctl.!default {
-#     type hw
-#     card 2
-# }
-
-# pcm.!default {
-#     type hw
-#     card Audio
-# }
-
-# ctl.!default {
-#     type hw
-#     card Audio
-# }
+# defaults.pcm.card 1
+# defaults.pcm.device 0
+# defaults.ctl.card 1
