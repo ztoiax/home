@@ -338,8 +338,10 @@ scppull() {
     pslurp -h /etc/pssh/hosts -r -L ~ $1 $2
 }
 
-function scpcentos7(){
-    rsync -r $1 "root@192.168.100.208:/root"
+function centos(){
+    sudo virsh start centos7-1
+    sudo virsh start centos7-2
+    sudo virsh start centos7-3
 }
 
 function centos7(){

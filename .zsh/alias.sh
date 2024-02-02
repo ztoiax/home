@@ -130,9 +130,12 @@ elif which yum &> /dev/null;then
     #Yum
     alias pi="yum install"
     alias pr="yum remove"
-    alias pu="yum update"
-    alias pq="rpm -q"
+    # alias pu="yum update" # 完全可以用yum install代替yum update进行升级
+    alias pu="yum upgrade" # 大规模版本升级，与yum update不同的是，陈旧的包也会升级
+    alias pq="yum search"
+    alias pl="yum info"
     alias pf="yum list | grep -i"
+    alias pc="yum clean all" # 清楚暂存的rpm包和头文件。相当于 yum clean packages || yum clean headers
 
 elif which pacman &> /dev/null;then
     # https://wiki.archlinux.org/index.php/Pacman_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Tips_and_tricks_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
