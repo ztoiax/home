@@ -339,9 +339,10 @@ scppull() {
 }
 
 function centos(){
-    sudo virsh start centos7-1
     sudo virsh start centos7-2
     sudo virsh start centos7-3
+    sudo virsh start centos7-4
+    sudo virsh start centos7-5
 }
 
 function centos7(){

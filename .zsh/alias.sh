@@ -26,7 +26,7 @@ alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
 # alias share="sauth admin 12345" # password
 alias macchanger="sudo macchanger -r enp27s0"
-alias v="nvim -V1 --listen /tmp/nvim.pipe -c 'SessionManager load_last_session'"
+alias v="nvim -V1 --listen /tmp/nvim.pipe"
 alias chrome="google-chrome-stable"
 alias earth="zh-on;google-earth-pro"
 alias e="nautilus"
@@ -39,6 +39,7 @@ alias mysql-tui='mitzasql'   # mysql tui
 alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
 alias ssl='siteciphers'
 alias svg='termtosvg'
+alias log='lnav'
 
 # android
 alias android="scrcpy --max-fps 120 --bit-rate 10M"
@@ -143,6 +144,7 @@ elif which pacman &> /dev/null;then
     # del denpends and config
     alias pd='pactree'
     alias pr='sudo pacman -Rns'
+    alias prf='sudo pacman -Rdd'
     # alias pr='sudo pacman -Rdd' # 在依赖冲突的时候，可以使用这条命令强制忽视依赖删除，但要自己承担后果
     alias plo="sudo pacman-disowned.sh > /tmp/other-soft-file && cat /tmp/other-soft-file"
     alias pf='pacman -F'

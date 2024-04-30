@@ -157,3 +157,5 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 if [ -e /home/tz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "$HOME/.cargo/env"
+. "/home/tz/.acme.sh/acme.sh.env"
