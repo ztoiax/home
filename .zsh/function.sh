@@ -16,7 +16,8 @@ function ,ls(){
     fselect $@ from . depth 1
 }
 
-function ,,man(){
+# 相当于在线tldr
+function ,,,man(){
     curl https://cheat.sh/$1
 }
 

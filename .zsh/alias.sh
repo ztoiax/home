@@ -11,7 +11,7 @@ alias c="curl -LO"
 alias w="watch -d -n 1"
 alias ifconfig="ifconfig -a"
 alias clip="xclip -selection c"
-alias cat="bat --style=plain --pager 'less -RF'"
+alias cat="bat --color=always --style=plain --pager 'less -RF'"
 alias getclip="xclip -selection c -o"
 alias cplast="history | tail -n 1 | cut -c8- | clip"
 alias grep="grep -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
@@ -60,7 +60,7 @@ alias as="adb shell svc"
 alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png'
 
 # instead
-alias ,cut='choose'
+alias ,awk='choose'
 alias ,ps='procs'
 alias ,dig='dog'
 alias ,curl='http'
@@ -73,6 +73,7 @@ alias ,,du='ncdu'
 alias ,df='dfc'
 alias ,find='fd'             # instead find
 alias ,man='cheat'
+alias ,,man='tldr'
 alias ,git='bit'
 alias ,,diff='icdiff'
 alias ,diff='difft'
@@ -87,6 +88,7 @@ alias ,yaml='yq'
 alias ,html='htmlq'
 alias ,locate='plocate'
 alias ,sed='sd'
+alias ,,sed='sad'
 alias ,watch='viddy'
 alias ,make='just'
 alias csv='xsv'

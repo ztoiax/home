@@ -10,6 +10,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# 取消alias zi=zinit
+unalias zi
+
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
@@ -33,12 +36,18 @@ zinit light-mode for \
      zsh-users/zsh-history-substring-search \
      RobSis/zsh-completion-generator \
      zsh-users/zsh-completions \
-     rupa/z \
      supercrabtree/k \
-     zdharma-continuum/zsh-diff-so-fancy \
      MichaelAquilina/zsh-auto-notify \
      dim-an/cod  # 通过--help 生成补全
      # b4b4r07/enhancd \ # enhance cd command
+
+# mcfly：ctrl-r shell历史搜索替换为智能搜索引擎。McFly的建议会通过一个小型神经网络实时排序。 https://github.com/cantino/mcfly
+zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
+zinit light cantino/mcfly
+
+# zoxide：z命令 https://github.com/ajeetdsouza/zoxide
+zinit light ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
 
 # zsh脚本测试框架。类似于bash之于bats
 zinit for \
@@ -102,9 +111,6 @@ zinit creinstall Aloxaf/fzf-tab
 # fzf-git
 zinit light wfxr/forgit
 
-# fzf-z
-zinit light andrewferrier/fzf-z
-
 # 取消fzf-cd-widget函数的alt-c按键绑定
 bindkey -r '\ec'
 ### End of Zinit's installer chunk
@@ -135,6 +141,17 @@ eval "$(starship init zsh)"
 # typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
+# twf：vim模式的文件树 https://github.com/wvanlint/twf
+twf-widget() {
+  local selected=$(twf --height=0.5)
+  BUFFER="$BUFFER$selected"
+  zle reset-prompt
+  zle end-of-line
+  return $ret
+}
+zle -N twf-widget
+bindkey '^T' twf-widget
+
 ##### source #####
 source /home/tz/.zsh/alias.sh
 source /home/tz/.zsh/function.sh
@@ -159,3 +176,5 @@ fpath+=~/.zfunc
 if [ -e /home/tz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 . "$HOME/.cargo/env"
 . "/home/tz/.acme.sh/acme.sh.env"
+
+source /home/tz/.config/broot/launcher/bash/br
