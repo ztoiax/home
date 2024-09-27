@@ -17,6 +17,20 @@ alias cplast="history | tail -n 1 | cut -c8- | clip"
 alias grep="grep -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias error="journalctl -fp err"
 alias backup-rsync='sudo rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /mnt/Z/linux/arch$(date +"%Y-%m-%d")'
+alias proxy="proxychains4 -q"
+
+alias wifi="iwgtk"
+alias bluetooth="sudo blueberry"
+alias ,bluetooth="sudo overskride"
+alias audio="pavucontrol"
+alias image='nomacs'
+alias ,image='swayimg'
+alias markdown='see'
+alias ,markdown='glow'
+alias ,,markdown='rucola'
+alias ,excel='tw'
+alias ,,excel='csvlens'
+alias ,elf='binsider'
 
 # alias restore-rsync='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
 # alias restore-dd='pigz -dc $(ls $backup | sort -r | head -n 1) | dd of=/dev/nvme0n1p5 bs=64K status=progress'
@@ -31,7 +45,6 @@ alias chrome="google-chrome-stable"
 alias earth="zh-on;google-earth-pro"
 alias e="nautilus"
 alias br="broot -sdpw"
-alias md="glow"
 alias record="asciinema rec" # 终端屏幕录制
 alias play="asciinema play"  # 播放录制文件
 alias baidu="baidupcs"
@@ -63,6 +76,7 @@ alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png
 alias ,awk='choose'
 alias ,ps='procs'
 alias ,dig='dog'
+alias ,,dig='doggo'
 alias ,curl='http'
 alias ,,curl='curlie'
 alias ,ping='nping'
@@ -70,7 +84,9 @@ alias ,,ping='gping'
 alias ,,,ping='prettyping'
 alias ,du='dust'
 alias ,,du='ncdu'
+alias ,,,du='gdu'
 alias ,df='dfc'
+alias ,df='duf'
 alias ,find='fd'             # instead find
 alias ,man='cheat'
 alias ,,man='tldr'
@@ -98,10 +114,12 @@ alias ,git='gix'
 alias ,tail='tspin -f'
 alias ,tree='exa --tree --icons'
 alias ,kubectl='kubecolor'
+alias ,grep=docfd
 
 # cool
 alias hack="cmatrix"
-alias s="neofetch"
+alias s="onefetch"
+alias S="neofetch"
 
 # systemctl
 alias sl="systemctl"

@@ -504,18 +504,18 @@ function nextwallpaper {
 
 function r {
     local IFS=$'\t\n'
-    local ranger_tempfile="$(mktemp -t tmp.XXXXXX)"
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
     local ranger_cmd=(
         command
         ranger
-        --cmd="map S chain shell echo %d > "$ranger_tempfile"; quitall"
+        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
     )
 
     ${ranger_cmd[@]} "$@"
-    if [[ -f "$ranger_tempfile" ]] && [[ "$(cat -- "$ranger_tempfile")" != "$(echo -n `pwd`)" ]]; then
-        cd -- "$(cat "$ranger_tempfile")" || return
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
     fi
-    command rm -f -- "$ranger_tempfile" 2>/dev/null
+    command rm -f -- "$tempfile" 2>/dev/null
 }
 
 ##### dmenu ######
@@ -638,9 +638,9 @@ bindkey '^[L' cpdir
 bindkey '^[U' cpurl
 
 # pet
-zle -N pet-exec
+# zle -N pet-exec
 # alt + <tab>
-bindkey '^[\t' pet-exec
+# bindkey '^[\t' pet-exec
 
 # ctrl + <enter>
 zle -N brightscreen

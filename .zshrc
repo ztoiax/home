@@ -45,6 +45,16 @@ zinit light-mode for \
 zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
 zinit light cantino/mcfly
 
+# 路径~/.local/share/mcfly/history.db
+
+# export MCFLY_DISABLE_MENU=TRUE
+# export MCFLY_KEY_SCHEME=vim
+export MCFLY_KEY_SCHEME=emacs
+export MCFLY_PROMPT="❯"
+export MCFLY_FUZZY=2
+export MCFLY_RESULTS=50
+export MCFLY_RESULTS_SORT=LAST_RUN
+
 # zoxide：z命令 https://github.com/ajeetdsouza/zoxide
 zinit light ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
