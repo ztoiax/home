@@ -194,6 +194,9 @@ function pc(){
     notify-send "npm"
     npm cache clean --force
 
+    notify-send "pnpm"
+    pnpm store prune
+
     notify-send "pip3"
     pip3 cache purge
 
@@ -218,8 +221,9 @@ function pc(){
     notify-send "perf debug cache"
     rm -rf /home/tz/.debug
 
-    notify-send "go mod cache"
+    notify-send "go mod cache, go-build"
     go clean --modcache
+    go clean -cache
 
     # 需要安装cargo install cargo-cache
     notify-send "rust cargo cache"
@@ -502,20 +506,31 @@ function nextwallpaper {
 #     fi
 # }
 
-function r {
-    local IFS=$'\t\n'
-    local tempfile="$(mktemp -t tmp.XXXXXX)"
-    local ranger_cmd=(
-        command
-        ranger
-        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
-    )
+# ranger
+# function r {
+#     local IFS=$'\t\n'
+#     local tempfile="$(mktemp -t tmp.XXXXXX)"
+#     local ranger_cmd=(
+#         command
+#         ranger
+#         --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+#     )
+#
+#     ${ranger_cmd[@]} "$@"
+#     if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+#         cd -- "$(cat "$tempfile")" || return
+#     fi
+#     command rm -f -- "$tempfile" 2>/dev/null
+# }
 
-    ${ranger_cmd[@]} "$@"
-    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-        cd -- "$(cat "$tempfile")" || return
-    fi
-    command rm -f -- "$tempfile" 2>/dev/null
+# yazi
+function r() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 ##### dmenu ######

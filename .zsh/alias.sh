@@ -53,6 +53,7 @@ alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
 alias ssl='siteciphers'
 alias svg='termtosvg'
 alias log='lnav'
+alias abdm='/opt/abdownloadmanager/bin/ABDownloadManager'
 
 # android
 alias android="scrcpy --max-fps 120 --bit-rate 10M"
