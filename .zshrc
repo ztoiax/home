@@ -37,8 +37,8 @@ zinit light-mode for \
      RobSis/zsh-completion-generator \
      zsh-users/zsh-completions \
      supercrabtree/k \
-     MichaelAquilina/zsh-auto-notify \
-     dim-an/cod  # 通过--help 生成补全
+     MichaelAquilina/zsh-auto-notify
+     # dim-an/cod  # 通过--help 生成补全
      # b4b4r07/enhancd \ # enhance cd command
 
 # mcfly：ctrl-r shell历史搜索替换为智能搜索引擎。McFly的建议会通过一个小型神经网络实时排序。 https://github.com/cantino/mcfly

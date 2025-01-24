@@ -80,13 +80,20 @@ FORGIT_FZF_DEFAULT_OPTS="
 "
 
 # xdg
+export XDG_CONFIG_DIR="/etc/xdg"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+# export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_HOME="$HOME/.local/share:/usr/local/share/:/usr/share/"
+# export XDG_DATA_DIRS="$HOME/.local/share"
+export XDG_DATA_DIRS="$HOME/.local/share:/usr/local/share/:/usr/share/"
 
-export XDG_DATA_DIRS="/usr/local/share"
-export XDG_CONFIG_DIR="/etc/xdg"
+# 主题
+export GTK_THEME=Adwaita
+
+# gsettings_schema
+export GSETTINGS_SCHEMA_DIR=/usr/share/glib-2.0/schemas/
 
 # fcitx
 function fcitx-on {
@@ -101,7 +108,7 @@ function fcitx-on {
 
 # fcitx5
 function fcitx5-on {
-    export GTK_IM_MODULE=fcitx5
+    # export GTK_IM_MODULE=fcitx5
     export XMODIFIERS="@im=fcitx"
 
     export QT4_IM_MODULE=fcitx5
@@ -125,10 +132,14 @@ function en-on {
     export LANGUAGE=en_US.UTF-8
 }
 
-export GTK_IM_MODULE=fcitx5
-export QT_IM_MODULE=fcitx5
-export XMODIFIERS=@im=fcitx5
-export SDL_IM_MODULE=fcitx5
+# export GTK_IM_MODULE=fcitx5
+# export QT_IM_MODULE=fcitx5
+# export XMODIFIERS=@im=fcitx5
+# export SDL_IM_MODULE=fcitx5
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULES=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
 export GLFW_IM_MODULE=ibus
 
 # 启动 wayland 桌面前设置一些环境变量
