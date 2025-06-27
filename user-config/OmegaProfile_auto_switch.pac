@@ -11,10 +11,21 @@ var FindProxyForURL = function(init, profiles) {
 }("+auto switch", {
     "+auto switch": function(url, host, scheme) {
         "use strict";
+        if (/(?:^|\.)chatgpt\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)huggingface\.co$/.test(host)) return "+proxy";
+        if (/(?:^|\.)github\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)private-user-images\.githubusercontent\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)oaistatic\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)x\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)fcdn\.sk$/.test(host)) return "+proxy";
+        if (/(?:^|\.)singlelogin\.re$/.test(host)) return "+proxy";
+        if (/(?:^|\.)googletagmanager\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)anthropic\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)meta\.ai$/.test(host)) return "+proxy";
+        if (/(?:^|\.)coze\.com$/.test(host)) return "+proxy";
+        if (/(?:^|\.)google\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)bingapis\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)microsoft\.com$/.test(host)) return "+proxy";
-        if (/(?:^|\.)bing\.com$/.test(host)) return "+proxy";
-        if (/(?:^|\.)coze\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)discordapp\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)discord\.gg$/.test(host)) return "+proxy";
         if (/(?:^|\.)openai\.com$/.test(host)) return "+proxy";
@@ -24,7 +35,6 @@ var FindProxyForURL = function(init, profiles) {
         if (/(?:^|\.)91porn\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)youtu\.be$/.test(host)) return "+proxy";
         if (/(?:^|\.)phncdn\.com$/.test(host)) return "+proxy";
-        if (/(?:^|\.)google\.com$/.test(host)) return "+proxy";
         if (/^i\.91p.*\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)daftsex\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)zlibcdn\.com$/.test(host)) return "+proxy";
@@ -42,7 +52,6 @@ var FindProxyForURL = function(init, profiles) {
         if (/(?:^|\.)userapi\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)gstatic\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)dxb\.to$/.test(host)) return "+proxy";
-        if (/(?:^|\.)googletagmanager\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)s3\.amazonaws\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)ctfassets\.net$/.test(host)) return "+proxy";
         if (/(?:^|\.)d3njjcbhbojbot\.cloudfront\.net$/.test(host)) return "+proxy";
@@ -201,7 +210,6 @@ var FindProxyForURL = function(init, profiles) {
         if (/(?:^|\.)googlevideo\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)twitter\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)avatars2\.githubusercontent\.com$/.test(host)) return "+proxy";
-        if (/(?:^|\.)github\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)raw\.githubusercontent\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)ggpht\.com$/.test(host)) return "+proxy";
         if (/(?:^|\.)avatars0\.githubusercontent\.com$/.test(host)) return "+proxy";

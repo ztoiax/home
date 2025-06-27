@@ -1,0 +1,46 @@
+[user]
+	email = liang1124486160@gmail.com
+	name = ztoiax
+[credential]
+	helper = cache
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	quotepath = false
+[diff-so-fancy]
+	first-run = false
+[hub]
+	protocol = https
+[http]
+	sslBackend = openssl
+	postBuffer = 524288000
+	version = HTTP/1.1
+[remote "origin"]
+	proxy = 
+[init]
+	defaultBranch = main
+[diff]
+	tool = nvim
+[difftool "nvim"]
+	cmd = nvim -Rd $LOCAL $REMOTE
+[difftool]
+	prompt = false
+[merge]
+	tool = nvim
+[mergetool "nvim"]
+	cmd = nvim -Rd $LOCAL $REMOTE -c 'vert diffsplit $MERGED'
+[mergetool]
+	prompt = false

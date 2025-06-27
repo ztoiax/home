@@ -27,8 +27,12 @@ export TERM="st-256color"
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export REACT_EDITOR="nvim"
-export NVIM_LISTEN_ADDRESS="/tmp/nvimsocket"
+# export NVIM_LISTEN_ADDRESS="/tmp/nvim.socket"
 export GENCOMPL_FPATH=$HOME/.zsh/complete
+
+# llm
+export DEEPSEEK_API_KEY="sk-27d939d9857040a6b0e370171aac515c"
+export LLM_KEY="755c6bf6518d4509ac3bbf865e3761a9.QPlKgDm4pTA0dCB9"
 
 # fzf
 export FZF_COMPLETION_TRIGGER=',,'
@@ -54,20 +58,19 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH="$HOME/.mybin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/FlameGraph:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH" # pip
+export PATH="$HOME/.venv/bin:$PATH" # uv pip
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# nnn
-export NNN_BMS='m:/mnt;h:~;M:/mnt/E/迅雷下载;c:~/.config;m:/mnt;p:~/Pictures'
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='f:fzopen;t:preview-tabbed;p:preview-tui;i:imgview;v:vidthumb;'
-
 # GOPROXY。可以通过go env命令查看
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
+
+# docker
+export DOCKER_HOST=unix:///var/run/docker.sock
 
 # forgit
 FORGIT_STASH_FZF_OPTS='--bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
@@ -84,14 +87,11 @@ export XDG_CONFIG_DIR="/etc/xdg"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
-# export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_DATA_HOME="$HOME/.local/share:/usr/local/share/:/usr/share/"
-# export XDG_DATA_DIRS="$HOME/.local/share"
-export XDG_DATA_DIRS="$HOME/.local/share:/usr/local/share/:/usr/share/"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="/usr/share/"
 
 # 主题
 export GTK_THEME=Adwaita
-
 # gsettings_schema
 export GSETTINGS_SCHEMA_DIR=/usr/share/glib-2.0/schemas/
 
@@ -136,7 +136,7 @@ function en-on {
 # export QT_IM_MODULE=fcitx5
 # export XMODIFIERS=@im=fcitx5
 # export SDL_IM_MODULE=fcitx5
-export GTK_IM_MODULE=fcitx
+# export GTK_IM_MODULE=fcitx
 export QT_IM_MODULES=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx

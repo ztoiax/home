@@ -30,7 +30,8 @@ alias ,markdown='glow'
 alias ,,markdown='rucola'
 alias ,excel='tw'
 alias ,,excel='csvlens'
-alias ,elf='binsider'
+alias elf='binsider'
+alias ,elf='readelf -WCa'
 
 # alias restore-rsync='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
 # alias restore-dd='pigz -dc $(ls $backup | sort -r | head -n 1) | dd of=/dev/nvme0n1p5 bs=64K status=progress'
@@ -40,7 +41,7 @@ alias weather="ansiweather -l guangzhou -u metric -s true -f 2"
 alias share="python3 -m http.server 8080"
 # alias share="sauth admin 12345" # password
 alias macchanger="sudo macchanger -r enp27s0"
-alias v="nvim -V1 --listen /tmp/nvim.pipe"
+alias v="nvim -V1 --listen /tmp/nvim.socket"
 alias chrome="google-chrome-stable"
 alias earth="zh-on;google-earth-pro"
 alias e="nautilus"
@@ -78,22 +79,25 @@ alias ,awk='choose'
 alias ,ps='procs'
 alias ,dig='dog'
 alias ,,dig='doggo'
+alias ,,,dig='tldx'
 alias ,curl='http'
 alias ,,curl='curlie'
 alias ,ping='nping'
 alias ,,ping='gping'
 alias ,,,ping='prettyping'
-alias ,du='dust'
+alias ,du='gdu'
 alias ,,du='ncdu'
-alias ,,,du='gdu'
-alias ,df='dfc'
-alias ,df='duf'
+alias ,,,du='dust'
+alias ,df='dysk'
+alias ,,df='dfc'
+alias ,,,df='duf'
 alias ,find='fd'             # instead find
-alias ,man='cheat'
-alias ,,man='tldr'
+alias ,man='tldr'
+alias ,,man='cheat'
 alias ,git='bit'
 alias ,,diff='icdiff'
-alias ,diff='difft'
+alias ,diff='riff'
+alias ,more='moar'
 alias ,traceroute='nexttrace'
 alias ,time='hyperfine'
 alias ,cd='cd $(find . -type d | fzf)'
@@ -114,8 +118,16 @@ alias ,sudo='sudo-rs'
 alias ,git='gix'
 alias ,tail='tspin -f'
 alias ,tree='exa --tree --icons'
+alias ,tree='lstr'
 alias ,kubectl='kubecolor'
-alias ,grep=docfd
+alias ,grep='docfd'
+alias ,ps='px'
+alias ,top='ptop'
+alias htop='htop --tree'
+alias ,htop='NeoHtop'
+alias ,postman='hoppscotch'
+alias ,,postman='insomnia'
+alias ,n='somo'
 
 # cool
 alias hack="cmatrix"
@@ -124,12 +136,14 @@ alias S="neofetch"
 
 # systemctl
 alias sl="systemctl"
+alias slc="systemctl cat"
 alias sls="systemctl status"
 alias slr="systemctl restart"
 alias slrr="systemctl reload"
 alias sle="systemctl enable"
 alias sld="systemctl stop"
 alias jl="journalctl"
+alias ,sl="isd-tui"
 
 # database
 alias ,sqlite="litecli"
@@ -256,7 +270,7 @@ alias dil='docker image ls'
 alias dila='docker image ls --all'
 alias dip='docker image pull'
 alias dir='docker image rm -f'
-alias dis='docker search '
+alias diq='docker search '
 
 alias dc='docker container'
 alias dcl='dc ls'

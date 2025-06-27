@@ -100,7 +100,7 @@ function pt(){
     done
 }
 
-# monitor cpu/mem useage of single process
+# monitor cpu/mem usage of single process
 function pm(){
     pidstat --human -udr -t -C $1 1
 }
@@ -185,14 +185,42 @@ function pb(){
     tar -I zstd -cf ~/.config/pacman_backup/$dir.tar.zst /var/lib/pacman/local/$dir
 }
 
+function pU () {
+  paru -Syyu
+  # nvim
+  proxychains4 nvim --headless -c 'Lazy sync'
+  # yazi
+  proxychains4 ya pack -u
+  # hyprland
+  hyprpm update
+  # zinit
+  zinit update
+}
+
 function pc(){
     sudo pacman -Scc && sudo pacman -Rns $(pacman -Qdtq) && paru -Sc
     # rm -rf /var/cache/debtap
-    notify-send "pacman and paru denpends"
+    notify-send "pacman and paru depends"
 
 
+    # ~/.npm/_cacache
     notify-send "npm"
     npm cache clean --force
+
+    # /root/.npm/_cacache
+    notify-send "root npm"
+    sudo npm cache clean --force
+
+    # ~/.cache/uv
+    notify-send "uv"
+    uv cache clean
+
+    # ~/.rustup/toolchains
+    notify-send "rustup"
+    rustup toolchain remove nightly
+
+    notify-send "yarn"
+    yarn cache clean
 
     notify-send "pnpm"
     pnpm store prune
@@ -250,7 +278,7 @@ function pc(){
     # sudo docker volume prune -f
 }
 
-# list size of package denpends
+# list size of package depends
 function psl(){
     sudo pacman -Qlq | grep -v '/$' | xargs -r du -h | sort -h
 }
@@ -266,6 +294,11 @@ function pss(){
     # LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 fi
+
+# 查询当前文件来至哪个包
+function po(){
+  sudo pacman -Qo
+}
 
 ##### backup ######
 function backup-dd(){
@@ -419,23 +452,23 @@ compctl -K _pip_completion pip
 function proxy-on {
     host="socks5://127.0.0.1:10808"
     export ALL_PROXY="$host"
-    export http_proxy="$host"
-    export https_proxy="$host"
+    export HTTP_PROXY="$host"
+    export HTTPS_PROXY="$host"
     export NO_PROXY="127.0.0.1,localhost,mirrors.aliyun.com,taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com,youdao.com,bing.com,translate.googleapis.com,translate.google.cn"
 }
 
 function proxy-on-http {
     host="http://127.0.0.1:10809"
     export ALL_PROXY="$host"
-    export http_proxy="$host"
-    export https_proxy="$host"
+    export HTTP_PROXY="$host"
+    export HTTPS_PROXY="$host"
     export NO_PROXY="127.0.0.1,localhost,mirrors.aliyun.com,taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com,youdao.com,bing.com,translate.googleapis.com,translate.google.cn"
 }
 
 function proxy-off {
     unset ALL_PROXY
-    unset http_proxy
-    unset https_proxy
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
     unset NO_PROXY
 }
 
@@ -630,7 +663,12 @@ pb-yank () {
   zle yank
 }
 zle -N pb-yank
-bindkey '^v'   paste-insert
+# bindkey '^v'   paste-insert
+
+# ctrl-v编辑器编辑当前文件
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
 
 vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
 zle -N vi-append-x-selection

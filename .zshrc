@@ -37,8 +37,8 @@ zinit light-mode for \
      RobSis/zsh-completion-generator \
      zsh-users/zsh-completions \
      supercrabtree/k \
-     MichaelAquilina/zsh-auto-notify
-     # dim-an/cod  # 通过--help 生成补全
+     MichaelAquilina/zsh-auto-notify \
+     dim-an/cod  # 通过--help 生成补全
      # b4b4r07/enhancd \ # enhance cd command
 
 # mcfly：ctrl-r shell历史搜索替换为智能搜索引擎。McFly的建议会通过一个小型神经网络实时排序。 https://github.com/cantino/mcfly
@@ -151,7 +151,7 @@ eval "$(starship init zsh)"
 # typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
-# twf：vim模式的文件树 https://github.com/wvanlint/twf
+##### twf：vim模式的文件树 https://github.com/wvanlint/twf #####
 twf-widget() {
   local selected=$(twf --height=0.5)
   BUFFER="$BUFFER$selected"
@@ -161,6 +161,26 @@ twf-widget() {
 }
 zle -N twf-widget
 bindkey '^T' twf-widget
+
+##### direnv：不同目录不同环境变量。 https://github.com/direnv/direnv #####
+eval "$(direnv hook zsh)"
+
+##### mise：node、python等版本管理；有类似direnv的环境变量功能；有task功能。https://github.com/jdx/mise #####
+eval "$(mise activate zsh)"
+
+##### compinit初始化自动补全系统 #####
+autoload -Uz compinit
+compinit
+
+# 启用补全菜单
+zstyle ':completion:*' menu select
+
+# 添加自定义函数目录
+fpath+=~/.zfunc
+
+# 可选：启用缓存以加快补全速度
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path ~/.zcompcache
 
 ##### source #####
 source /home/tz/.zsh/alias.sh
@@ -174,14 +194,10 @@ setopt SHARE_HISTORY
 # autocd
 # setopt autocd autopushd
 
-clear
 # proxy-on
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-fpath+=~/.zfunc
 
 if [ -e /home/tz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 . "$HOME/.cargo/env"

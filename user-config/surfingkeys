@@ -20,6 +20,8 @@ const {
 } = api;
 
 unmap ('<Alt-s>');
+unmap ('.');
+
 map('h', 'E');
 map('l', 'R');
 map('j', 'd');
