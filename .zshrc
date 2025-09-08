@@ -3,9 +3,11 @@
 # host="socks5://127.0.0.1:10808"
 # export ALL_PROXY="$host"
 
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+# ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+# [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+# [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+ZINIT_HOME="/usr/share/zinit"
+
 source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -42,7 +44,13 @@ zinit light-mode for \
      # b4b4r07/enhancd \ # enhance cd command
 
 # mcfly：ctrl-r shell历史搜索替换为智能搜索引擎。McFly的建议会通过一个小型神经网络实时排序。 https://github.com/cantino/mcfly
-zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
+zinit ice lucid wait"0a" from"gh-r" as"program" atload'
+  export MCFLY_DISABLE_AUTO_BIND=1
+  eval "$(mcfly init zsh)"
+
+  bindkey "^R" fzf-history-widget       # Ctrl+R binds to fzf searcher
+  bindkey "^[^R" mcfly-history-widget   # Ctrl+Alt+R binds to mcfly
+'
 zinit light cantino/mcfly
 
 # 路径~/.local/share/mcfly/history.db
@@ -112,7 +120,7 @@ zinit snippet OMZP::history-substring-search/history-substring-search.zsh
 # history
 # zinit load ellie/atuin
 
-##### fzf relate ######
+##### fzf related ######
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab

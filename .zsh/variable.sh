@@ -33,6 +33,7 @@ export GENCOMPL_FPATH=$HOME/.zsh/complete
 # llm
 export DEEPSEEK_API_KEY="sk-27d939d9857040a6b0e370171aac515c"
 export LLM_KEY="755c6bf6518d4509ac3bbf865e3761a9.QPlKgDm4pTA0dCB9"
+export GEMINI_API_KEY="AIzaSyCkyMrbUt9svT1BSN_xXat0WQkewWQtBPo"
 
 # fzf
 export FZF_COMPLETION_TRIGGER=',,'

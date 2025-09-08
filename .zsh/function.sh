@@ -194,7 +194,7 @@ function pU () {
   # hyprland
   hyprpm update
   # zinit
-  zinit update
+  zinit update --parallel
 }
 
 function pc(){
@@ -450,10 +450,11 @@ function _pip_completion {
 compctl -K _pip_completion pip
 
 function proxy-on {
-    host="socks5://127.0.0.1:10808"
-    export ALL_PROXY="$host"
-    export HTTP_PROXY="$host"
-    export HTTPS_PROXY="$host"
+    socks5_host="socks5://127.0.0.1:10808"
+    http_host="http://127.0.0.1:10809"
+    export ALL_PROXY="$socks5_host"
+    export HTTP_PROXY="$http_host"
+    export HTTPS_PROXY="$http_host"
     export NO_PROXY="127.0.0.1,localhost,mirrors.aliyun.com,taobao.org,npm.taobao.org,docker.mirrors.ustc.edu.cn,mirrors.aliyuncs.com,mirrors.cloud.aliyuncs.com,tsinghua.edu.cn,pee6w651.mirror.aliyuncs.com,youdao.com,bing.com,translate.googleapis.com,translate.google.cn"
 }
 
