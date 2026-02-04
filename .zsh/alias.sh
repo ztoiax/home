@@ -22,6 +22,7 @@ alias proxy="proxychains4 -q"
 alias wifi="iwgtk"
 alias bluetooth="sudo blueberry"
 alias ,bluetooth="sudo overskride"
+alias ,wifi="impala"
 alias audio="pavucontrol"
 alias image='nomacs'
 alias ,image='swayimg'
@@ -32,6 +33,15 @@ alias ,excel='tw'
 alias ,,excel='csvlens'
 alias elf='binsider'
 alias ,elf='readelf -WCa'
+alias ,qt5='qt5ct'
+alias ,qt6='qt6ct'
+alias ,gtk='nwg-look'
+alias ,lsusb='cyme'
+alias ,pkill='pik'
+alias ,code='claude'
+alias ,,code='iflow'
+alias ,,,code='crush'
+alias ,traceroute='ttl'
 
 # alias restore-rsync='sudo rsync -aAXv --delete --exclude="lost+found" /backup /system'
 # alias restore-dd='pigz -dc $(ls $backup | sort -r | head -n 1) | dd of=/dev/nvme0n1p5 bs=64K status=progress'
@@ -54,6 +64,7 @@ alias redis-tui='cd ~/redis-tui/ && go run main.go && cd -' #redis tui
 alias ssl='siteciphers'
 alias svg='termtosvg'
 alias log='lnav'
+alias ,log='hl'
 alias abdm='/opt/abdownloadmanager/bin/ABDownloadManager'
 
 # android
@@ -82,18 +93,20 @@ alias ,,dig='doggo'
 alias ,,,dig='tldx'
 alias ,curl='http'
 alias ,,curl='curlie'
-alias ,ping='nping'
+alias ,ping='nping-rs'
 alias ,,ping='gping'
 alias ,,,ping='prettyping'
 alias ,du='gdu'
-alias ,,du='ncdu'
-alias ,,,du='dust'
+alias ,,du='baobab'
+alias ,,,du='ncdu'
+alias ,,,,du='dust'
 alias ,df='dysk'
 alias ,,df='dfc'
 alias ,,,df='duf'
 alias ,find='fd'             # instead find
 alias ,man='tldr'
 alias ,,man='cheat'
+alias ,,,man='navi'
 alias ,git='bit'
 alias ,,diff='icdiff'
 alias ,diff='riff'
@@ -127,7 +140,12 @@ alias htop='htop --tree'
 alias ,htop='NeoHtop'
 alias ,postman='hoppscotch'
 alias ,,postman='insomnia'
-alias ,n='somo'
+alias ,n='snitch'
+alias ,,n='somo'
+alias ,rsync='rysncy'
+alias ,pacman='pacseek'
+alias ,tree='tre'
+alias ,file='magika'
 
 # cool
 alias hack="cmatrix"
@@ -144,6 +162,7 @@ alias sle="systemctl enable"
 alias sld="systemctl stop"
 alias jl="journalctl"
 alias ,sl="isd-tui"
+alias ,,sl="kjournaldbrowser"
 
 # database
 alias ,sqlite="litecli"

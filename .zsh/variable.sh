@@ -133,15 +133,17 @@ function en-on {
     export LANGUAGE=en_US.UTF-8
 }
 
-# export GTK_IM_MODULE=fcitx5
-# export QT_IM_MODULE=fcitx5
-# export XMODIFIERS=@im=fcitx5
-# export SDL_IM_MODULE=fcitx5
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
+export SDL_IM_MODULE=fcitx5
+export QT_QPA_PLATFORMTHEME=fcitx5
+
 # export GTK_IM_MODULE=fcitx
-export QT_IM_MODULES=fcitx
-export XMODIFIERS=@im=fcitx
-export SDL_IM_MODULE=fcitx
-export GLFW_IM_MODULE=ibus
+# export QT_IM_MODULES=fcitx
+# export XMODIFIERS=@im=fcitx
+# export SDL_IM_MODULE=fcitx
+# export GLFW_IM_MODULE=ibus
 
 # 启动 wayland 桌面前设置一些环境变量
 function set_wayland_env {

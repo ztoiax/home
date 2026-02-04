@@ -198,9 +198,10 @@ function pU () {
 }
 
 function pc(){
-    sudo pacman -Scc && sudo pacman -Rns $(pacman -Qdtq) && paru -Sc
-    # rm -rf /var/cache/debtap
     notify-send "pacman and paru depends"
+    sudo pacman -Scc && sudo pacman -Rns $(pacman -Qdtq) && paru -Sc
+    sudo rm -rf /var/cache/pacman/pkg/download-*
+    # rm -rf /var/cache/debtap
 
 
     # ~/.npm/_cacache
@@ -215,15 +216,17 @@ function pc(){
     notify-send "uv"
     uv cache clean
 
-    # ~/.rustup/toolchains
-    notify-send "rustup"
-    rustup toolchain remove nightly
-
     notify-send "yarn"
     yarn cache clean
 
     notify-send "pnpm"
     pnpm store prune
+
+    notify-send "electron"
+    rm -rf ~/.cache/electron
+
+    notify-send "dotnet"
+    dotnet nuget locals global-packages --clear
 
     notify-send "pip3"
     pip3 cache purge
@@ -252,10 +255,6 @@ function pc(){
     notify-send "go mod cache, go-build"
     go clean --modcache
     go clean -cache
-
-    # 需要安装cargo install cargo-cache
-    notify-send "rust cargo cache"
-    cargo-cache -a
 
     notify-send "yarn cache"
     yarn cache clean
