@@ -1,4 +1,5 @@
-
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh"
 # Startup before zinit
 # host="socks5://127.0.0.1:10808"
 # export ALL_PROXY="$host"
@@ -15,16 +16,6 @@ autoload -Uz _zinit
 # 取消alias zi=zinit
 unalias zi
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-
 ##### Plugins #####
 zinit light-mode for \
      zpm-zsh/colors \
@@ -38,7 +29,6 @@ zinit light-mode for \
      zsh-users/zsh-history-substring-search \
      RobSis/zsh-completion-generator \
      zsh-users/zsh-completions \
-     supercrabtree/k \
      MichaelAquilina/zsh-auto-notify \
      dim-an/cod  # 通过--help 生成补全
      # b4b4r07/enhancd \ # enhance cd command
@@ -197,10 +187,17 @@ source /home/tz/.zsh/variable.sh
 source /home/tz/.zsh/fzf-tab.sh
 
 ##### Startup #####
-# share history between all sessions
-setopt SHARE_HISTORY
-# autocd
-# setopt autocd autopushd
+setopt SHARE_HISTORY         # share history between all sessions
+setopt complete_aliases      # 补全时展开别名
+setopt autocd                # 输入目录名直接cd，不用加cd
+setopt correct               # 命令拼写自动纠正
+setopt globdots              # 匹配隐藏文件（.*）
+setopt notify                # 后台任务完成立即通知
+setopt rm_star_wait          # rm * 前等待确认
+setopt extended_glob         # 递归查找文件 ls **/*.txt 所有子目录的txt文件
+setopt long_list_jobs        # jobs显示PID
+setopt brace_ccl             # 花括号扩展 echo {a..z} # a b c ... z
+setopt short_loops           # 启用简写循环 for i (1 2 3 4 5) echo $i 或 for i ({1..5}) echo $i
 
 # proxy-on
 export LANG=en_US.UTF-8
@@ -212,3 +209,6 @@ if [ -e /home/tz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tz/.nix-profi
 . "/home/tz/.acme.sh/acme.sh.env"
 
 source /home/tz/.config/broot/launcher/bash/br
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"

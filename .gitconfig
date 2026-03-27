@@ -26,8 +26,9 @@
 	protocol = https
 [http]
 	sslBackend = openssl
-	postBuffer = 524288000
+	postBuffer = 1048576000
 	version = HTTP/1.1
+	sslVersion = tlsv1.2
 [remote "origin"]
 	proxy = 
 [init]
@@ -44,3 +45,5 @@
 	cmd = nvim -Rd $LOCAL $REMOTE -c 'vert diffsplit $MERGED'
 [mergetool]
 	prompt = false
+[safe]
+	directory = *

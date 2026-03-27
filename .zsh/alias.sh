@@ -1,7 +1,8 @@
 #!/bin/zsh
 # Alias bin
 alias mv="advmv -g"
-alias cp="advcp -gr"
+alias ,cp="advcp -gr"
+alias cp="cpx -r"
 alias rm="rm -i"
 # alias rm="trash"
 alias type="type -a"
@@ -150,7 +151,8 @@ alias ,file='magika'
 # cool
 alias hack="cmatrix"
 alias s="onefetch"
-alias S="neofetch"
+alias ,s="neofetch"
+alias ,,s="swiftfetch"
 
 # systemctl
 alias sl="systemctl"
