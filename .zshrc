@@ -203,12 +203,7 @@ setopt short_loops           # 启用简写循环 for i (1 2 3 4 5) echo $i 或 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-
-if [ -e /home/tz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-. "$HOME/.cargo/env"
-. "/home/tz/.acme.sh/acme.sh.env"
-
-source /home/tz/.config/broot/launcher/bash/br
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
+# ghostty-integration
+if [[ -n "${GHOSTTY_RESOURCES_DIR}" ]]; then
+  source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi

@@ -25,6 +25,7 @@ export ZSH_COMPDUMP=$HOME/cache/.zcompdump-$HOST
 export BROWSER="google-chrome-stable"
 export TERM="st-256color"
 export EDITOR="nvim"
+export FCEDIT="vim"
 export GIT_EDITOR="nvim"
 export REACT_EDITOR="nvim"
 # export NVIM_LISTEN_ADDRESS="/tmp/nvim.socket"
@@ -148,8 +149,8 @@ export QT_QPA_PLATFORMTHEME=fcitx5
 # 启动 wayland 桌面前设置一些环境变量
 function set_wayland_env {
   cd ${HOME}
-  # 设置语言环境为中文
-  export LANG=zh_CN.UTF-8
+  # export LANG=zh_CN.UTF-8 # 设置语言环境为中文
+  export LANG,en_US.UTF-8 # 设置语言环境为英文
   # 解决QT程序缩放问题
   export QT_AUTO_SCREEN_SCALE_FACTOR=1
   # QT使用wayland和gtk
@@ -197,3 +198,13 @@ export OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer your-token"
 export OTEL_METRIC_EXPORT_INTERVAL=10000  # 10 seconds (default: 60000ms)
 export OTEL_LOGS_EXPORT_INTERVAL=5000     # 5 seconds (default: 5000ms)
 
+##### huggingface国内镜像 #####
+export HF_ENDPOINT=https://hf-mirror.com
+
+
+##### folia-major网易云第三方客户端的ai #####
+VITE_NETEASE_API_BASE=http://localhost:3000
+VITE_AI_PROVIDER=openai
+OPENAI_API_KEY=sk-98fd43773062488c9213f0f733ef2b4c
+OPENAI_API_URL=https://api.deepseek.com
+OPENAI_API_MODEL=deepseek-v4-flash

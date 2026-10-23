@@ -1,9 +1,12 @@
 #!/bin/zsh
 # Alias bin
-alias mv="advmv -g"
-alias ,cp="advcp -gr"
-alias cp="cpx -r"
+alias ,mv="advmv -g"
+alias mv="bcmr move -rf"
+alias ,,cp="advcp -gr"
+alias ,cp="cpx -r"
+alias cp="bcmr copy -rCa"
 alias rm="rm -i"
+# alias rm="bcmr remove -rf"
 # alias rm="trash"
 alias type="type -a"
 alias free="free -hw"
@@ -69,8 +72,8 @@ alias ,log='hl'
 alias abdm='/opt/abdownloadmanager/bin/ABDownloadManager'
 
 # android
-alias android="scrcpy --max-fps 120 --bit-rate 10M"
-alias android-video="scrcpy --max-fps 120 --bit-rate 10M --record-format mp4 -r "
+alias ,scrcpy="scrcpy --max-fps 120 --bit-rate 10M"
+alias scrcpy-video="scrcpy --max-fps 120 --bit-rate 10M --record-format mp4 -r "
 alias android-sournd="sndcpy"
 
 # Social media
@@ -89,9 +92,10 @@ alias adbscreen='adb exec-out screencap -p >  ~/$(date +"%Y-%m-%d_%H:%M:%S").png
 # instead
 alias ,awk='choose'
 alias ,ps='procs'
-alias ,dig='dog'
-alias ,,dig='doggo'
-alias ,,,dig='tldx'
+alias ,dig='quien'
+alias ,,dig='dog'
+alias ,,,dig='doggo'
+alias ,,,,dig='tldx'
 alias ,curl='http'
 alias ,,curl='curlie'
 alias ,ping='nping-rs'
@@ -109,8 +113,9 @@ alias ,man='tldr'
 alias ,,man='cheat'
 alias ,,,man='navi'
 alias ,git='bit'
-alias ,,diff='icdiff'
+alias ,,,diff='icdiff'
 alias ,diff='riff'
+alias ,,diff='hunkdiff diff'
 alias ,more='moar'
 alias ,traceroute='nexttrace'
 alias ,time='hyperfine'
@@ -339,7 +344,7 @@ alias makest='cd ~/st; sudo make clean install && sudo pkill Xorg'
 
 # abbrev-alias
 abbrev-alias -g G="| grep -i"
-abbrev-alias -g A="| ag"
+abbrev-alias -g C="| wl-copy"
 abbrev-alias -g P="| awk '{ print $}'"
 abbrev-alias -g SS="| sort | uniq -c | sort -n"
 abbrev-alias -g L="| wc -l"

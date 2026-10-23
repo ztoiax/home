@@ -190,11 +190,11 @@ function pU () {
   # nvim
   proxychains4 nvim --headless -c 'Lazy sync'
   # yazi
-  proxychains4 ya pack -u
+  proxychains4 ya pack upgrade
   # hyprland
   hyprpm update
   # zinit
-  zinit update --parallel
+  proxychains4 zsh -c "source /home/tz/.local/share/zinit/zinit.git/zinit.zsh && zinit update --all"
 }
 
 function pc(){
@@ -211,6 +211,10 @@ function pc(){
     # /root/.npm/_cacache
     notify-send "root npm"
     sudo npm cache clean --force
+
+    # /home/tz/.cache/.bun/install/
+    notify-send "bun"
+    bun pm cache rm
 
     # ~/.cache/uv
     notify-send "uv"
